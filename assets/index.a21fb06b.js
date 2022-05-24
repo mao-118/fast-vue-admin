@@ -1,0 +1,1 @@
+import{_ as a,u,a as n,h as o}from"./index.aa3e27cf.js";const _={render(){return o("template")}},c=Object.assign(_,{setup(p){const e=u(),r=n(),{params:t,query:s}=e;return r.replace({path:"/"+t.path,query:s}),()=>{}}});var d=a(c,[["__file","/home/runner/work/fast-vue-admin/fast-vue-admin/src/views/redirect/index.vue"]]);export{d as default};

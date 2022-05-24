@@ -1,1 +1,0 @@
-import{_ as e,i as a,j as n}from"./index.1eb93362.js";const r={},s={class:"app-container"};function c(o,t){return a(),n("div",s,"\u63A5\u5165\u5730\u56FE")}var i=e(r,[["render",c],["__file","/home/runner/work/fast-vue-admin/fast-vue-admin/src/views/components/map.vue"]]);export{i as default};
