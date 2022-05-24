@@ -19,5 +19,7 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.6
         with:
+          ACCESS_TOKEN: ${{ secrets.Build_and_Deploy }}
+          REPOSITORY_NAME: mao-118/fast-vue-admin.git
           branch: gh-pages # The branch the action should deploy to.
-          # folder: dist
+          folder: dist
