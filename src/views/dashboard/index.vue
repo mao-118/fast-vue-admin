@@ -163,42 +163,43 @@
           </template>
         </el-upload>
       </div>
-      
+
     </div>
   </div>
 </template>
 <script>
-export default{
-  name:'DashboardIndex'
-}
+export default {
+  name: 'DashboardIndex'
+};
 </script>
 <script setup>
-import { computed, ref } from "vue";
-import {useMainStore} from "@/store";
-const mainStore=useMainStore()
-const activeNames = ref(["1"]);
+import { computed, ref } from 'vue';
+import { useMainStore } from '@/store';
+console.log(import.meta.env);
+const mainStore = useMainStore();
+const activeNames = ref(['1']);
 const handleChange = (val) => {
   console.log(val);
 };
 const size = ref(mainStore.elSize);
 const iconStyle = computed(() => {
   const marginMap = {
-    large: "8px",
-    default: "6px",
-    small: "4px",
+    large: '8px',
+    default: '6px',
+    small: '4px'
   };
   return {
-    marginRight: marginMap[size.value] || marginMap.default,
+    marginRight: marginMap[size.value] || marginMap.default
   };
 });
 const blockMargin = computed(() => {
   const marginMap = {
-    large: "32px",
-    default: "28px",
-    small: "24px",
+    large: '32px',
+    default: '28px',
+    small: '24px'
   };
   return {
-    marginTop: marginMap[size.value] || marginMap.default,
+    marginTop: marginMap[size.value] || marginMap.default
   };
 });
 </script>

@@ -1,4 +1,4 @@
-import demo from './demo'
-export default[
-    ...demo
-]
+import demo from './demo';
+export default [
+  ...demo
+];

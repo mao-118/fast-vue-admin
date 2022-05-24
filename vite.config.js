@@ -13,7 +13,8 @@ export default defineConfig({
     vue(),
     viteMockServe({ // https://www.npmjs.com/package/vite-plugin-mock
       mockPath: 'mock',
-      supportTs: false // 如果使用 js发开，则需要配置 supportTs 为 false
+      supportTs: false, // 如果使用 js发开，则需要配置 supportTs 为 false
+      watchFiles: true // 监视文件更改
     })
   ],
   resolve: {
