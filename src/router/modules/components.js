@@ -15,7 +15,7 @@ export default {
     {
       path: '/components/map',
       name: 'map',
-      hidden: true,
+      hidden: false,
       meta: { title: 'map', icon: 'Location' },
       component: () => import('@/views/components/map.vue')
     },
