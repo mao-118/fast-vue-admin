@@ -11,8 +11,9 @@ export default defineConfig({
   },
   plugins: [
     vue(),
-    viteMockServe({ // https://www.npmjs.com/package/vite-plugin-mock
+    viteMockServe({ // https://github.com/vbenjs/vite-plugin-mock/blob/main/README.zh_CN.md
       mockPath: 'mock',
+      prodEnabled: true,
       supportTs: false, // 如果使用 js发开，则需要配置 supportTs 为 false
       watchFiles: true // 监视文件更改
     })

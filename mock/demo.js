@@ -22,7 +22,7 @@ const { array } = Mock.mock({
 });
 export default [
   {
-    url: '/fast-vue-admin/api/demoList',
+    url: '/api/demoList',
     method: 'get',
     response: ({ query }) => {
       const { page, pre_size } = query;
