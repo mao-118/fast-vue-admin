@@ -1,6 +1,6 @@
 import { createProdMockServer } from 'vite-plugin-mock/es/createProdMockServer';
 
-// 逐一导入您的mock文件
+// 导入您的mock文件
 import mockModules from '../../mock';
 
 function setupProdMockServer() {
