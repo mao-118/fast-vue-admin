@@ -9,7 +9,7 @@ export default {
     {
       path: '/nest/menu1',
       name: 'menu1',
-      meta: { title: '菜单1', icon: 'Menu' },
+      meta: { title: '菜单1', icon: '' },
       component: Emptyout,
       children: [
         {
@@ -38,7 +38,7 @@ export default {
     {
       path: '/nest/menu2',
       name: 'menu2',
-      meta: { title: '菜单2', icon: 'Location' },
+      meta: { title: '菜单2', icon: '' },
       component: () => import('@/views/nest/menu2.vue')
     }
   ]

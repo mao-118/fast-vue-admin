@@ -9,7 +9,7 @@ export default {
     {
       path: '/demo/index',
       name: 'demo1',
-      meta: { title: '表格用例', icon: 'Postcard' },
+      meta: { title: '表格用例', icon: '' },
       component: () => import('@/views/demo/index.vue')
     }
   ]

@@ -9,7 +9,7 @@ export default {
     {
       path: '/dashboard/index',
       name: 'DashboardIndex',
-      meta: { title: '首页', icon: 'Location' },
+      meta: { title: '首页', icon: 'HomeFilled' },
       component: () => import('@/views/dashboard/index.vue')
     }
   ]

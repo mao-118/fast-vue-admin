@@ -1,4 +1,4 @@
-import {createPinia} from 'pinia'
-export default (app)=>{
-    app.use(createPinia())
-}
+import { createPinia } from 'pinia';
+export default (app) => {
+  app.use(createPinia());
+};
