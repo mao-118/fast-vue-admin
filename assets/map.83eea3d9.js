@@ -1,0 +1,1 @@
+import{_ as e,i as a,j as n}from"./index.321e0ed6.js";const r={},s={class:"app-container"};function t(c,o){return a(),n("div",s,"\u63A5\u5165\u5730\u56FE\u6D4B\u8BD5gitee\u81EA\u52A8\u90E8\u7F72")}var i=e(r,[["render",t],["__file","/home/runner/work/fast-vue-admin/fast-vue-admin/src/views/components/map.vue"]]);export{i as default};
