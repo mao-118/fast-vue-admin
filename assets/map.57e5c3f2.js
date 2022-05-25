@@ -1,1 +1,0 @@
-import{_ as e,i as c,j as t}from"./index.9da73d33.js";const a={},r={class:"app-container"};function n(o,s){return c(),t("div",r,"\u63A5\u5165\u5730\u56FE\u6D4B\u8BD5gitee\u81EA\u52A8\u90E8\u7F72")}var i=e(a,[["render",n]]);export{i as default};
