@@ -3,7 +3,7 @@ export default {
   path: '/components',
   name: 'components',
   component: Layout,
-  meta: { title: '组件', icon: 'HomeFilled' },
+  meta: { title: '组件', icon: 'InfoFilled' },
   sort: 2,
   children: [
     {

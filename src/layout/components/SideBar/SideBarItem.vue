@@ -4,7 +4,7 @@
             <el-icon v-if="route.meta?.icon"><component :is="route.meta?.icon" /></el-icon>
             <span>{{route.meta?.title}}</span>
         </template>
-        <sidebar-item v-for="item in route.children" :route="item" :key="item.path"/> 
+        <sidebar-item v-for="item in route.children" :route="item" :key="item.path"/>
     </el-sub-menu>
     <el-menu-item v-else-if="!route.alwaysShow&&route.children&&route.children.length==1&&(!route.children[0].children||route.children[0].children==0)" :index="route.children[0].path">
         <el-icon v-if="route.children[0].meta?.icon"><component :is="route.children[0].meta?.icon" /></el-icon>
@@ -16,21 +16,21 @@
     </el-menu-item>
 </template>
 <script setup>
-import SidebarItem from "./SideBarItem.vue";
+import SidebarItem from './SideBarItem.vue';
 defineProps({
-    route:{
-        required:true,
-        type:Object,
-        default:()=>{}
-    }
+  route: {
+    required: true,
+    type: Object,
+    default: () => {}
+  }
 });
-const subMenu=route=>{
-    if(route.children&&route.children.length==1){
-        return !route.hidden&&route.children&&!route.children.every(item=>item.hidden)&&route.alwaysShow
-    }
-    return !route.hidden&&route.children&&!route.children.every(item=>item.hidden);
+const subMenu = route => {
+  if (route.children && route.children.length == 1) {
+    return !route.hidden && route.children && !route.children.every(item => item.hidden) && route.alwaysShow;
+  }
+  return !route.hidden && route.children && !route.children.every(item => item.hidden);
 };
-const menuItem = route =>{
-    return !route.hidden&&(!route.children||route.children.length==0);
+const menuItem = route => {
+  return !route.hidden && (!route.children || route.children.length == 0);
 };
 </script>
