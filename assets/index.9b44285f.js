@@ -1,1 +1,0 @@
-import{u as a,a as o,h as u}from"./index.1cdb24d7.js";const n={render(){return u("template")}},_=Object.assign(n,{setup(p){const t=a(),e=o(),{params:r,query:s}=t;return e.replace({path:"/"+r.path,query:s}),()=>{}}});export{_ as default};
