@@ -34,30 +34,30 @@
   </div>
 </template>
 <script>
-export default{
-    name:'demo1'
-}
+export default {
+  name: 'Demo1'
+};
 </script>
 <script setup>
-import { reactive, ref } from "vue";
-import TableEdit from "./components/TableEdit.vue";
-import { ElMessage, ElMessageBox } from "element-plus";
-import { getList } from "@/api/demo";
-import { useLoading } from "@/hooks";
+import { reactive, ref } from 'vue';
+import TableEdit from './components/TableEdit.vue';
+import { ElMessage, ElMessageBox } from 'element-plus';
+import { getList } from '@/api/demo';
+import { useLoading } from '@/hooks';
 const loading = useLoading();
 const edit = ref(null);
 const FsPageRef = ref();
 const formInline = reactive({
-  user: "",
-  region: "",
+  user: '',
+  region: ''
 });
 const tableList = reactive([]);
-const getTableList = async () => {
+const getTableList = async() => {
   const { page, pre_size } = FsPageRef.value.pageQuery;
   loading.value = true;
   const res = await getList({
     page: page.value,
-    pre_size: pre_size.value,
+    pre_size: pre_size.value
   });
   setTimeout(() => {
     tableList.splice(0);
@@ -67,31 +67,31 @@ const getTableList = async () => {
   }, 500);
 };
 const onSubmit = () => {
-  console.log("submit!");
+  console.log('submit!');
 };
 const showEdit = (row) => {
   edit.value.showEdit(row);
 };
 const handleDelete = () => {
   ElMessageBox.confirm(
-    "proxy will permanently delete the file. Continue?",
-    "Warning",
+    'proxy will permanently delete the file. Continue?',
+    'Warning',
     {
-      confirmButtonText: "OK",
-      cancelButtonText: "Cancel",
-      type: "warning",
+      confirmButtonText: 'OK',
+      cancelButtonText: 'Cancel',
+      type: 'warning'
     }
   )
     .then(() => {
       ElMessage({
-        type: "success",
-        message: "Delete completed",
+        type: 'success',
+        message: 'Delete completed'
       });
     })
     .catch(() => {
       ElMessage({
-        type: "info",
-        message: "Delete canceled",
+        type: 'info',
+        message: 'Delete canceled'
       });
     });
 };
