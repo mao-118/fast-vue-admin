@@ -33,7 +33,7 @@ const localeList = reactive([
   },
   {
     name: 'English',
-    lang: { ...en, title: 'switch language' }
+    lang: { ...en, title: 'Switch Language' }
   },
   {
     name: 'Español',
