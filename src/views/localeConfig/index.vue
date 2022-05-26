@@ -1,10 +1,10 @@
 <template>
   <div class="app-container">
     <div class="changeLocale">
-      <h1 class="text-center mb-4">切换语言</h1>
+      <h1 class="text-center mb-4">{{locale.title}}</h1>
       <el-radio-group v-model="radio" @change="handleChange">
         <el-radio
-          v-for="(item, index) in data.localeList"
+          v-for="(item, index) in localeList"
           :key="index"
           :label="index"
           border
@@ -13,8 +13,8 @@
         </el-radio>
       </el-radio-group>
     </div>
-    <el-config-provider :locale="data.locale">
-      <el-date-picker type="datetime" :placeholder="data.locale.el.select.placeholder" />
+    <el-config-provider :locale="locale">
+      <el-date-picker type="datetime" :placeholder="locale.el.select.placeholder" />
       <el-calendar />
     </el-config-provider>
   </div>
@@ -25,31 +25,30 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn';
 import en from 'element-plus/es/locale/lang/en';
 import es from 'element-plus/es/locale/lang/es';
 import ja from 'element-plus/es/locale/lang/ja';
-const data = reactive({
-  locale: zhCn,
-  localeList: [
-    {
-      name: '简体中文',
-      lang: zhCn
-    },
-    {
-      name: 'English',
-      lang: en
-    },
-    {
-      name: 'Español',
-      lang: es
-    },
-    {
-      name: '日本語',
-      lang: ja
-    }
-  ]
-});
+const locale = ref(zhCn);
+const localeList = reactive([
+  {
+    name: '简体中文',
+    lang: { ...zhCn, title: '切换语言' }
+  },
+  {
+    name: 'English',
+    lang: { ...en, title: 'switch language' }
+  },
+  {
+    name: 'Español',
+    lang: { ...es, title: 'Cambiar idioma' }
+  },
+  {
+    name: '日本語',
+    lang: { ...ja, title: '言語の切り替え' }
+  }
+]);
 const radio = ref(0);
 const handleChange = () => {
-  data.locale = data.localeList[radio.value].lang;
+  locale.value = localeList[radio.value].lang;
 };
+handleChange();
 </script>
 <style lang="scss" scoped>
 .changeLocale {
