@@ -7,7 +7,13 @@ export default defineConfig({
   root: './',
   base: './',
   server: {
-    port: 9999
+    port: 9999,
+    proxy: {
+      '/v3': {
+        target: 'https://restapi.amap.com/',
+        changOrigin: true
+      }
+    }
   },
   plugins: [
     vue(),
