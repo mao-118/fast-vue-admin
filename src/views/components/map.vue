@@ -38,7 +38,6 @@ const mapObj = reactive({
   geocoder: null, // 地理编码对象
   geolocation: null // 定位对象
 });
-// 596002c0d52b6b4360a70ecbfb4c692d
 const initMap = () => {
   mapObj.viewMap = new AMap.Map('container', {
     // 初始化地图
@@ -119,7 +118,7 @@ const getAddress = (e) => {
 // 检索
 const searchPlace = async(queryString, cb) => {
   // 调用高德地图api查询 queryString是输入的关键字
-  const { data: res } = await axios.get('/v3/place/text', {
+  const { data: res } = await axios.get('https://restapi.amap.com/v3/place/text', {
     params: {
       keywords: queryString, // 检索关键字
       city: '杭州', // 指定区域
@@ -137,7 +136,7 @@ const searchPlace = async(queryString, cb) => {
     result = res.pois.map(x => {
       return {
         // 拼接详细地址 adname 和address可能会重复
-        value: x.pname + x.cityname + (x.adname == x.address ? x.adname : x.adname + x.address) + x.name,
+        value: x.pname + x.cityname + (x.adname === x.address ? x.adname : x.adname + x.address) + x.name,
         newAddress: x.pname + x.cityname + x.adname,
         // 其他的属性也放进去
         ...x
