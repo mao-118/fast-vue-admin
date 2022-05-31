@@ -155,7 +155,7 @@ const searchPlace = async(queryString, cb) => {
   // 返回封装的结果集
   cb(result);
   // 点击清除按钮小图标下拉建议不更新的问题
-  elautocomplete.value.handleFocus();
+  elautocomplete.value.focus();
 };
 // 检索选中
 const selectPlace = (pointInfo) => {
