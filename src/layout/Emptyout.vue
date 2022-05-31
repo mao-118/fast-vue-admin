@@ -2,7 +2,7 @@
     <router-view />
 </template>
 <script>
-export default{
-    name:'Emptyout'
-}
+export default {
+  name: 'Emptyout'
+};
 </script>

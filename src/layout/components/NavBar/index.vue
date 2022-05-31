@@ -72,10 +72,10 @@
   </div>
 </template>
 <script setup>
-import { useMainStore, useRouteStore } from "@/store/index.js";
-import { ref } from "vue";
-import Settings from "../settings/index.vue";
-import { routes } from "@/router/installRouter";
+import { useMainStore, useRouteStore } from '@/store/index.js';
+import { ref } from 'vue';
+import Settings from '../settings/index.vue';
+import { routes } from '@/router/installRouter';
 const mainStore = useMainStore();
 const routeStore = useRouteStore();
 const menuIndex = ref(-1);
@@ -91,15 +91,15 @@ const getMenu = (item, index) => {
   menuIndex.value = index;
   let routes = [];
   routeStore.routes.forEach((route) => {
-    if (item == route.path && route.children) {
+    if (item === route.path && route.children) {
       routes = route.children;
     }
   });
   routeStore.setMenuList(routes);
 };
 const changeMenuList = () => {
-  //根据模式加载菜单
-  if (mainStore.menuMode == "vertical") {
+  // 根据模式加载菜单
+  if (mainStore.menuMode === 'vertical') {
     routeStore.initMenuList();
   } else {
     getMenu(routeStore.currentRouteParent);

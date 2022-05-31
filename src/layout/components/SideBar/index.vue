@@ -4,7 +4,7 @@
       <img class="logo-img" src="@/assets/logo.png">
       <h3 class="logo-text">Fast Admin</h3>
     </div>
-    
+
     <el-menu
       :default-active="$route.path"
       class="el-menu-vertical-demo"
@@ -22,12 +22,12 @@
   </el-scrollbar>
 </template>
 <script setup>
-import SidebarItem from "./SideBarItem.vue";
-import {useMainStore,useRouteStore} from "@/store";
-import { routes } from "@/router/installRouter";
+import SidebarItem from './SideBarItem.vue';
+import { useMainStore, useRouteStore } from '@/store';
+import { routes } from '@/router/installRouter';
 const mainSotre = useMainStore();
 const routeStore = useRouteStore();
-//初始化路由和菜单
+// 初始化路由和菜单
 routeStore.setRoutes(routes);
 </script>
 <style lang="scss" scoped>
@@ -44,7 +44,7 @@ routeStore.setRoutes(routes);
   .logo-text{
     color: #409EFF;
     font-size: 20px;
-    font-weight: 600; 
+    font-weight: 600;
   }
 }
 

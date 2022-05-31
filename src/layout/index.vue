@@ -17,8 +17,8 @@
   </div>
 </template>
 <script setup>
-import {SideBar,NavBar,TagView,AppMain} from "./components";
-import {useMainStore,useTagViewStore} from "@/store";
+import { SideBar, NavBar, TagView, AppMain } from './components';
+import { useMainStore, useTagViewStore } from '@/store';
 const tagViewStore = useTagViewStore();
 const mainStore = useMainStore();
 </script>
