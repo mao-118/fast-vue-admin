@@ -18,9 +18,7 @@
 </template>
 <script setup>
 import { SideBar, NavBar, TagView, AppMain } from './components';
-import { useMainStore, useTagViewStore } from '@/store';
-const tagViewStore = useTagViewStore();
-const mainStore = useMainStore();
+import { mainStore, tagViewStore } from '@/store';
 </script>
 <style lang="scss" scoped>
 .common-layout{

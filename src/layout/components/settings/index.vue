@@ -44,31 +44,29 @@
       </el-drawer>
 </template>
 <script setup>
-import { ref } from "vue";
-import { toggleDark } from "@/utils/dark";
-import {useMainStore,useTagViewStore} from "@/store";
-const tagViewStore =useTagViewStore();
-const mainStore =useMainStore();
-const settingDrawer=ref(false);
-const direction=ref("rtl");
-const theme = ref(localStorage.getItem("vueuse-color-scheme") !== "auto");
-const showTagView=ref(true);
-const fixedHeader=ref(false);
-const showLogo=ref(false);
+import { ref } from 'vue';
+import { toggleDark } from '@/utils/dark';
+import { mainStore, tagViewStore } from '@/store';
+const settingDrawer = ref(false);
+const direction = ref('rtl');
+const theme = ref(localStorage.getItem('vueuse-color-scheme') !== 'auto');
+const showTagView = ref(true);
+const fixedHeader = ref(false);
+const showLogo = ref(false);
 const handleChangeTheme = () => {
   toggleDark();
 };
-const handleChangeShow=()=>{
+const handleChangeShow = () => {
   tagViewStore.setShowTagView(showTagView.value);
 };
-const handleChangeFiexdHeader=()=>{
+const handleChangeFiexdHeader = () => {
   mainStore.setFixedHeader(fixedHeader.value);
 };
-const handleChangeLogo=()=>{
+const handleChangeLogo = () => {
   mainStore.setShowLogo(showLogo.value);
 };
-const showSettings=()=>{
-  settingDrawer.value=true;
+const showSettings = () => {
+  settingDrawer.value = true;
 };
 defineExpose({
   showSettings

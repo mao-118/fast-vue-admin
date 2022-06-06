@@ -72,12 +72,10 @@
   </div>
 </template>
 <script setup>
-import { useMainStore, useRouteStore } from '@/store/index.js';
+import { mainStore, routeStore } from '@/store/index.js';
 import { ref } from 'vue';
 import Settings from '../settings/index.vue';
 import { routes } from '@/router/installRouter';
-const mainStore = useMainStore();
-const routeStore = useRouteStore();
 const menuIndex = ref(-1);
 const settingsRef = ref(null);
 const settingClick = () => {

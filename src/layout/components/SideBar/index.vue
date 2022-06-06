@@ -1,6 +1,6 @@
 <template>
   <el-scrollbar>
-    <div v-if="mainSotre.showLogo" class="logo">
+    <div v-if="mainStore.showLogo" class="logo">
       <img class="logo-img" src="@/assets/logo.png">
       <h3 class="logo-text">Fast Admin</h3>
     </div>
@@ -8,7 +8,7 @@
     <el-menu
       :default-active="$route.path"
       class="el-menu-vertical-demo"
-      :collapse="mainSotre.collapse"
+      :collapse="mainStore.collapse"
       :collapse-transition="false"
       :router="true"
       :unique-opened="true"
@@ -23,10 +23,8 @@
 </template>
 <script setup>
 import SidebarItem from './SideBarItem.vue';
-import { useMainStore, useRouteStore } from '@/store';
+import { mainStore, routeStore } from '@/store';
 import { routes } from '@/router/installRouter';
-const mainSotre = useMainStore();
-const routeStore = useRouteStore();
 // 初始化路由和菜单
 routeStore.setRoutes(routes);
 </script>

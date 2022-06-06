@@ -36,13 +36,10 @@
   </div>
 </template>
 <script setup>
-import { useRoute, useRouter } from "vue-router";
-import { ref, watch, onMounted, onBeforeUnmount } from "vue";
-import {useMainStore,useTagViewStore,useRouteStore} from "@/store";
-import { useScroll } from "@/utils";
-const routeStore = useRouteStore();
-const tagViewStore = useTagViewStore();
-const mainStore = useMainStore();
+import { ref, watch, onMounted, onBeforeUnmount } from 'vue';
+import { mainStore, tagViewStore, routeStore } from '@/store';
+import { useScroll } from '@/utils';
+import { useRoute, useRouter } from 'vue-router';
 const route = useRoute();
 const router = useRouter();
 watch(
@@ -56,16 +53,16 @@ watch(
   { immediate: true }
 );
 const isLarge = () => {
-  return localStorage.getItem("elSize") == "large";
+  return localStorage.getItem('elSize') === 'large';
 };
-//点击tag并且在横屏菜单栏的情况下加载左侧菜单
-const tagClick = async (item) => {
-  if (item.path == route.path) return;
+// 点击tag并且在横屏菜单栏的情况下加载左侧菜单
+const tagClick = async(item) => {
+  if (item.path === route.path) return;
   await router.push(item.path);
-  if (mainStore.menuMode == "horizontal") {
+  if (mainStore.menuMode === 'horizontal') {
     let routes = [];
     routeStore.routes.forEach((route) => {
-      if (routeStore.currentRouteParent == route.path && route.children) {
+      if (routeStore.currentRouteParent === route.path && route.children) {
         routes = route.children;
       }
     });
@@ -74,9 +71,9 @@ const tagClick = async (item) => {
 };
 const closeCurrentTag = (item) => {
   tagViewStore.closeTagView(item);
-  if(item.path==route.path){
-      const index = tagViewStore.tagViews.findIndex((tag) => tag.path == item.path);
-    //找到前一个和后一个元素
+  if (item.path === route.path) {
+    const index = tagViewStore.tagViews.findIndex((tag) => tag.path === item.path);
+    // 找到前一个和后一个元素
     const preTag = tagViewStore.tagViews[index - 1];
     const nextTag = tagViewStore.tagViews[index + 1];
     if (preTag) {
@@ -103,32 +100,32 @@ const scrollbarWidth = ref(0);
 const scrollLeft = ref(0);
 const tagListRef = ref(null);
 // let elScrollbar=null
-const changeVisible=()=>{
+const changeVisible = () => {
   visible.value = false;
-}
+};
 onMounted(() => {
-  window.addEventListener("click", changeVisible);
-  const elScrollbar = document.getElementById("elScrollbar");
+  window.addEventListener('click', changeVisible);
+  const elScrollbar = document.getElementById('elScrollbar');
   scrollbarWidth.value = tagListRef.value.clientWidth;
-  if (navigator.userAgent.indexOf("Firefox") >= 0) {
+  if (navigator.userAgent.indexOf('Firefox') >= 0) {
     // 火狐写法 添加滚轮滚动监听事件
-    elScrollbar?.addEventListener("DOMMouseScroll", mouseScroll);
+    elScrollbar?.addEventListener('DOMMouseScroll', mouseScroll);
   } else {
     // 非火狐 添加滚轮滚动监听事件
-    elScrollbar?.addEventListener("mousewheel", mouseScroll);
+    elScrollbar?.addEventListener('mousewheel', mouseScroll);
   }
 });
-onBeforeUnmount(()=>{
-  window.removeEventListener("click",changeVisible);
-  const elScrollbar = document.getElementById("elScrollbar");
-  if (navigator.userAgent.indexOf("Firefox") >= 0) {
+onBeforeUnmount(() => {
+  window.removeEventListener('click', changeVisible);
+  const elScrollbar = document.getElementById('elScrollbar');
+  if (navigator.userAgent.indexOf('Firefox') >= 0) {
     // 火狐写法 添加滚轮滚动监听事件
-    elScrollbar?.removeEventListener("DOMMouseScroll", mouseScroll);
+    elScrollbar?.removeEventListener('DOMMouseScroll', mouseScroll);
   } else {
     // 非火狐 添加滚轮滚动监听事件
-    elScrollbar?.removeEventListener("mousewheel", mouseScroll);
+    elScrollbar?.removeEventListener('mousewheel', mouseScroll);
   }
-})
+});
 const mouseScroll = (event) => {
   const step = useScroll(event);
   scrollLeft.value += step;
@@ -145,7 +142,7 @@ const handleScroll = (e) => {
 };
 const refreshSelectedTag = () => {
   router.replace({
-    path: "/redirect" + selectedTag.value.fullPath,
+    path: '/redirect' + selectedTag.value.fullPath
   });
   visible.value = false;
 };
@@ -155,7 +152,7 @@ const closeSelectedTag = () => {
 };
 const closeOthersTags = () => {
   tagViewStore.closeOthersTagViews(selectedTag.value);
-  if(route.path!==selectedTag.value.path)tagClick(selectedTag.value)
+  if (route.path !== selectedTag.value.path)tagClick(selectedTag.value);
   visible.value = false;
 };
 const closeAllTags = () => {
@@ -165,17 +162,17 @@ const closeAllTags = () => {
 };
 const closeLeftTags = () => {
   const leftTags = tagViewStore.closeLeftTagViews(selectedTag.value);
-  //如果路由所在的标签被关闭就跳转到当前页面
-  if(leftTags.some(item=>item.path==route.path)){
-    tagClick(selectedTag.value)
+  // 如果路由所在的标签被关闭就跳转到当前页面
+  if (leftTags.some(item => item.path == route.path)) {
+    tagClick(selectedTag.value);
   }
   visible.value = false;
 };
 const closeRightTags = () => {
   const rightTags = tagViewStore.closeRightTagViews(selectedTag.value);
-  //如果路由所在的标签被关闭就跳转到当前页面
-  if(rightTags.some(item=>item.path==route.path)){
-    tagClick(selectedTag.value)
+  // 如果路由所在的标签被关闭就跳转到当前页面
+  if (rightTags.some(item => item.path == route.path)) {
+    tagClick(selectedTag.value);
   }
   visible.value = false;
 };

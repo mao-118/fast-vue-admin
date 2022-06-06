@@ -1,19 +1,19 @@
-import { defineStore } from "pinia";
-export default defineStore("TagViewStore", {
+import { defineStore } from 'pinia';
+export default defineStore('TagViewStore', {
   state: () => ({
     tagViews: [],
-    showTagView:true
+    showTagView: true
   }),
   actions: {
-    setShowTagView(show){
-      this.showTagView=show;
+    setShowTagView(show) {
+      this.showTagView = show;
     },
     addTagViews(tag) {
       const index = this.tagViews.findIndex((item) => item.path == tag.path);
       if (index !== -1) return;
       this.tagViews.push(
         Object.assign({}, tag, {
-          title: tag.meta.title || "no-name",
+          title: tag.meta.title || 'no-name'
         })
       );
     },
@@ -35,6 +35,6 @@ export default defineStore("TagViewStore", {
     closeRightTagViews(tag) {
       const index = this.tagViews.findIndex((item) => item.path == tag.path);
       return this.tagViews.splice(index + 1);
-    },
-  },
+    }
+  }
 });

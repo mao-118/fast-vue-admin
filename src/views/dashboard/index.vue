@@ -174,9 +174,7 @@ export default {
 </script>
 <script setup>
 import { computed, ref } from 'vue';
-import { useMainStore } from '@/store';
-console.log(import.meta.env);
-const mainStore = useMainStore();
+import { mainStore } from '@/store';
 const activeNames = ref(['1']);
 const handleChange = (val) => {
   console.log(val);
