@@ -53,8 +53,9 @@ const theme = ref(localStorage.getItem('vueuse-color-scheme') !== 'auto');
 const showTagView = ref(true);
 const fixedHeader = ref(false);
 const showLogo = ref(false);
-const handleChangeTheme = () => {
-  toggleDark();
+const handleChangeTheme = async() => {
+  await toggleDark();
+  mainStore.setScheme();
 };
 const handleChangeShow = () => {
   tagViewStore.setShowTagView(showTagView.value);
