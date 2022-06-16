@@ -35,7 +35,7 @@
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item>退出</el-dropdown-item>
+            <el-dropdown-item @click.native="logout">退出</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -76,6 +76,8 @@ import { mainStore, routeStore } from '@/store/index.js';
 import { ref } from 'vue';
 import Settings from '../settings/index.vue';
 import { routes } from '@/router/installRouter';
+import { useRouter } from 'vue-router';
+const router = useRouter();
 const menuIndex = ref(-1);
 const settingsRef = ref(null);
 const settingClick = () => {
@@ -108,6 +110,10 @@ const toggleMenu = () => {
   mainStore.changeMenuMode();
   changeMenuList();
   routeStore.setRoutes(routes);
+};
+const logout = () => {
+  mainStore.setToken('');
+  router.push('/login');
 };
 </script>
 <style lang="scss" scoped>

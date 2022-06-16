@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { menuMode, elSize } from '@/config';
+import { menuMode, elSize, token } from '@/config';
 export default defineStore('MainStore', {
   state: () => ({
     collapse: false,
@@ -7,7 +7,8 @@ export default defineStore('MainStore', {
     elSize: localStorage.getItem(elSize) || 'default',
     fixedHeader: false,
     showLogo: false,
-    vueuseColorScheme: localStorage.getItem('vueuse-color-scheme') || 'auto'
+    vueuseColorScheme: localStorage.getItem('vueuse-color-scheme') || 'auto',
+    token: localStorage.getItem(token) || ''
   }),
   getters: {},
   actions: {
@@ -16,7 +17,10 @@ export default defineStore('MainStore', {
     },
     setScheme() {
       this.vueuseColorScheme = localStorage.getItem('vueuse-color-scheme');
-      console.log(this.vueuseColorScheme);
+    },
+    setToken(newToken) {
+      this.token = newToken;
+      localStorage.setItem(token, newToken);
     },
     setFixedHeader(value) {
       this.fixedHeader = value;

@@ -1,4 +1,6 @@
 import NProgress from '@/plugins/nprogress';
+import { whiteRouter } from '@/config';
+import { mainStore } from '@/store';
 const importRouter = import.meta.globEager('./modules/*.js');
 export const routes = Object.keys(importRouter).reduce((currentRoute, nextRoute) => {
   const route = importRouter[nextRoute].default;
@@ -27,9 +29,23 @@ async function handleKeepAlive(to) {
 export const beforeResolve = (to, from, next) => {
   handleKeepAlive(to);
   NProgress.start();
-  // 1.过滤白名单
-  // 2.判断是否有token
-  next();
+  // 1.判断是否有token
+  if (mainStore.token) {
+    if (to.path === '/login') {
+      NProgress.done();
+      next('/');
+    } else {
+      next();
+    }
+  } else {
+    // 2.过滤白名单
+    if (whiteRouter.includes(to.path)) {
+      next();
+    } else {
+      NProgress.done();
+      next('/login');
+    }
+  }
 };
 export const afterEach = (to, from) => {
   NProgress.done();

@@ -9,7 +9,7 @@ export default defineStore('TagViewStore', {
       this.showTagView = show;
     },
     addTagViews(tag) {
-      const index = this.tagViews.findIndex((item) => item.path == tag.path);
+      const index = this.tagViews.findIndex((item) => item.path === tag.path);
       if (index !== -1) return;
       this.tagViews.push(
         Object.assign({}, tag, {
