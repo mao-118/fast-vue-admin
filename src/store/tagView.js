@@ -18,7 +18,7 @@ export default defineStore('TagViewStore', {
       );
     },
     closeTagView(tag) {
-      const index = this.tagViews.findIndex((item) => item.path == tag.path);
+      const index = this.tagViews.findIndex((item) => item.path === tag.path);
       this.tagViews.splice(index, 1);
     },
     closeAllTagViews() {
@@ -29,11 +29,11 @@ export default defineStore('TagViewStore', {
       this.addTagViews(tag);
     },
     closeLeftTagViews(tag) {
-      const index = this.tagViews.findIndex((item) => item.path == tag.path);
+      const index = this.tagViews.findIndex((item) => item.path === tag.path);
       return this.tagViews.splice(0, index);
     },
     closeRightTagViews(tag) {
-      const index = this.tagViews.findIndex((item) => item.path == tag.path);
+      const index = this.tagViews.findIndex((item) => item.path === tag.path);
       return this.tagViews.splice(index + 1);
     }
   }

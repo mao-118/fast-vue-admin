@@ -19,7 +19,7 @@
           <el-input placeholder="请输入用户名" v-model="loginForm.usename" />
         </el-form-item>
         <el-form-item label="密码：" prop="password">
-          <el-input placeholder="请输入密码" v-model="loginForm.password" />
+          <el-input placeholder="请输入密码" type="password" v-model="loginForm.password" />
         </el-form-item>
         <el-form-item>
           <el-button color="#69eae7" :loading="loading" @click="handleLogin">登录</el-button>

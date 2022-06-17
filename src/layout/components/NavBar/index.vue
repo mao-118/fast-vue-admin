@@ -35,6 +35,8 @@
         </span>
         <template #dropdown>
           <el-dropdown-menu>
+            <el-dropdown-item @click.native="goZh">中文站点</el-dropdown-item>
+            <el-dropdown-item @click.native="goDocument">文档</el-dropdown-item>
             <el-dropdown-item @click.native="logout">退出</el-dropdown-item>
           </el-dropdown-menu>
         </template>
@@ -72,7 +74,7 @@
   </div>
 </template>
 <script setup>
-import { mainStore, routeStore } from '@/store/index.js';
+import { mainStore, routeStore, tagViewStore } from '@/store/index.js';
 import { ref } from 'vue';
 import Settings from '../settings/index.vue';
 import { routes } from '@/router/installRouter';
@@ -111,10 +113,18 @@ const toggleMenu = () => {
   changeMenuList();
   routeStore.setRoutes(routes);
 };
-const logout = () => {
-  mainStore.setToken('');
-  router.push('/login');
+const goZh = () => {
+  location.href = 'https://mao-118.gitee.io/fast-vue-admin/#/dashboard/index';
 };
+const goDocument = () => {
+  location.href = 'https://mao-118.github.io/fast-vue-admin-doc/';
+};
+const logout = async() => {
+  mainStore.setToken('');
+  await router.push('/login');
+  tagViewStore.closeAllTagViews();
+};
+
 </script>
 <style lang="scss" scoped>
 .nav-bar {
