@@ -2,6 +2,7 @@ import path from 'path';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { viteMockServe } from 'vite-plugin-mock';
+import DefineOptions from 'unplugin-vue-define-options/vite';
 // https://vitejs.dev/config/
 export default defineConfig({
   root: './',
@@ -17,6 +18,7 @@ export default defineConfig({
   },
   plugins: [
     vue(),
+    DefineOptions(),
     viteMockServe({ // https://github.com/vbenjs/vite-plugin-mock/blob/main/README.zh_CN.md
       mockPath: 'mock',
       prodEnabled: true,

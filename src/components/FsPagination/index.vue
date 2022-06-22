@@ -13,15 +13,13 @@
       <el-backtop id="goBack" v-show="false" :right="100" :bottom="100" />
     </div>
 </template>
-<script>
-export default {
-  name: 'FsPagination'
-};
-</script>
 <script setup>
 import { onMounted, toRef } from 'vue';
 import { scrollTo } from '@/utils/scroll-to';
 import { usePageQuery } from '@/hooks';
+defineOptions({
+  name: 'FsPagination'
+});
 const emit = defineEmits(['getTableList']);
 const pageQuery = usePageQuery();
 const handleEmit = () => {
