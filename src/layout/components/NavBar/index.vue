@@ -69,8 +69,13 @@
         ><Switch
       /></el-icon>
       <el-icon @click="settingClick" title="系统设置"><setting /></el-icon>
+      <el-badge is-dot class="item"  v-show="mainStore.errorList.length>0">
+        <span class="iconfont icon-apps_custom_bug4_btn" title="bug" @click="showError"></span>
+      </el-badge>
+
     </div>
     <Settings ref="settingsRef" />
+    <ShowError ref="ShowErrorRef" />
   </div>
 </template>
 <script setup>
@@ -79,16 +84,20 @@ import { ref } from 'vue';
 import Settings from '../settings/index.vue';
 import { routes } from '@/router/installRouter';
 import { useRouter } from 'vue-router';
+import ShowError from '../show-error/index.vue';
+const ShowErrorRef = ref();
 const router = useRouter();
 const menuIndex = ref(-1);
 const settingsRef = ref(null);
+const showError = () => {
+  ShowErrorRef.value.dialogVisible = true;
+};
 const settingClick = () => {
   settingsRef.value.showSettings();
 };
 const handleChangeSize = (size) => {
   mainStore.changeSize(size);
 };
-
 const getMenu = (item, index) => {
   menuIndex.value = index;
   let routes = [];
@@ -163,5 +172,10 @@ const logout = async() => {
 }
 ::v-deep(.el-switch__core) {
   border-color: #8e8e8e !important;
+}
+.el-badge{
+  ::v-deep(.el-badge__content.is-fixed){
+    top: 7px;
+  }
 }
 </style>

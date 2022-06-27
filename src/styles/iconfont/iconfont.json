@@ -1,0 +1,16 @@
+{
+  "id": "3486538",
+  "name": "fs-admin",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1269782",
+      "name": "apps_custom_bug4_btn",
+      "font_class": "apps_custom_bug4_btn",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    }
+  ]
+}

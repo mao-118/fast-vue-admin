@@ -1,5 +1,6 @@
 const importFile = import.meta.globEager('./modules/*.js');
 const importComponents = import.meta.globEager('@/components/**/*.vue');
+import { errorHandler } from '@/config/errorConfig';
 export default (app) => {
   // 注入插件
   Object.keys(importFile).forEach(key => {
@@ -12,4 +13,6 @@ export default (app) => {
     const com = importComponents[key].default;
     app.component(name, com);
   });
+  // 注入处理器
+  app.config.errorHandler = errorHandler;
 };

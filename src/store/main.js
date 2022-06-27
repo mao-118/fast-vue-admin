@@ -8,10 +8,17 @@ export default defineStore('MainStore', {
     fixedHeader: false,
     showLogo: false,
     vueuseColorScheme: localStorage.getItem('vueuse-color-scheme') || 'auto',
-    token: localStorage.getItem(token) || ''
+    token: localStorage.getItem(token) || '',
+    errorList: []
   }),
   getters: {},
   actions: {
+    addErrorList(error) {
+      this.errorList.push(error);
+    },
+    setErrorList(error) {
+      this.errorList = error;
+    },
     setShowLogo(show) {
       this.showLogo = show;
     },
