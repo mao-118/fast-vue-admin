@@ -19,10 +19,16 @@
           <el-input placeholder="请输入用户名" v-model="loginForm.usename" />
         </el-form-item>
         <el-form-item label="密码：" prop="password">
-          <el-input placeholder="请输入密码" type="password" v-model="loginForm.password" />
+          <el-input
+            placeholder="请输入密码"
+            type="password"
+            v-model="loginForm.password"
+          />
         </el-form-item>
         <el-form-item>
-          <el-button color="#69eae7" :loading="loading" @click="handleLogin">登录</el-button>
+          <el-button color="#69eae7" :loading="loading" @click="handleLogin"
+            >登录</el-button
+          >
         </el-form-item>
       </el-form>
       <div class="tips-text">
@@ -50,7 +56,7 @@ const rules = reactive({
 const loading = ref(false);
 const loginFormRef = ref();
 const handleLogin = () => {
-  loginFormRef.value.validate(valid => {
+  loginFormRef.value.validate((valid) => {
     if (valid) {
       if (loginForm.usename === 'admin' && loginForm.password === '12345') {
         mainStore.setToken('hejsljlsjfisjdfijsjsjfjdjjasjfksjjsdjfsjisjjdjf');
@@ -125,14 +131,29 @@ const handleLogin = () => {
       width: 60%;
       margin: 0 auto;
     }
-    .tips-text{
-        width: 150px;
-        font-size: 14px;
-        color: #8e8e8e;
-        margin: 0 auto;
-        >div{
-            text-align: center;
-        }
+    .tips-text {
+      width: 150px;
+      font-size: 14px;
+      color: #8e8e8e;
+      margin: 0 auto;
+      > div {
+        text-align: center;
+      }
+    }
+  }
+}
+@media screen and (min-width: 100px) and (max-width: 600px) {
+  .login-container {
+    background: #69eae7;
+    .login-left {
+      display: none;
+    }
+    .login-right{
+      width: 90%;
+      height: 50%;
+      .login-form{
+        width: 100%;
+      }
     }
   }
 }

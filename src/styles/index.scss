@@ -1,5 +1,8 @@
 @import "./tailwind.scss";
 @import "./iconfont/index.css";
+html,body,#app{
+    height: 100%;
+}
 .el-main {
     min-height: calc(100vh - 60px);
     background-color: var(--el-color-info-light-9);

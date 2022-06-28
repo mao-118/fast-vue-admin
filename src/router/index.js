@@ -19,8 +19,19 @@ const constantRoutes = [
   },
   {
     path: '/login',
-    name: 'login',
     component: () => import('@/views/login/index.vue')
+  },
+  {
+    path: '/404',
+    component: () => import('@/views/errorPage/404.vue')
+  },
+  {
+    path: '/401',
+    component: () => import('@/views/errorPage/401.vue')
+  },
+  {
+    path: '/:pathMatch(.*)',
+    redirect: '/404'
   }
 ];
 const router = createRouter({
