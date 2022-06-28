@@ -151,7 +151,9 @@ const handleLogin = () => {
     .login-right{
       width: 90%;
       height: 50%;
-      padding-bottom: 20px;
+      h1{
+        margin-top: 60px;
+      }
       .login-form{
         width: 100%;
       }
