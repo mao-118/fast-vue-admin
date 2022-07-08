@@ -3,13 +3,21 @@
     <el-table border :data="mainStore.errorList" style="width: 100%" height="350">
       <el-table-column label="error">
         <template #default="{row}">
-            <span class="text-red-500">{{row.error}}</span>
+        <el-tag type="danger">
+                {{row.error.message}}
+            </el-tag>
         </template>
         </el-table-column>
-      <el-table-column prop="instance" label="instance"/>
       <el-table-column label="info">
         <template #default="{row}">
-            <span class="text-blue-500">{{row.info}}</span>
+            <el-tag type="warning">
+                {{ row.instance.message }} error in {{ row.info }}
+            </el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column label="url">
+        <template #default="{row}">
+            <span class="text-blue-500">{{row.url}}</span>
         </template>
       </el-table-column>
     </el-table>

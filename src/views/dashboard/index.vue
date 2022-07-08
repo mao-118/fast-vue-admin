@@ -10,6 +10,9 @@
         </el-card>
       </el-col>
     </el-row>
+    <div>
+      <TodoList />
+    </div>
     <div class="lineChart">
       <LineChart />
     </div>
@@ -19,6 +22,7 @@
 import Logo from '@/assets/logo.png';
 import { reactive, toRef } from 'vue';
 import LineChart from './components/LineChart.vue';
+import TodoList from './components/TodoList.vue';
 const data = reactive({
   list: [
     {

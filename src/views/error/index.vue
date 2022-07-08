@@ -8,6 +8,6 @@
 import { ElMessage } from 'element-plus';
 const handleClick = () => {
   ElMessage.success('成功');
-  throw 'create a error';
+  throw new Error('create a error');
 };
 </script>
