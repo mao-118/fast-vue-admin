@@ -32,7 +32,7 @@
   </el-dialog>
 </template>
 <script setup>
-import { ref, defineExpose } from 'vue';
+import { ref } from 'vue';
 import { mainStore } from '@/store';
 const dialogVisible = ref(false);
 const resetError = () => {

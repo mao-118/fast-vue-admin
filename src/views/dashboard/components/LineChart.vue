@@ -81,7 +81,6 @@ const chartResize = () => {
 watch(() => mainStore.vueuseColorScheme, () => {
   myChart.dispose();
   initLineChart();
-  console.log(mainStore.vueuseColorScheme);
 });
 onMounted(() => {
   initLineChart();

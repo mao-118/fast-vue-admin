@@ -1,15 +1,13 @@
-<script setup>
-  import { useRoute, useRouter } from "vue-router";
-  const route = useRoute();
-  const router = useRouter();
-  const { params, query } = route;
-  router.replace({ path: "/" + params.path, query });
-  </script>
-  <script>
-  import { h } from 'vue'
-  export default {
-    render() {
-      return h('template')
-    }
+<script>
+import { useRoute, useRouter } from 'vue-router';
+import { h } from 'vue';
+export default {
+  setup() {
+    const route = useRoute();
+    const router = useRouter();
+    const { params, query } = route;
+    router.replace({ path: '/' + params.path, query });
+    return () => h('template');
   }
+};
 </script>

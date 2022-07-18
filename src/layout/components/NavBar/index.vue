@@ -65,7 +65,8 @@
           </el-dropdown-menu>
         </template>
       </el-dropdown>
-      <el-icon @click="toggleMenu" title="菜单切换" :size="20"
+      <el-icon title="全屏" @click="toggleFullScreen"><FullScreen /></el-icon>
+      <el-icon @click="toggleMenu" title="菜单切换"
         ><Switch
       /></el-icon>
       <el-icon @click="settingClick" title="系统设置"><setting /></el-icon>
@@ -85,6 +86,12 @@ import Settings from '../settings/index.vue';
 import { routes } from '@/router/installRouter';
 import { useRouter } from 'vue-router';
 import ShowError from '../show-error/index.vue';
+import { useFullscreen } from '@vueuse/core';
+
+const { toggle } = useFullscreen(document.documentElement);
+const toggleFullScreen = () => {
+  toggle();
+};
 const ShowErrorRef = ref();
 const router = useRouter();
 const menuIndex = ref(-1);

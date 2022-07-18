@@ -9,11 +9,12 @@
         <el-input style="width:300px;" v-model="form.text" placeholder="请输入内容" />
       </el-form-item>
       <el-form-item>
-          <el-button type="primary" @click="handleCopy" v-if="activeName=='directly'">Copy</el-button>
+          <el-button type="primary" @click="handleCopy" v-if="activeName==='directly'">Copy</el-button>
           <el-button type="primary" v-clipboard="form.text" v-else>Copy</el-button>
       </el-form-item>
     </el-form>
-  </div>
+
+    </div>
 </template>
 <script>
 import { clipboard } from '@/directives/clipboard';

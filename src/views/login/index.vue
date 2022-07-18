@@ -1,12 +1,7 @@
 <template>
   <div class="login-container">
-    <div class="login-left">
-      <div class="top-border"></div>
-      <h3>fs后台管理系统</h3>
-      <h6>欢迎登录</h6>
-    </div>
-    <div class="login-right">
-      <h1>登录</h1>
+    <div class="login-box">
+      <h1>业务后台管理系统</h1>
       <el-form
         ref="loginFormRef"
         :model="loginForm"
@@ -16,17 +11,26 @@
         class="login-form"
       >
         <el-form-item label="用户名：" prop="usename">
-          <el-input placeholder="请输入用户名" v-model="loginForm.usename" />
+          <el-input
+            :prefix-icon="User"
+            placeholder="请输入用户名"
+            v-model="loginForm.usename"
+          />
         </el-form-item>
         <el-form-item label="密码：" prop="password">
           <el-input
+            :prefix-icon="Lock"
             placeholder="请输入密码"
             type="password"
             v-model="loginForm.password"
           />
         </el-form-item>
         <el-form-item>
-          <el-button color="#69eae7" :loading="loading" @click="handleLogin"
+          <el-button
+            class="login-btn"
+            color="#5650c1"
+            :loading="loading"
+            @click="handleLogin"
             >登录</el-button
           >
         </el-form-item>
@@ -44,6 +48,7 @@ import { reactive, ref } from 'vue';
 import { ElMessage } from 'element-plus';
 import { useRouter } from 'vue-router';
 import { mainStore } from '@/store';
+import { User, Lock } from '@element-plus/icons-vue';
 const router = useRouter();
 const loginForm = reactive({
   usename: '',
@@ -70,92 +75,45 @@ const handleLogin = () => {
 </script>
 <style lang="scss" scoped>
 .login-container {
-  background: url("@/assets/login/login-bg.png");
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  .login-left {
-    width: 550px;
-    height: 550px;
-    border-radius: 12px;
-    background: #69eae7;
-    margin-right: -100px;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    color: #000;
-    h3 {
-      font-size: 32px;
-      margin-left: 35px;
-      font-weight: 700;
-    }
-    h6 {
-      font-size: 20px;
-      margin-left: 35px;
-      font-weight: 600;
-    }
-    .top-border {
-      width: 100px;
-      height: 20px;
-      background: #b2f4f2;
-      transform: rotate(-45deg);
-      position: absolute;
-      top: 18px;
-      left: -23px;
-    }
-  }
-  .login-right {
-    width: 600px;
-    height: 600px;
+  background: url("@/assets/login/login-bg.png") no-repeat;
+  background-size: 100% 100%;
+  .login-box {
+    width: 520px;
+    height: 480px;
     padding: 0 20px;
     border-radius: 12px;
     color: #000;
-    background: linear-gradient(
-      231deg,
-      hsla(0, 0%, 100%, 0.65),
-      hsla(0, 0%, 100%, 0.72) 26%,
-      hsla(0, 0%, 100%, 0.13)
-    );
-    backdrop-filter: blur(28px);
+    background: rgba(32, 39, 120, 0.8);
+    box-shadow: 0px 0px 20px 1px rgba(255, 255, 255, 0.3);
     h1 {
       font-size: 30px;
       font-weight: bold;
       text-align: center;
-      margin: 100px 0 30px 0;
+      margin: 80px 0 35px 0;
+      color: #fff;
     }
     .login-form {
-      width: 60%;
+      width: 75%;
       margin: 0 auto;
+      :deep(.el-form-item__label) {
+        color: #fff;
+      }
+      .login-btn {
+        color: #fff;
+      }
     }
     .tips-text {
       width: 150px;
       font-size: 14px;
-      color: #8e8e8e;
+      color: #fae4fa;
       margin: 0 auto;
       > div {
         text-align: center;
-      }
-    }
-  }
-}
-@media screen and (min-width: 100px) and (max-width: 600px) {
-  .login-container {
-    background: #69eae7;
-    .login-left {
-      display: none;
-    }
-    .login-right{
-      width: 90%;
-      height: 50%;
-      h1{
-        margin-top: 60px;
-      }
-      .login-form{
-        width: 100%;
       }
     }
   }
