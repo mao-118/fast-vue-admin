@@ -87,7 +87,7 @@ import { mainStore, routeStore, tagViewStore } from '@/store/index.js';
 import { ref } from 'vue';
 import { routes } from '@/router/installRouter';
 import { useRouter } from 'vue-router';
-import Settings from '../Settings/index.vue';
+import Settings from '../SettingsCom/index.vue';
 import ShowError from '../ShowError/index.vue';
 import Breadcrumb from '../Breadcrumb/index.vue';
 import { useFullscreen } from '@vueuse/core';
