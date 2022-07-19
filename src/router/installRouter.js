@@ -2,14 +2,16 @@ import NProgress from '@/plugins/nprogress';
 import { whiteRouter } from '@/config';
 import { mainStore } from '@/store';
 const importRouter = import.meta.globEager('./modules/*.js');
-export const routes = Object.keys(importRouter).reduce((currentRoute, nextRoute) => {
-  const route = importRouter[nextRoute].default;
-  currentRoute.push(route);
-  return currentRoute;
-}, []).sort((a, b) => {
-  if (!a.sort)a.sort = 1;
-  return a.sort - b.sort;
-});
+export const routes = Object.keys(importRouter)
+  .reduce((currentRoute, nextRoute) => {
+    const route = importRouter[nextRoute].default;
+    currentRoute.push(route);
+    return currentRoute;
+  }, [])
+  .sort((a, b) => {
+    if (!a.sort) a.sort = 1;
+    return a.sort - b.sort;
+  });
 async function handleKeepAlive(to) {
   if (to.matched && to.matched.length > 2) {
     for (let i = 0; i < to.matched.length; i++) {
@@ -27,6 +29,7 @@ async function handleKeepAlive(to) {
   }
 }
 export const beforeResolve = (to, from, next) => {
+  to.meta.matched = JSON.parse(JSON.stringify(to.matched));
   handleKeepAlive(to);
   NProgress.start();
   // 1.判断是否有token

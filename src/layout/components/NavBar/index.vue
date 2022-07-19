@@ -6,7 +6,7 @@
       /></el-icon>
       <el-icon @click="mainStore.changeCollapse" v-else><fold /></el-icon>
     </div>
-    <div class="menu-list" v-show="mainStore.menuMode == 'horizontal'">
+    <div class="menu-list" v-if="mainStore.menuMode == 'horizontal'">
       <template v-for="(item, index) in routeStore.routes">
         <el-button
           :icon="item.meta.icon"
@@ -25,6 +25,9 @@
           {{ item.meta.title }}
         </el-button>
       </template>
+    </div>
+    <div class="breadcrumb" v-else>
+      <Breadcrumb />
     </div>
     <div class="op-config flex justify-end items-center">
       <el-dropdown trigger="click">
@@ -82,10 +85,11 @@
 <script setup>
 import { mainStore, routeStore, tagViewStore } from '@/store/index.js';
 import { ref } from 'vue';
-import Settings from '../settings/index.vue';
 import { routes } from '@/router/installRouter';
 import { useRouter } from 'vue-router';
-import ShowError from '../show-error/index.vue';
+import Settings from '../Settings/index.vue';
+import ShowError from '../ShowError/index.vue';
+import Breadcrumb from '../Breadcrumb/index.vue';
 import { useFullscreen } from '@vueuse/core';
 
 const { toggle } = useFullscreen(document.documentElement);
@@ -145,6 +149,15 @@ const logout = async() => {
 <style lang="scss" scoped>
 .nav-bar {
   height: 60px;
+  .collapse{
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .el-icon{
+      font-size: 18px;
+    }
+  }
   .menu-list {
     flex: 1;
     margin: 0 10px;
@@ -159,6 +172,10 @@ const logout = async() => {
     &::-webkit-scrollbar {
       display: block;
     }
+  }
+  .breadcrumb{
+    flex: 1;
+    margin: 0 20px;
   }
   .el-dropdown-link {
     display: flex;

@@ -10,5 +10,4 @@
 <script setup>
 import { useFavicon } from '@vueuse/core';
 const icon = useFavicon();
-console.log(icon);
 </script>

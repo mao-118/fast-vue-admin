@@ -20,6 +20,7 @@
       />
       <label for="toggle-all"></label>
       <ul class="todo-list">
+        <TransitionGroup name="list">
         <li
           v-for="todo in filteredTodos"
           class="todo"
@@ -41,6 +42,7 @@
             @keyup.esc="cancelEdit(todo)"
           />
         </li>
+        </TransitionGroup>
       </ul>
     </section>
     <footer class="footer" v-show="todos.length" v-cloak>
@@ -583,5 +585,23 @@ html .clear-completed:active {
   .filters {
     bottom: 10px;
   }
+}
+
+.list-move, /* 对移动中的元素应用的过渡 */
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.3s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(15px);
+}
+
+/* 确保将离开的元素从布局流中删除
+  以便能够正确地计算移动的动画。 */
+.list-leave-active {
+  position: absolute;
 }
 </style>
