@@ -141,7 +141,7 @@ const goDocument = () => {
 };
 const logout = async() => {
   mainStore.setToken('');
-  await router.push('/login');
+  await router.replace('/login');
   tagViewStore.closeAllTagViews();
 };
 

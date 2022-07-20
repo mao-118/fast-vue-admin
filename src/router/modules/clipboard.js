@@ -9,7 +9,7 @@ export default {
     {
       path: '/clipboard/index',
       name: 'clipboardIndex',
-      meta: { title: 'clipboard', icon: 'DocumentCopy' },
+      meta: { title: 'copy', icon: 'DocumentCopy' },
       component: () => import('@/views/clipboard/index.vue')
     }
   ]
