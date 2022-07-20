@@ -29,6 +29,7 @@ async function handleKeepAlive(to) {
   }
 }
 export const beforeResolve = (to, from, next) => {
+  console.log(to);
   to.meta.matched = JSON.parse(JSON.stringify(to.matched));
   handleKeepAlive(to);
   NProgress.start();
