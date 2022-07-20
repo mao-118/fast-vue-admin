@@ -1,1 +1,0 @@
-import{_ as s,o as _,d as c,p as o,i as t,e as a}from"./index.47e6788e.js";const n={},d=e=>(o("data-v-171cf732"),e=e(),t(),e),p={class:"app-container"},r=d(()=>a("div",{class:"menu"},"menu2",-1)),i=[r];function u(e,f){return _(),c("div",p,i)}var m=s(n,[["render",u],["__scopeId","data-v-171cf732"]]);export{m as default};
