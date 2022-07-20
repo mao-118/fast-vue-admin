@@ -1,21 +1,21 @@
 <template>
   <el-dialog v-model="dialogVisible" title="error info" width="50%">
     <el-table border :data="mainStore.errorList" style="width: 100%" height="350">
-      <el-table-column label="error">
+      <el-table-column show-overflow-tooltip  label="error">
         <template #default="{row}">
         <el-tag type="danger">
                 {{row.error.message}}
             </el-tag>
         </template>
         </el-table-column>
-      <el-table-column label="info">
+      <el-table-column show-overflow-tooltip label="info">
         <template #default="{row}">
             <el-tag type="warning">
                 {{ row.instance.message }} error in {{ row.info }}
             </el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="url">
+      <el-table-column show-overflow-tooltip label="url">
         <template #default="{row}">
             <span class="text-blue-500">{{row.url}}</span>
         </template>

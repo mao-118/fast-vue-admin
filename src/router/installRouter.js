@@ -29,8 +29,13 @@ async function handleKeepAlive(to) {
   }
 }
 export const beforeResolve = (to, from, next) => {
-  console.log(to);
-  to.meta.matched = JSON.parse(JSON.stringify(to.matched));
+  const newMatched = to.matched.map(item => {
+    return {
+      title: item.meta?.title || '',
+      link: item.path
+    };
+  });
+  to.meta.matched = newMatched;
   handleKeepAlive(to);
   NProgress.start();
   // 1.判断是否有token
