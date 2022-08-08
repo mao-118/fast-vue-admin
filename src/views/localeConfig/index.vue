@@ -1,14 +1,9 @@
 <template>
   <div class="app-container">
     <div class="changeLocale">
-      <h1 class="text-center mb-4">{{locale.title}}</h1>
+      <h1 class="text-center mb-4">{{ locale.title }}</h1>
       <el-radio-group v-model="radio" @change="handleChange">
-        <el-radio
-          v-for="(item, index) in localeList"
-          :key="index"
-          :label="index"
-          border
-        >
+        <el-radio v-for="(item, index) in localeList" :key="index" :label="index" border>
           {{ item.name }}
         </el-radio>
       </el-radio-group>
@@ -20,7 +15,6 @@
   </div>
 </template>
 <script setup>
-import { ref, reactive } from 'vue';
 import zhCn from 'element-plus/es/locale/lang/zh-cn';
 import en from 'element-plus/es/locale/lang/en';
 import es from 'element-plus/es/locale/lang/es';

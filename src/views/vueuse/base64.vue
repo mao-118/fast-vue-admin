@@ -1,6 +1,6 @@
 <template>
     <div class="app-container">
-         <el-divider>文本转base64</el-divider>
+        <el-divider>文本转base64</el-divider>
         <el-row :gutter="20">
             <el-col :span="12">
                 <el-input :rows="5" type="textarea" v-model="text"></el-input>
@@ -23,7 +23,6 @@
 </template>
 <script setup>
 import { useBase64 } from '@vueuse/core';
-import { ref } from 'vue';
 
 const uploadFileRef = ref();
 const text = ref('');
@@ -32,12 +31,11 @@ const { base64: textBase64 } = useBase64(text);
 const { base64: fileBase64 } = useBase64(file);
 
 const open = () => {
-  uploadFileRef.value.click();
+    uploadFileRef.value.click();
 };
 const change = e => {
-  file.value = e.target.files[0];
+    file.value = e.target.files[0];
 };
 </script>
 <style scoped>
-
 </style>

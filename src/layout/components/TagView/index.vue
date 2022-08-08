@@ -1,31 +1,15 @@
 <template>
   <div>
-    <el-scrollbar
-      :class="{ large: isLarge() }"
-      id="elScrollbar"
-      ref="scrollbarRef"
-      @scroll="handleScroll"
-    >
+    <el-scrollbar :class="{ large: isLarge() }" id="elScrollbar" ref="scrollbarRef" @scroll="handleScroll">
       <div class="tag-list" ref="tagListRef">
-        <el-tag
-          @click="tagClick(item)"
-          @close="closeCurrentTag(item)"
-          @contextmenu.prevent.native="openMenu(item, $event)"
-          v-for="item in tagViewStore.tagViews"
-          :key="item.path"
-          class="mx-1"
-          :effect="item.path == $route.path ? 'dark' : 'plain'"
-          closable
-        >
+        <el-tag @click="tagClick(item)" @close="closeCurrentTag(item)"
+          @contextmenu.prevent.native="openMenu(item, $event)" v-for="item in tagViewStore.tagViews" :key="item.path"
+          class="mx-1" :effect="item.path == $route.path ? 'dark' : 'plain'" closable>
           {{ item.title }}
         </el-tag>
       </div>
     </el-scrollbar>
-    <ul
-      v-show="visible"
-      :style="{ left: left + 'px', top: top + 'px' }"
-      class="contextmenu"
-    >
+    <ul v-show="visible" :style="{ left: left + 'px', top: top + 'px' }" class="contextmenu">
       <li @click.stop="refreshSelectedTag">刷新</li>
       <li @click.stop="closeSelectedTag">关闭</li>
       <li @click.stop="closeOthersTags">关闭其他</li>
@@ -36,10 +20,8 @@
   </div>
 </template>
 <script setup>
-import { ref, watch, onMounted, onBeforeUnmount } from 'vue';
 import { mainStore, tagViewStore, routeStore } from '@/store';
 import { useScroll } from '@/utils';
-import { useRoute, useRouter } from 'vue-router';
 const route = useRoute();
 const router = useRouter();
 watch(
@@ -56,7 +38,7 @@ const isLarge = () => {
   return localStorage.getItem('elSize') === 'large';
 };
 // 点击tag并且在横屏菜单栏的情况下加载左侧菜单
-const tagClick = async(item) => {
+const tagClick = async (item) => {
   if (item.path === route.path) return;
   await router.push(item.path);
   if (mainStore.menuMode === 'horizontal') {
@@ -152,7 +134,7 @@ const closeSelectedTag = () => {
 };
 const closeOthersTags = () => {
   tagViewStore.closeOthersTagViews(selectedTag.value);
-  if (route.path !== selectedTag.value.path)tagClick(selectedTag.value);
+  if (route.path !== selectedTag.value.path) tagClick(selectedTag.value);
   visible.value = false;
 };
 const closeAllTags = () => {
@@ -180,10 +162,12 @@ const closeRightTags = () => {
 <style lang="scss" scoped>
 .el-scrollbar {
   height: 37px;
+
   &.large {
     height: 45px;
   }
 }
+
 .tag-list {
   min-width: 100%;
   width: max-content;
@@ -191,10 +175,12 @@ const closeRightTags = () => {
   padding: 5px 0;
   border-top: 1px solid var(--el-border-color-lighter);
   box-shadow: 0 1px 4px var(--el-border-color-lighter);
+
   .el-tag {
     cursor: pointer;
   }
 }
+
 .contextmenu {
   margin: 0;
   background: #fff;
@@ -207,10 +193,12 @@ const closeRightTags = () => {
   font-weight: 400;
   color: #333;
   box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.3);
+
   li {
     margin: 0;
     padding: 7px 16px;
     cursor: pointer;
+
     &:hover {
       background: #eee;
     }

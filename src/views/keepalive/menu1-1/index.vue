@@ -5,11 +5,10 @@
     </div>
 </template>
 <script>
-export default{
-    name:'menu1-1'
+export default {
+    name: 'menu1-1'
 }
 </script>
 <script setup>
-import {ref} from 'vue'
-const text=ref('')
+const text = ref('')
 </script>

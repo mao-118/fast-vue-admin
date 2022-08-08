@@ -2,46 +2,24 @@
   <section class="todoapp">
     <header class="header">
       <h1>todos</h1>
-      <input
-        class="new-todo"
-        autofocus
-        autocomplete="off"
-        placeholder="What needs to be done?"
-        v-model="newTodo"
-        @keyup.enter="addTodo"
-      />
+      <input class="new-todo" autofocus autocomplete="off" placeholder="What needs to be done?" v-model="newTodo"
+        @keyup.enter="addTodo" />
     </header>
     <section class="main" v-show="todos.length" v-cloak>
-      <input
-        id="toggle-all"
-        class="toggle-all"
-        type="checkbox"
-        v-model="allDone"
-      />
+      <input id="toggle-all" class="toggle-all" type="checkbox" v-model="allDone" />
       <label for="toggle-all"></label>
       <ul class="todo-list">
         <TransitionGroup name="list">
-        <li
-          v-for="todo in filteredTodos"
-          class="todo"
-          :key="todo.id"
-          :class="{ completed: todo.completed, editing: todo == editedTodo }"
-        >
-          <div class="view">
-            <input class="toggle" type="checkbox" v-model="todo.completed" />
-            <label @dblclick="editTodo(todo)">{{ todo.title }}</label>
-            <button class="destroy" @click="removeTodo(todo)"></button>
-          </div>
-          <input
-            class="edit"
-            type="text"
-            v-model="todo.title"
-            v-todo-focus="todo == editedTodo"
-            @blur="doneEdit(todo)"
-            @keyup.enter="doneEdit(todo)"
-            @keyup.esc="cancelEdit(todo)"
-          />
-        </li>
+          <li v-for="todo in filteredTodos" class="todo" :key="todo.id"
+            :class="{ completed: todo.completed, editing: todo == editedTodo }">
+            <div class="view">
+              <input class="toggle" type="checkbox" v-model="todo.completed" />
+              <label @dblclick="editTodo(todo)">{{ todo.title }}</label>
+              <button class="destroy" @click="removeTodo(todo)"></button>
+            </div>
+            <input class="edit" type="text" v-model="todo.title" v-todo-focus="todo == editedTodo"
+              @blur="doneEdit(todo)" @keyup.enter="doneEdit(todo)" @keyup.esc="cancelEdit(todo)" />
+          </li>
         </TransitionGroup>
       </ul>
     </section>
@@ -51,24 +29,18 @@
       </span>
       <ul class="filters">
         <li>
-          <a class="cursor-pointer" @click="visibility='all'" :class="{ selected: visibility == 'all' }">All</a>
+          <a class="cursor-pointer" @click="visibility = 'all'" :class="{ selected: visibility == 'all' }">All</a>
         </li>
         <li>
-          <a class="cursor-pointer" @click="visibility='active'" :class="{ selected: visibility == 'active' }"
-            >Active</a
-          >
+          <a class="cursor-pointer" @click="visibility = 'active'"
+            :class="{ selected: visibility == 'active' }">Active</a>
         </li>
         <li>
-          <a class="cursor-pointer" @click="visibility='completed'" :class="{ selected: visibility == 'completed' }"
-            >Completed</a
-          >
+          <a class="cursor-pointer" @click="visibility = 'completed'"
+            :class="{ selected: visibility == 'completed' }">Completed</a>
         </li>
       </ul>
-      <button
-        class="clear-completed"
-        @click="removeCompleted"
-        v-show="todos.length > remaining"
-      >
+      <button class="clear-completed" @click="removeCompleted" v-show="todos.length > remaining">
         Clear completed
       </button>
     </footer>
@@ -78,7 +50,6 @@
   </footer>
 </template>
 <script>
-import { ref } from 'vue';
 // Full spec-compliant TodoMVC with localStorage persistence
 // and hash-based routing in ~120 effective lines of JavaScript.
 
@@ -217,7 +188,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-
 button {
   margin: 0;
   padding: 0;
@@ -326,14 +296,15 @@ body {
 .toggle-all {
   width: 1px;
   height: 1px;
-  border: none; /* Mobile Safari */
+  border: none;
+  /* Mobile Safari */
   opacity: 0;
   position: absolute;
   right: 100%;
   bottom: 100%;
 }
 
-.toggle-all + label {
+.toggle-all+label {
   width: 60px;
   height: 34px;
   font-size: 0;
@@ -344,14 +315,14 @@ body {
   transform: rotate(90deg);
 }
 
-.toggle-all + label:before {
+.toggle-all+label:before {
   content: "❯";
   font-size: 22px;
   color: #e6e6e6;
   padding: 10px 27px 10px 27px;
 }
 
-.toggle-all:checked + label:before {
+.toggle-all:checked+label:before {
   color: #737373;
 }
 
@@ -396,7 +367,8 @@ body {
   top: 0;
   bottom: 0;
   margin: auto 0;
-  border: none; /* Mobile Safari */
+  border: none;
+  /* Mobile Safari */
   -webkit-appearance: none;
   appearance: none;
 }
@@ -405,7 +377,7 @@ body {
   opacity: 0;
 }
 
-.todo-list li .toggle + label {
+.todo-list li .toggle+label {
   /*
 		Firefox requires `#` to be escaped - https://bugzilla.mozilla.org/show_bug.cgi?id=922433
 		IE and Edge requires *everything* to be escaped to render, so we do that instead of just the `#` - https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/7157459/
@@ -415,7 +387,7 @@ body {
   background-position: center left;
 }
 
-.todo-list li .toggle:checked + label {
+.todo-list li .toggle:checked+label {
   background-image: url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23bddad5%22%20stroke-width%3D%223%22/%3E%3Cpath%20fill%3D%22%235dc2af%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22/%3E%3C/svg%3E");
 }
 
@@ -567,6 +539,7 @@ html .clear-completed:active {
 	Can't use it globally since it destroys checkboxes in Firefox
 */
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
+
   .toggle-all,
   .todo-list li .toggle {
     background: none;
@@ -587,7 +560,8 @@ html .clear-completed:active {
   }
 }
 
-.list-move, /* 对移动中的元素应用的过渡 */
+.list-move,
+/* 对移动中的元素应用的过渡 */
 .list-enter-active,
 .list-leave-active {
   transition: all 0.3s ease;

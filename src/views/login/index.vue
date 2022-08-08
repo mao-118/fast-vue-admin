@@ -2,51 +2,28 @@
   <div class="login-container">
     <div class="login-box">
       <h1>业务后台管理系统</h1>
-      <el-form
-        ref="loginFormRef"
-        :model="loginForm"
-        :rules="rules"
-        label-width="120px"
-        status-icon
-        class="login-form"
-      >
+      <el-form ref="loginFormRef" :model="loginForm" :rules="rules" label-width="120px" status-icon class="login-form">
         <el-form-item label="用户名：" prop="usename">
-          <el-input
-            :prefix-icon="User"
-            placeholder="请输入用户名"
-            v-model="loginForm.usename"
-          />
+          <el-input :prefix-icon="User" placeholder="请输入用户名" v-model="loginForm.usename" />
         </el-form-item>
         <el-form-item label="密码：" prop="password">
-          <el-input
-            :prefix-icon="Lock"
-            placeholder="请输入密码"
-            type="password"
-            v-model="loginForm.password"
-          />
+          <el-input :prefix-icon="Lock" placeholder="请输入密码" type="password" @keyup.enter="handleLogin"
+            v-model="loginForm.password" />
         </el-form-item>
         <el-form-item>
-          <el-button
-            class="login-btn"
-            color="#5650c1"
-            :loading="loading"
-            @click="handleLogin"
-            >登录</el-button
-          >
+          <el-button class="login-btn" color="#5650c1" :loading="loading" @click="handleLogin">登录</el-button>
         </el-form-item>
       </el-form>
       <div class="tips-text">
         <span>tips：</span>
         <div>username：admin</div>
-        <div>password：12345</div>
+        <div>password：123456</div>
       </div>
     </div>
   </div>
 </template>
 <script setup>
-import { reactive, ref } from 'vue';
 import { ElMessage } from 'element-plus';
-import { useRouter } from 'vue-router';
 import { mainStore } from '@/store';
 import { User, Lock } from '@element-plus/icons-vue';
 const router = useRouter();
@@ -63,7 +40,7 @@ const loginFormRef = ref();
 const handleLogin = () => {
   loginFormRef.value.validate((valid) => {
     if (valid) {
-      if (loginForm.usename === 'admin' && loginForm.password === '12345') {
+      if (loginForm.usename === 'admin' && loginForm.password === '123456') {
         mainStore.setToken('hejsljlsjfisjdfijsjsjfjdjjasjfksjjsdjfsjisjjdjf');
         router.push('/');
       } else {
@@ -82,6 +59,7 @@ const handleLogin = () => {
   align-items: center;
   background: url("@/assets/login/login-bg.png") no-repeat;
   background-size: 100% 100%;
+
   .login-box {
     width: 520px;
     height: 480px;
@@ -90,6 +68,7 @@ const handleLogin = () => {
     color: #000;
     background: rgba(32, 39, 120, 0.8);
     box-shadow: 0px 0px 20px 1px rgba(255, 255, 255, 0.3);
+
     h1 {
       font-size: 30px;
       font-weight: bold;
@@ -97,22 +76,27 @@ const handleLogin = () => {
       margin: 80px 0 35px 0;
       color: #fff;
     }
+
     .login-form {
       width: 75%;
       margin: 0 auto;
+
       :deep(.el-form-item__label) {
         color: #fff;
       }
+
       .login-btn {
         color: #fff;
       }
     }
+
     .tips-text {
       width: 150px;
       font-size: 14px;
       color: #fae4fa;
       margin: 0 auto;
-      > div {
+
+      >div {
         text-align: center;
       }
     }

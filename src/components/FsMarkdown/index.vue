@@ -1,8 +1,8 @@
 <template>
-  <v-md-editor v-model="textValue" @upload-image="handleUploadImage" :disabled-menus="[]" @change="handleChange" height="600px"></v-md-editor>
+  <v-md-editor v-model="textValue" @upload-image="handleUploadImage" :disabled-menus="[]" @change="handleChange"
+    height="600px"></v-md-editor>
 </template>
 <script setup>
-import { ref } from 'vue';
 import axios from 'axios';
 import VMdEditor from '@kangc/v-md-editor/lib/codemirror-editor';
 import '@kangc/v-md-editor/lib/style/codemirror-editor.css';
@@ -57,14 +57,14 @@ const handleUploadImage = (event, insertImage, files) => {
   // 拿到 files 之后上传到文件服务器，然后向编辑框中插入对应的内容
   const reader = new FileReader();
   reader.readAsDataURL(files[0]);
-  reader.onload = function(readRes) {
+  reader.onload = function (readRes) {
     const url = readRes.target.result;
     // 此处只做示例
     insertImage({
       url,
       desc: files[0].name
-    // width: 'auto',
-    // height: 'auto',
+      // width: 'auto',
+      // height: 'auto',
     });
   };
 };

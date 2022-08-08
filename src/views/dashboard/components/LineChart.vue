@@ -1,12 +1,11 @@
 <template>
-    <div id="LineChartDom"></div>
+  <div id="LineChartDom"></div>
 </template>
 
 <script setup>
 import * as echarts from 'echarts';
 import '../theme/macarons';
 import '../theme/purple-passion';
-import { onMounted, onBeforeUnmount, watch } from 'vue';
 import { mainStore } from '@/store';
 const option = {
   title: {
@@ -92,8 +91,8 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
-#LineChartDom{
-    width:100%;
-    height: calc(100vh - 430px);
+#LineChartDom {
+  width: 100%;
+  height: calc(100vh - 430px);
 }
 </style>

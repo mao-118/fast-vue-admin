@@ -1,6 +1,4 @@
 <script>
-import { useRoute, useRouter } from 'vue-router';
-import { h } from 'vue';
 export default {
   setup() {
     const route = useRoute();

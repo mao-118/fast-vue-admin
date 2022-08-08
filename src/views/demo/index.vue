@@ -25,11 +25,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <fs-pagination
-      ref="FsPageRef"
-      v-show="tableList.length"
-      @getTableList="getTableList"
-    />
+    <fs-pagination ref="FsPageRef" v-show="tableList.length" @getTableList="getTableList" />
     <table-edit ref="edit" @getTableList="getTableList" />
   </div>
 </template>
@@ -39,7 +35,6 @@ export default {
 };
 </script>
 <script setup>
-import { reactive, ref } from 'vue';
 import TableEdit from './components/TableEdit.vue';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { getList } from '@/api/demo';
@@ -52,7 +47,7 @@ const formInline = reactive({
   region: ''
 });
 const tableList = reactive([]);
-const getTableList = async() => {
+const getTableList = async () => {
   const { page, pre_size } = FsPageRef.value.pageQuery;
   loading.value = true;
   const res = await getList({

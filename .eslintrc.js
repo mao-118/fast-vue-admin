@@ -12,7 +12,8 @@ module.exports = {
     'sourceType': 'module'
   },
   'plugins': [
-    'vue'
+    'vue',
+    './.eslintrc-auto-import.json'
   ],
   'rules': {
     'vue/no-multiple-template-root': 'off',

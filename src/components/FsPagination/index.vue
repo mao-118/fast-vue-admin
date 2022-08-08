@@ -1,20 +1,12 @@
 <template>
-    <div class="my-pagination">
-      <el-pagination
-        v-model:currentPage="pageQuery.page"
-        v-model:page-size="pageQuery.pre_size"
-        :page-sizes="[5, 10, 50, 100]"
-        background
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="pageQuery.total"
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-      />
-      <el-backtop id="goBack" v-show="false" :right="100" :bottom="100" />
-    </div>
+  <div class="my-pagination">
+    <el-pagination v-model:currentPage="pageQuery.page" v-model:page-size="pageQuery.pre_size"
+      :page-sizes="[5, 10, 50, 100]" background layout="total, sizes, prev, pager, next, jumper"
+      :total="pageQuery.total" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
+    <el-backtop id="goBack" v-show="false" :right="100" :bottom="100" />
+  </div>
 </template>
 <script setup>
-import { onMounted, toRef } from 'vue';
 import { scrollTo } from '@/utils/scroll-to';
 import { usePageQuery } from '@/hooks';
 defineOptions({

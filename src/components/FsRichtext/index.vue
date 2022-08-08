@@ -8,7 +8,6 @@
 // 文档地址：https://www.wangeditor.com/
 import '@wangeditor/editor/dist/css/style.css';
 import { createEditor, createToolbar } from '@wangeditor/editor';
-import { onMounted } from 'vue';
 defineOptions({
   name: 'FsRichtext'
 });

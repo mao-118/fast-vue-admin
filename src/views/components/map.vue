@@ -1,22 +1,15 @@
 <template>
   <div class="app-container">
     <div class="search-box">
-      <el-autocomplete
-        ref="elautocomplete"
-        :trigger-on-focus="false"
-        prefix-icon="Search"
-        clearable
-        v-model="keyword"
-        placeholder="请输入地名关键字"
-        :fetch-suggestions="searchPlace"
-        @select="selectPlace"
-      >
+      <el-autocomplete ref="elautocomplete" :trigger-on-focus="false" prefix-icon="Search" clearable v-model="keyword"
+        placeholder="请输入地名关键字" :fetch-suggestions="searchPlace" @select="selectPlace">
         <!-- 覆盖原先的样式 -->
         <template #default="{ item }">
-          <div v-if="item.isResultLengthZero" :title="item.value" style="text-align:center;color:red;">{{item.value}}</div>
+          <div v-if="item.isResultLengthZero" :title="item.value" style="text-align:center;color:red;">{{ item.value }}
+          </div>
           <div v-else style="margin-bottom:10px;" :title="item.value">
-            <div style="color:#0082e5;font-size:14px;font-weight:700;height:20px;line-height:20px;">{{item.name}}</div>
-            <div style="font-size:12px;color:#8e8e8e;height:20px;line-height:20px;">{{item.newAddress}}</div>
+            <div style="color:#0082e5;font-size:14px;font-weight:700;height:20px;line-height:20px;">{{ item.name }}</div>
+            <div style="font-size:12px;color:#8e8e8e;height:20px;line-height:20px;">{{ item.newAddress }}</div>
           </div>
         </template>
       </el-autocomplete>
@@ -28,7 +21,6 @@
 import 'https://webapi.amap.com/maps?v=2.0&key=596002c0d52b6b4360a70ecbfb4c692d';
 import axios from 'axios';
 // 1a68b5f1bf437db3754cc1c9256c8433
-import { onMounted, reactive, ref } from 'vue';
 import { ElMessage } from 'element-plus';
 const keyword = ref('');// 搜索关键字
 const elautocomplete = ref();
@@ -116,7 +108,7 @@ const getAddress = (e) => {
   });
 };
 // 检索
-const searchPlace = async(queryString, cb) => {
+const searchPlace = async (queryString, cb) => {
   // 调用高德地图api查询 queryString是输入的关键字
   const { data: res } = await axios.get('https://restapi.amap.com/v3/place/text', {
     params: {
@@ -192,21 +184,25 @@ onMounted(() => {
 
 </script>
 <style lang="scss" scoped>
-.app-container{
+.app-container {
   display: grid;
   position: relative;
-  .search-box{
+
+  .search-box {
     position: absolute;
     z-index: 99;
     top: 25px;
     left: 25px;
   }
 }
-#container{
+
+#container {
   width: 100%;
   min-height: 100%;
 }
-::v-deep(.amap-logo),::v-deep(.amap-copyright){
+
+::v-deep(.amap-logo),
+::v-deep(.amap-copyright) {
   display: none !important;
 }
 </style>

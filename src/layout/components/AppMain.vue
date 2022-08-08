@@ -8,7 +8,6 @@
   </router-view>
 </template>
 <script setup>
-import { computed } from 'vue';
 import { tagViewStore } from '@/store';
 const include = computed(() => {
   return tagViewStore.tagViews.map(_ => _.name);

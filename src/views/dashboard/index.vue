@@ -1,11 +1,11 @@
 <template>
   <div>
     <el-row :gutter="10">
-      <el-col v-for="(item,index) in list" :key="index" :xs="24" :sm="24" :md="12" :lg="8">
+      <el-col v-for="(item, index) in list" :key="index" :xs="24" :sm="24" :md="12" :lg="8">
         <el-card>
           <div class="content">
-            <img :src="item.logo" alt="">
-            <span>{{item.desc}}</span>
+            <a target="_blank" class="href-a" :href="item.href"><img class="href-img" :src="item.logo" alt="" /></a>
+            <span>{{ item.desc }}</span>
           </div>
         </el-card>
       </el-col>
@@ -20,46 +20,61 @@
 </template>
 <script setup>
 import Logo from '@/assets/logo.png';
-import { reactive, toRef } from 'vue';
+import BlogSite from '@/assets/blog-site.png';
+import TsVant from '@/assets/ts-vant.png';
 import LineChart from './components/LineChart.vue';
 import TodoList from './components/TodoList.vue';
 const data = reactive({
   list: [
     {
       logo: Logo,
-      desc: 'fast-admin 是一个后台前端解决方案，它基于 vue3 和 element-plus实现。它使用了最新的前端技术栈，提供了丰富的功能组件，它可以帮助你快速搭建企业级中后台产品原型。'
+      desc: 'fast-admin 是一个后台前端解决方案，它基于 vue3 和 element-plus实现。使用了最新的前端技术栈，提供了丰富的功能组件，可以帮助你快速搭建企业级中后台产品原型。',
+      href: 'https://mao-118.github.io/fast-vue-admin-doc/'
     },
     {
-      logo: 'https://element-plus.gitee.io/images/element-plus-logo.svg',
-      desc: 'Element Plus 是基于最新的 Vue 3.0 对 Element UI 的升级适配，使用 TypeScript + Composition API 重构的全新项目。官方宣称用最适合 Vue 3.0 的方式几乎重写了每一行 Element UI 的代码。'
+      logo: TsVant,
+      desc: 'vue3 + ts 移动端模板,组件库使用的是有赞的 vant ui 库',
+      href: 'https://mao-118.github.io/vue-ts-vant-template/'
     },
     {
-      logo: 'https://vitejs.cn/logo.svg',
-      desc: 'Vite（法语意为 "快速的"，发音 /vit/，发音同 "veet"）是一种新型前端构建工具，能够显著提升前端开发体验。'
+      logo: BlogSite,
+      desc: '博客地址，持续更新。',
+      href: 'https://mao-118.github.io/blog-site/'
     }
   ]
 });
 const list = toRef(data, 'list');
 </script>
 <style lang="scss" scoped>
-.el-col{
+.el-col {
   margin-bottom: 10px;
 }
-.content{
+
+.content {
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   height: 200px;
-  img{
+
+  .href-a {
     width: 150px;
     height: 150px;
-    margin-right: 20px;
+
+    .href-img {
+      width: 100%;
+      height: 100%;
+      margin-right: 20px;
+    }
   }
-  span{
+
+  span {
+    width: 55%;
     font-size: 14px;
   }
 }
-.lineChart{
+
+.lineChart {
   margin-top: 50px;
   padding: 20px;
 }

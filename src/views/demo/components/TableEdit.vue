@@ -1,10 +1,5 @@
 <template>
-  <el-dialog
-    v-model="dialogVisible"
-    :title="title"
-    width="50%"
-    @close="handleClose"
-  >
+  <el-dialog v-model="dialogVisible" :title="title" width="50%" @close="handleClose">
     <el-form :model="form" label-width="120px">
       <el-form-item label="Activity name">
         <el-input v-model="form.name" />
@@ -17,22 +12,13 @@
       </el-form-item>
       <el-form-item label="Activity time">
         <el-col :span="11">
-          <el-date-picker
-            v-model="form.date1"
-            type="date"
-            placeholder="Pick a date"
-            style="width: 100%"
-          />
+          <el-date-picker v-model="form.date1" type="date" placeholder="Pick a date" style="width: 100%" />
         </el-col>
         <el-col :span="2" class="text-center">
           <span class="text-gray-500">-</span>
         </el-col>
         <el-col :span="11">
-          <el-time-picker
-            v-model="form.date2"
-            placeholder="Pick a time"
-            style="width: 100%"
-          />
+          <el-time-picker v-model="form.date2" placeholder="Pick a time" style="width: 100%" />
         </el-col>
       </el-form-item>
       <el-form-item label="Instant delivery">
@@ -59,15 +45,12 @@
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="dialogVisible = false">返回</el-button>
-        <el-button type="primary" @click="dialogVisible = false"
-          >确定</el-button
-        >
+        <el-button type="primary" @click="dialogVisible = false">确定</el-button>
       </span>
     </template>
   </el-dialog>
 </template>
 <script setup>
-import { ref, reactive } from 'vue';
 const dialogVisible = ref(false);
 const title = ref('编辑');
 const emit = defineEmits(['getTableList']);
