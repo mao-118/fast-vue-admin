@@ -1,0 +1,1 @@
+import{b as s,x as r,i as a,o as p}from"./index.e7a28d02.js";const u={setup(l){const t=s("");return(c,e)=>{const o=a("fs-markdown");return p(),r(o,{text:t.value,"onUpdate:text":e[0]||(e[0]=n=>t.value=n)},null,8,["text"])}}};export{u as default};
