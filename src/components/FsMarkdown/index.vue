@@ -1,9 +1,13 @@
 <template>
-  <v-md-editor v-model="textValue" @upload-image="handleUploadImage" :disabled-menus="[]" @change="handleChange"
-    height="600px"></v-md-editor>
+  <v-md-editor
+    v-model="textValue"
+    :disabled-menus="[]"
+    height="600px"
+    @upload-image="handleUploadImage"
+    @change="handleChange"
+  />
 </template>
-<script setup>
-import axios from 'axios';
+<script setup name="FsMarkdown">
 import VMdEditor from '@kangc/v-md-editor/lib/codemirror-editor';
 import '@kangc/v-md-editor/lib/style/codemirror-editor.css';
 import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js';
@@ -32,9 +36,6 @@ import 'codemirror/addon/scroll/simplescrollbars';
 import 'codemirror/addon/scroll/simplescrollbars.css';
 // style
 import 'codemirror/lib/codemirror.css';
-defineOptions({
-  name: 'FsMarkdown'
-});
 const props = defineProps({
   text: {
     type: String,

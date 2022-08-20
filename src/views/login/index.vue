@@ -4,14 +4,21 @@
       <h1>业务后台管理系统</h1>
       <el-form ref="loginFormRef" :model="loginForm" :rules="rules" label-width="120px" status-icon class="login-form">
         <el-form-item label="用户名：" prop="usename">
-          <el-input :prefix-icon="User" placeholder="请输入用户名" v-model="loginForm.usename" />
+          <el-input v-model="loginForm.usename" :prefix-icon="User" placeholder="请输入用户名" />
         </el-form-item>
         <el-form-item label="密码：" prop="password">
-          <el-input :prefix-icon="Lock" placeholder="请输入密码" type="password" @keyup.enter="handleLogin"
-            v-model="loginForm.password" />
+          <el-input
+v-model="loginForm.password" :prefix-icon="Lock" placeholder="请输入密码" type="password"
+            @keyup.enter="handleLogin"
+/>
         </el-form-item>
         <el-form-item>
-          <el-button class="login-btn" color="#5650c1" :loading="loading" @click="handleLogin">登录</el-button>
+          <el-button type="primary" class="login-btn" :loading="loading" @click="handleLogin">
+            登录
+          </el-button>
+          <el-button type="info" class="reset-btn" @click="handleReset">
+            重置
+          </el-button>
         </el-form-item>
       </el-form>
       <div class="tips-text">
@@ -40,33 +47,42 @@ const loginFormRef = ref();
 const handleLogin = () => {
   loginFormRef.value.validate((valid) => {
     if (valid) {
-      if (loginForm.usename === 'admin' && loginForm.password === '123456') {
-        mainStore.setToken('hejsljlsjfisjdfijsjsjfjdjjasjfksjjsdjfsjisjjdjf');
-        router.push('/');
-      } else {
-        ElMessage.error('用户名或密码错误');
-      }
+      loading.value = true;
+      setTimeout(() => {
+        if (loginForm.usename === 'admin' && loginForm.password === '123456') {
+          mainStore.setToken('hejsljlsjfisjdfijsjsjfjdjjasjfksjjsdjfsjisjjdjf');
+          router.push('/');
+        } else {
+          ElMessage.error('用户名或密码错误');
+        }
+        loading.value = false;
+      }, 500);
     }
+
   });
+};
+const handleReset = () => {
+  loginFormRef.value.resetFields();
 };
 </script>
 <style lang="scss" scoped>
+$bgColor: rgb(248, 199, 190);
+
 .login-container {
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url("@/assets/login/login-bg.png") no-repeat;
-  background-size: 100% 100%;
+  background-image: linear-gradient(to top right, #4781C3, $bgColor);
 
   .login-box {
     width: 520px;
     height: 480px;
     padding: 0 20px;
-    border-radius: 12px;
-    color: #000;
-    background: rgba(32, 39, 120, 0.8);
+    border-radius: 22px;
+    color: $bgColor;
+    background-color: rgb(71, 129, 195);
     box-shadow: 0px 0px 20px 1px rgba(255, 255, 255, 0.3);
 
     h1 {
@@ -74,7 +90,7 @@ const handleLogin = () => {
       font-weight: bold;
       text-align: center;
       margin: 80px 0 35px 0;
-      color: #fff;
+      color: $bgColor;
     }
 
     .login-form {
@@ -82,18 +98,18 @@ const handleLogin = () => {
       margin: 0 auto;
 
       :deep(.el-form-item__label) {
-        color: #fff;
+        color: $bgColor;
       }
 
       .login-btn {
-        color: #fff;
+        color: $bgColor;
       }
     }
 
     .tips-text {
       width: 150px;
       font-size: 14px;
-      color: #fae4fa;
+      color: $bgColor;
       margin: 0 auto;
 
       >div {

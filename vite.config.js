@@ -2,8 +2,8 @@ import path from 'path';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { viteMockServe } from 'vite-plugin-mock';
-import DefineOptions from 'unplugin-vue-define-options/vite';
 import AutoImport from 'unplugin-auto-import/vite';
+import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 // https://vitejs.dev/config/
 export default defineConfig({
   root: './',
@@ -19,14 +19,14 @@ export default defineConfig({
   },
   plugins: [
     vue(),
+    vueSetupExtend(),
     AutoImport({
       dts: true,
       imports: ['vue', 'vue-router'],
       eslintrc: {
         enabled: true // <-- this
-      },
+      }
     }),
-    DefineOptions(),
     viteMockServe({ // https://github.com/vbenjs/vite-plugin-mock/blob/main/README.zh_CN.md
       mockPath: 'mock',
       prodEnabled: true,

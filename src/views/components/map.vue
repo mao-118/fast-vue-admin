@@ -8,7 +8,8 @@
           <div v-if="item.isResultLengthZero" :title="item.value" style="text-align:center;color:red;">{{ item.value }}
           </div>
           <div v-else style="margin-bottom:10px;" :title="item.value">
-            <div style="color:#0082e5;font-size:14px;font-weight:700;height:20px;line-height:20px;">{{ item.name }}</div>
+            <div style="color:#0082e5;font-size:14px;font-weight:700;height:20px;line-height:20px;">{{ item.name }}
+            </div>
             <div style="font-size:12px;color:#8e8e8e;height:20px;line-height:20px;">{{ item.newAddress }}</div>
           </div>
         </template>
@@ -108,7 +109,7 @@ const getAddress = (e) => {
   });
 };
 // 检索
-const searchPlace = async (queryString, cb) => {
+const searchPlace = async(queryString, cb) => {
   // 调用高德地图api查询 queryString是输入的关键字
   const { data: res } = await axios.get('https://restapi.amap.com/v3/place/text', {
     params: {

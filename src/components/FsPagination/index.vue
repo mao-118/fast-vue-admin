@@ -6,12 +6,9 @@
     <el-backtop id="goBack" v-show="false" :right="100" :bottom="100" />
   </div>
 </template>
-<script setup>
+<script setup name="FsPagination">
 import { scrollTo } from '@/utils/scroll-to';
 import { usePageQuery } from '@/hooks';
-defineOptions({
-  name: 'FsPagination'
-});
 const emit = defineEmits(['getTableList']);
 const pageQuery = usePageQuery();
 const handleEmit = () => {

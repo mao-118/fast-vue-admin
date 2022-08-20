@@ -32,21 +32,21 @@
   </div>
 </template>
 <script setup>
-import { ref, onBeforeUnmount, reactive } from "vue";
-import { ElMessage } from "element-plus";
+import { ref, onBeforeUnmount, reactive } from 'vue';
+import { ElMessage } from 'element-plus';
 const msgList = reactive([]);
 const formRef = ref(null);
 const form = reactive({
-  text: "",
+  text: ''
 });
 const rules = reactive({
-  text: [{ required: true, message: "输入的内容不能为空", trigger: "blur" }],
+  text: [{ required: true, message: '输入的内容不能为空', trigger: 'blur' }]
 });
 const onSubmit = () => {
   formRef.value.validate((valid) => {
     if (valid) {
       send(form.text);
-      ElMessage.success("发送成功");
+      ElMessage.success('发送成功');
     } else {
       console.log(valid);
     }
@@ -56,21 +56,21 @@ let socket = null;
 const status = ref(0);
 const statusList = reactive([
   {
-    color: "text-purple-500",
-    text: "建立连接中...",
+    color: 'text-purple-500',
+    text: '建立连接中...'
   },
   {
-    color: "text-green-500",
-    text: "连接成功",
+    color: 'text-green-500',
+    text: '连接成功'
   },
   {
-    color: "text-red-500",
-    text: "连接失败",
+    color: 'text-red-500',
+    text: '连接失败'
   },
   {
-    color: "text-purple-500",
-    text: "连接关闭",
-  },
+    color: 'text-purple-500',
+    text: '连接关闭'
+  }
 ]);
 const open = (e) => {
   status.value = 1;
@@ -84,15 +84,15 @@ const message = (e) => {
 };
 const error = (e) => {
   status.value = 2;
-  console.log("error", e);
-  ElMessage.error('连接异常，请尝试刷新页面')
+  console.log('error', e);
+  ElMessage.error('连接异常，请尝试刷新页面');
 };
 const close = (e) => {
   status.value = 3;
-  console.log("close", e);
+  console.log('close', e);
 };
 const init = () => {
-  socket = new WebSocket("wss://javascript.info/article/websocket/chat/ws");
+  socket = new WebSocket('wss://javascript.info/article/websocket/chat/ws');
   socket.onopen = open;
   socket.onmessage = message;
   socket.onerror = error;

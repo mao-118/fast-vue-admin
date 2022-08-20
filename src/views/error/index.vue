@@ -7,7 +7,7 @@
 <script setup>
 import { ElMessage } from 'element-plus';
 const handleClick = () => {
-  ElMessage.success('成功');
+  ElMessage.info('产生一个错误，点击右上角图标查看');
   throw new Error('create a error');
 };
 </script>

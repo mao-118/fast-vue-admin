@@ -1,5 +1,5 @@
 <template>
-  <div id="LineChartDom"></div>
+  <div id="LineChartDom" />
 </template>
 
 <script setup>
@@ -69,7 +69,7 @@ const option = {
 };
 let myChart = null;
 const initLineChart = () => {
-  var chartDom = document.getElementById('LineChartDom');
+  let chartDom = document.getElementById('LineChartDom');
   myChart = echarts.init(chartDom, mainStore.vueuseColorScheme === 'dark' ? 'purple-passion' : 'macarons');
   myChart.setOption(option);
 };
@@ -93,6 +93,6 @@ onBeforeUnmount(() => {
 <style lang="scss" scoped>
 #LineChartDom {
   width: 100%;
-  height: calc(100vh - 430px);
+  height: 350px;
 }
 </style>

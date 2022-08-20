@@ -31,10 +31,10 @@ const { base64: textBase64 } = useBase64(text);
 const { base64: fileBase64 } = useBase64(file);
 
 const open = () => {
-    uploadFileRef.value.click();
+  uploadFileRef.value.click();
 };
 const change = e => {
-    file.value = e.target.files[0];
+  file.value = e.target.files[0];
 };
 </script>
 <style scoped>

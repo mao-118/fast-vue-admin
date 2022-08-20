@@ -1,3 +1,5 @@
 src/assets
 public
 dist
+*.d.ts
+.eslintrc.js

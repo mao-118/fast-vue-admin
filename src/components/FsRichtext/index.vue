@@ -1,16 +1,13 @@
 <template>
   <div class="app-container">
-    <div id="toolbar-container"></div>
-    <div id="editor-container"></div>
+    <div id="toolbar-container" />
+    <div id="editor-container" />
   </div>
 </template>
-<script setup>
+<script setup name="FsRichtext">
 // 文档地址：https://www.wangeditor.com/
 import '@wangeditor/editor/dist/css/style.css';
 import { createEditor, createToolbar } from '@wangeditor/editor';
-defineOptions({
-  name: 'FsRichtext'
-});
 const props = defineProps({
   text: {
     type: String,

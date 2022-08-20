@@ -16,6 +16,9 @@ const timer = setInterval(() => {
     goDashboard();
   }
 }, 1000);
+onBeforeUnmount(()=>{
+  clearInterval(timer);
+});
 </script>
 <style lang="scss" scoped>
 .error-404 {
