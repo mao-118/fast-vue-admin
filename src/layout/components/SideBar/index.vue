@@ -22,7 +22,7 @@
   </el-scrollbar>
 </template>
 <script setup>
-import SidebarItem from './SidebarItem.vue';
+import SidebarItem from './SideBarItem.vue';
 import { mainStore, routeStore } from '@/store';
 import { routes } from '@/router/installRouter';
 // 初始化路由和菜单
