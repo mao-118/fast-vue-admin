@@ -1,1 +1,0 @@
-import{b as n,x as r,i as a,o as c}from"./index.e7a28d02.js";const u={setup(p){const t=n("");return(x,e)=>{const o=a("fs-richtext");return c(),r(o,{text:t.value,"onUpdate:text":e[0]||(e[0]=s=>t.value=s)},null,8,["text"])}}};export{u as default};
