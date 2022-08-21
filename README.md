@@ -20,6 +20,8 @@
 
 [![OSCS Status](https://www.oscs1024.com/platform/badge/mao-118/fast-vue-admin.svg?size=large)](https://www.oscs1024.com/project/mao-118/fast-vue-admin?ref=badge_large)
 
+## 工具
+推荐使用 `vscode` 进行开发，项目配置了 `eslint`, 这里不再使用`vuter`,选择`volar`,因为`volar`对`vue3`的支持更友好。
 ## 开发
 
 ```bash

@@ -3,7 +3,8 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { viteMockServe } from 'vite-plugin-mock';
 import AutoImport from 'unplugin-auto-import/vite';
-import vueSetupExtend from 'vite-plugin-vue-setup-extend'
+import vueSetupExtend from 'vite-plugin-vue-setup-extend';
+import viteCompression from 'vite-plugin-compression';
 // https://vitejs.dev/config/
 export default defineConfig({
   root: './',
@@ -17,8 +18,16 @@ export default defineConfig({
       }
     }
   },
+  
   plugins: [
     vue(),
+    viteCompression({
+      verbose:true,
+      disable: false,
+      threshold: 10240,
+      algorithm: 'gzip',
+      ext: '.gz'
+    }),
     vueSetupExtend(),
     AutoImport({
       dts: true,

@@ -23,7 +23,6 @@ export default {
           name: 'Menu1-2',
           meta: { title: '菜单1-2', icon: 'Location' },
           component: Emptyout,
-          alwaysShow: true,
           children: [
             {
               path: '/nest/menu1/menu1-2/menu1-2-1',

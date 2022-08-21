@@ -3,6 +3,7 @@ export default {
   path: '/error',
   name: 'error',
   component: Layout,
+  hasOnlyOneChildren:true,
   meta: { title: '错误捕获', icon: 'DocumentDelete' },
   children: [
     {

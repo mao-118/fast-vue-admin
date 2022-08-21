@@ -7,7 +7,7 @@
       <el-container :class="{'has-fiexd':mainStore.fixedHeader,hasTags:tagViewStore.showTagView,closeMenu:mainStore.collapse}">
         <el-header :class="{ 'fiexd-header': mainStore.fixedHeader,hasTags:tagViewStore.showTagView }">
           <NavBar />
-          <TagView  v-show="tagViewStore.showTagView"/>
+          <TagView v-show="tagViewStore.showTagView" />
         </el-header>
         <el-main :class="{hasTags:tagViewStore.showTagView}">
           <app-main />

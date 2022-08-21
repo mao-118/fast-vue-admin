@@ -15,14 +15,14 @@
     >
       <sidebar-item
         v-for="item in routeStore.menuList"
-        :route="item"
         :key="item.path"
+        :route="item"
       />
     </el-menu>
   </el-scrollbar>
 </template>
 <script setup>
-import SidebarItem from './SideBarItem.vue';
+import SidebarItem from './SidebarItem.vue';
 import { mainStore, routeStore } from '@/store';
 import { routes } from '@/router/installRouter';
 // 初始化路由和菜单

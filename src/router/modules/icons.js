@@ -3,6 +3,7 @@ export default {
   path: '/icons',
   name: 'icons',
   component: Layout,
+  hasOnlyOneChildren:true,
   meta: { title: 'icons', icon: 'apple' },
   children: [
     {

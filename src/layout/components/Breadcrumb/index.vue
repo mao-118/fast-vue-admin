@@ -1,7 +1,7 @@
 <template>
     <el-breadcrumb>
         <TransitionGroup name="list">
-            <el-breadcrumb-item v-for="item in $route.meta.matched" :key="item.link">{{item.title}}</el-breadcrumb-item>
+            <el-breadcrumb-item v-for="item in $route.meta.matched" :key="item.link">{{ item.title }}</el-breadcrumb-item>
         </TransitionGroup>
   </el-breadcrumb>
 </template>

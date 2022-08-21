@@ -1,34 +1,35 @@
 <template>
   <div class="nav-bar flex justify-between items-center">
     <div class="collapse">
-      <el-icon @click="mainStore.changeCollapse" v-if="mainStore.collapse">
+      <el-icon v-if="mainStore.collapse" @click="mainStore.changeCollapse">
         <expand />
       </el-icon>
-      <el-icon @click="mainStore.changeCollapse" v-else>
+      <el-icon v-else @click="mainStore.changeCollapse">
         <fold />
       </el-icon>
     </div>
-    <div class="menu-list" v-if="mainStore.menuMode == 'horizontal'">
+    <div v-if="mainStore.menuMode == 'horizontal'" class="menu-list">
       <template v-for="(item, index) in routeStore.routes">
-        <el-button :icon="item.meta.icon" @click="getMenu(item.path, index)" :key="item.path" v-if="!item.hidden" :type="
+        <el-button
+          v-if="!item.hidden" :key="item.path" :icon="item.meta.icon" :type="
           item.path == routeStore.currentRouteParent
             ? 'primary'
             : menuIndex == index
               ? 'info'
               : 'default'
-        " plain>
+        " plain @click="getMenu(item.path, index)"
+>
           {{ item.meta.title }}
         </el-button>
       </template>
     </div>
-    <div class="breadcrumb" v-else>
+    <div v-else class="breadcrumb">
       <Breadcrumb />
     </div>
     <div class="op-config flex justify-end items-center">
       <el-dropdown trigger="click">
         <span class="el-dropdown-link">
-          <img src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />username<el-icon
-            class="el-icon--right">
+          <img src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png">username<el-icon class="el-icon--right">
             <arrow-down />
           </el-icon>
         </span>
@@ -57,16 +58,15 @@
       <el-icon title="全屏" @click="toggleFullScreen">
         <FullScreen />
       </el-icon>
-      <el-icon @click="toggleMenu" title="菜单切换">
+      <el-icon title="菜单切换" @click="toggleMenu">
         <Switch />
       </el-icon>
-      <el-icon @click="settingClick" title="系统设置">
+      <el-icon title="系统设置" @click="settingClick">
         <setting />
       </el-icon>
-      <el-badge is-dot class="item" v-show="mainStore.errorList.length > 0">
-        <span class="iconfont icon-apps_custom_bug4_btn" title="bug" @click="showError"></span>
+      <el-badge v-show="mainStore.errorList.length > 0" is-dot class="item">
+        <span class="iconfont icon-apps_custom_bug4_btn" title="bug" @click="showError" />
       </el-badge>
-
     </div>
     <Settings ref="settingsRef" />
     <ShowError ref="ShowErrorRef" />
@@ -131,6 +131,9 @@ const logout = async () => {
   mainStore.setToken('');
   await router.replace('/login');
   tagViewStore.closeAllTagViews();
+  if(mainStore.menuMode === 'horizontal'){
+    mainStore.changeMenuMode();
+  }
 };
 
 </script>

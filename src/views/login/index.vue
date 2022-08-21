@@ -35,8 +35,8 @@ import { mainStore } from '@/store';
 import { User, Lock } from '@element-plus/icons-vue';
 const router = useRouter();
 const loginForm = reactive({
-  usename: '',
-  password: ''
+  usename: 'admin',
+  password: '123456'
 });
 const rules = reactive({
   usename: [{ required: true, message: '请输入用户名', trigger: 'blur' }],

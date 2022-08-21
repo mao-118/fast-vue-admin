@@ -12,18 +12,18 @@ export const routes = Object.keys(importRouter)
     if (!a.sort) a.sort = 1;
     return a.sort - b.sort;
   });
-async function handleKeepAlive(to) {
+function handleKeepAlive(to) {
   if (to.matched && to.matched.length > 2) {
     for (let i = 0; i < to.matched.length; i++) {
       const element = to.matched[i];
       if (element.components.default.name === 'Emptyout') {
         to.matched.splice(i, 1);
-        await handleKeepAlive(to);
+        handleKeepAlive(to);
       }
       // 如果没有按需加载完成则等待加载
       if (typeof element.components.default === 'function') {
-        await element.components.default();
-        await handleKeepAlive(to);
+        element.components.default();
+        handleKeepAlive(to);
       }
     }
   }

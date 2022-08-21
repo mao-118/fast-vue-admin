@@ -3,6 +3,7 @@ export default {
   path: '/dashboard',
   name: 'Dashboard',
   component: Layout,
+  hasOnlyOneChildren:true,
   meta: { title: '首页', icon: 'HomeFilled' },
   children: [
     {
