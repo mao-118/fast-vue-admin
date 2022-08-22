@@ -1,0 +1,1 @@
+import{_ as a,c as s,o as e,p as d,g as n,d as c,m as r}from"./index-cce20ba6.js";const t={},o={class:"app-container"},i=[(a=>(d("data-v-4673a5de"),a=a(),n(),a))((()=>c("div",{class:"menu"},[r("menu1 "),c("div",null,"menu1-1")],-1)))];var u=a(t,[["render",function(a,d){return e(),s("div",o,i)}],["__scopeId","data-v-4673a5de"]]);export{u as default};
