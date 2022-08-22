@@ -1,1 +1,0 @@
-import{b as e,c as a,e as n,d as s,i as l,o as u}from"./index-cce20ba6.js";const t={class:"app-container"},o=s("h1",null,"Menu1-1",-1),c={name:"menu1-1"},d=Object.assign(c,{setup(s){const c=e("");return(e,s)=>{const d=l("el-input");return u(),a("div",t,[o,n(d,{modelValue:c.value,"onUpdate:modelValue":s[0]||(s[0]=e=>c.value=e)},null,8,["modelValue"])])}}});export{d as default};
