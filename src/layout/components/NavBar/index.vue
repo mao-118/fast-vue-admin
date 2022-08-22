@@ -34,8 +34,8 @@
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item @click="goZh">国内站点</el-dropdown-item>
-            <el-dropdown-item @click="goDocument">使用手册</el-dropdown-item>
+            <el-dropdown-item @click="goPage('fast-vue-admin')">国内站点</el-dropdown-item>
+            <el-dropdown-item @click="goPage('fast-vue-admin-doc')">使用手册</el-dropdown-item>
             <el-dropdown-item @click="logout">退出</el-dropdown-item>
           </el-dropdown-menu>
         </template>
@@ -120,11 +120,8 @@ const toggleMenu = () => {
   changeMenuList();
   routeStore.setRoutes(routes);
 };
-const goZh = () => {
-  location.href = 'https://mao-118.gitee.io/fast-vue-admin/#/dashboard/index';
-};
-const goDocument = () => {
-  location.href = 'https://mao-118.github.io/fast-vue-admin-doc/';
+const goPage = (page) => {
+  window.open(`https://mao-118.gitee.io/${page}/`);
 };
 const logout = async () => {
   mainStore.setToken('');
