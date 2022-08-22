@@ -34,9 +34,9 @@
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item @click.stop="goZh">国内站点</el-dropdown-item>
-            <el-dropdown-item @click.stop="goDocument">使用手册</el-dropdown-item>
-            <el-dropdown-item @click.stop="logout">退出</el-dropdown-item>
+            <el-dropdown-item @click="goZh">国内站点</el-dropdown-item>
+            <el-dropdown-item @click="goDocument">使用手册</el-dropdown-item>
+            <el-dropdown-item @click="logout">退出</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
