@@ -3,7 +3,7 @@
     <el-pagination v-model:currentPage="pageQuery.page" v-model:page-size="pageQuery.pre_size"
       :page-sizes="[5, 10, 50, 100]" background layout="total, sizes, prev, pager, next, jumper"
       :total="pageQuery.total" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
-    <el-backtop id="goBack" v-show="false" :right="100" :bottom="100" />
+    <el-backtop v-show="false" id="goBack" :right="100" :bottom="100" />
   </div>
 </template>
 <script setup name="FsPagination">

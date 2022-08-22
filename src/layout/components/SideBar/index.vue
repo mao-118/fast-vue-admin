@@ -5,19 +5,9 @@
       <h3 class="logo-text">Fast Admin</h3>
     </div>
 
-    <el-menu
-      :default-active="$route.path"
-      class="el-menu-vertical-demo"
-      :collapse="mainStore.collapse"
-      :collapse-transition="false"
-      :router="true"
-      :unique-opened="true"
-    >
-      <sidebar-item
-        v-for="item in routeStore.menuList"
-        :key="item.path"
-        :route="item"
-      />
+    <el-menu :default-active="$route.path" class="el-menu-vertical-demo" :collapse="mainStore.collapse"
+      :collapse-transition="false" :router="true" :unique-opened="true">
+      <sidebar-item v-for="item in routeStore.menuList" :key="item.path" :route="item" />
     </el-menu>
   </el-scrollbar>
 </template>
@@ -29,17 +19,19 @@ import { routes } from '@/router/installRouter';
 routeStore.setRoutes(routes);
 </script>
 <style lang="scss" scoped>
-.logo{
+.logo {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 60px;
-  .logo-img{
+
+  .logo-img {
     width: 32px;
     height: 32px;
     margin-right: 12px;
   }
-  .logo-text{
+
+  .logo-text {
     color: #409EFF;
     font-size: 20px;
     font-weight: 600;
@@ -51,6 +43,7 @@ routeStore.setRoutes(routes);
   border-right: none;
   border-right: none;
 }
+
 ::v-deep(.el-sub-menu__title) {
   border-right: none;
 }

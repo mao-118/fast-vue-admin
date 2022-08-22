@@ -18,10 +18,9 @@ module.exports = {
     'vue'
   ],
   'rules': {
-    'vue/first-attribute-linebreak': ["error", {
-      "singleline": "beside",
-      "multiline": "below"
-    }],
+    "vue/no-v-model-argument": "off",
+    "vue/html-closing-bracket-newline": "off",
+    "vue/first-attribute-linebreak": "off",
     'vue/multi-word-component-names': 'off',
     'vue/no-setup-props-destructure': 'off',
     "semi": ["error", "always"], //结尾使用分号

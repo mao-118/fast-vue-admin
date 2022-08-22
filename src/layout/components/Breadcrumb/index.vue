@@ -1,14 +1,15 @@
 <template>
-    <el-breadcrumb>
-        <TransitionGroup name="list">
-            <el-breadcrumb-item v-for="item in $route.meta.matched" :key="item.link">{{ item.title }}</el-breadcrumb-item>
-        </TransitionGroup>
+  <el-breadcrumb>
+    <TransitionGroup name="list">
+      <el-breadcrumb-item v-for="item in $route.meta.matched" :key="item.link">{{ item.title }}</el-breadcrumb-item>
+    </TransitionGroup>
   </el-breadcrumb>
 </template>
 <script setup>
 </script>
 <style scoped>
-.list-move, /* 对移动中的元素应用的过渡 */
+.list-move,
+/* 对移动中的元素应用的过渡 */
 .list-enter-active,
 .list-leave-active {
   transition: all 0.5s ease;

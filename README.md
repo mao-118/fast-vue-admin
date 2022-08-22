@@ -21,7 +21,10 @@
 [![OSCS Status](https://www.oscs1024.com/platform/badge/mao-118/fast-vue-admin.svg?size=large)](https://www.oscs1024.com/project/mao-118/fast-vue-admin?ref=badge_large)
 
 ## 工具
-推荐使用 `vscode` 进行开发，项目配置了 `eslint`, 这里不再使用`vuter`,选择`volar`,因为`volar`对`vue3`的支持更友好。
+推荐使用 `vscode` 进行开发。
+插件：
+ - 这里不再使用`vuter`,选择[volar](https://github.com/johnsoncodehk/volar),因为[volar](https://github.com/johnsoncodehk/volar)对`vue3`的支持更友好。
+ - [Vue 3 Snippets](https://github.com/hollowtree/vscode-vue-snippets) 自动提示组合式api
 ## 开发
 
 ```bash

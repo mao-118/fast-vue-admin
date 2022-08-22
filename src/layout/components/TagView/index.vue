@@ -1,10 +1,10 @@
 <template>
   <div>
-    <el-scrollbar :class="{ large: isLarge() }" id="elScrollbar" ref="scrollbarRef" @scroll="handleScroll">
-      <div class="tag-list" ref="tagListRef">
-        <el-tag @click="tagClick(item)" @close="closeCurrentTag(item)"
-          @contextmenu.prevent.native="openMenu(item, $event)" v-for="item in tagViewStore.tagViews" :key="item.path"
-          class="mx-1" :effect="item.path == $route.path ? 'dark' : 'plain'" closable>
+    <el-scrollbar id="elScrollbar" ref="scrollbarRef" :class="{ large: isLarge() }" @scroll="handleScroll">
+      <div ref="tagListRef" class="tag-list">
+        <el-tag v-for="item in tagViewStore.tagViews" :key="item.path" class="mx-1"
+          :effect="item.path == $route.path ? 'dark' : 'plain'" closable @click="tagClick(item)"
+          @close="closeCurrentTag(item)" @contextmenu.prevent="openMenu(item, $event)">
           {{ item.title }}
         </el-tag>
       </div>

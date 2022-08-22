@@ -1,11 +1,6 @@
 <template>
-  <v-md-editor
-    v-model="textValue"
-    :disabled-menus="[]"
-    height="600px"
-    @upload-image="handleUploadImage"
-    @change="handleChange"
-  />
+  <v-md-editor v-model="textValue" :disabled-menus="[]" height="600px" @upload-image="handleUploadImage"
+    @change="handleChange" />
 </template>
 <script setup name="FsMarkdown">
 import VMdEditor from '@kangc/v-md-editor/lib/codemirror-editor';

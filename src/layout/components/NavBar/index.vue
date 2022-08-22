@@ -10,15 +10,13 @@
     </div>
     <div v-if="mainStore.menuMode == 'horizontal'" class="menu-list">
       <template v-for="(item, index) in routeStore.routes">
-        <el-button
-          v-if="!item.hidden" :key="item.path" :icon="item.meta.icon" :type="
+        <el-button v-if="!item.hidden" :key="item.path" :icon="item.meta.icon" :type="
           item.path == routeStore.currentRouteParent
             ? 'primary'
             : menuIndex == index
               ? 'info'
               : 'default'
-        " plain @click="getMenu(item.path, index)"
->
+        " plain @click="getMenu(item.path, index)">
           {{ item.meta.title }}
         </el-button>
       </template>
@@ -29,15 +27,16 @@
     <div class="op-config flex justify-end items-center">
       <el-dropdown trigger="click">
         <span class="el-dropdown-link">
-          <img src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png">username<el-icon class="el-icon--right">
+          <img src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png">username<el-icon
+            class="el-icon--right">
             <arrow-down />
           </el-icon>
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item @click.native="goZh">中文站点</el-dropdown-item>
-            <el-dropdown-item @click.native="goDocument">文档</el-dropdown-item>
-            <el-dropdown-item @click.native="logout">退出</el-dropdown-item>
+            <el-dropdown-item @click.stop="goZh">中文站点</el-dropdown-item>
+            <el-dropdown-item @click.stop="goDocument">文档</el-dropdown-item>
+            <el-dropdown-item @click.stop="logout">退出</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -131,7 +130,7 @@ const logout = async () => {
   mainStore.setToken('');
   await router.replace('/login');
   tagViewStore.closeAllTagViews();
-  if(mainStore.menuMode === 'horizontal'){
+  if (mainStore.menuMode === 'horizontal') {
     mainStore.changeMenuMode();
   }
 };

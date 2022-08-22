@@ -5,8 +5,8 @@
     </template>
     <div class="drawer-item">
       <span>主题设置</span>
-      <el-switch v-model="theme" active-color="#2f2f2f" inactive-color="#ccc" @change="handleChangeTheme" inline-prompt
-        active-icon="sunny" inactive-icon="moon" />
+      <el-switch v-model="theme" active-color="#2f2f2f" inactive-color="#ccc" inline-prompt active-icon="sunny"
+        inactive-icon="moon" @change="handleChangeTheme" />
     </div>
     <div class="drawer-item">
       <span>开启 Tags-View</span>

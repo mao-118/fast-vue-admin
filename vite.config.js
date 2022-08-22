@@ -18,11 +18,11 @@ export default defineConfig({
       }
     }
   },
-  
+
   plugins: [
     vue(),
     viteCompression({
-      verbose:true,
+      verbose: true,
       disable: false,
       threshold: 10240,
       algorithm: 'gzip',
