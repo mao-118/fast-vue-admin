@@ -23,7 +23,7 @@
 ## 工具
 推荐使用 `vscode` 进行开发。
 插件：
- - 这里不再使用`vuter`,选择[volar](https://github.com/johnsoncodehk/volar),因为[volar](https://github.com/johnsoncodehk/volar)对`vue3`的支持更友好。
+ - 这里不再使用`vetur`,选择[volar](https://github.com/johnsoncodehk/volar),因为[volar](https://github.com/johnsoncodehk/volar)对`vue3`的支持更友好。
  - [Vue 3 Snippets](https://github.com/hollowtree/vscode-vue-snippets) 自动提示组合式api
 ## 开发
 
