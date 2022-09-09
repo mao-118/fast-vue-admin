@@ -22,10 +22,9 @@
   <!-- </div> -->
 </template>
 <script setup>
-// import 'https://webapi.amap.com/maps?v=2.0&key=596002c0d52b6b4360a70ecbfb4c692d';
+
 // import axios from 'axios';
 // import { mainStore } from '@/store';
-// // 1a68b5f1bf437db3754cc1c9256c8433
 // import { ElMessage } from 'element-plus';
 // const keyword = ref('');// 搜索关键字
 // const elautocomplete = ref();
@@ -132,7 +131,7 @@
 //     params: {
 //       keywords: queryString, // 检索关键字
 //       city: '杭州', // 指定区域
-//       key: '1a68b5f1bf437db3754cc1c9256c8433', // 搜索的高德Key
+//       key: '搜索key', // 搜索的高德Key
 //       output: 'json', // 返回的结果类型
 //       extensions: 'all', // 返回结果控制
 //       city_limit: false // 为true时查找指定城市，为false指定城市不存在 查找另外的城市
