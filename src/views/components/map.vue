@@ -26,7 +26,6 @@ import axios from 'axios';
 import { mainStore } from '@/store';
 import { ElMessage } from 'element-plus';
 import md5 from 'js-md5';
-console.log('来了');
 const keyword = ref('');// 搜索关键字
 const elautocomplete = ref();
 const mapObj = reactive({
