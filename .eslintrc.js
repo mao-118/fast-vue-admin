@@ -18,6 +18,7 @@ module.exports = {
     'vue'
   ],
   'rules': {
+    "vue/no-multiple-template-root": "off",
     "vue/no-v-model-argument": "off",
     "vue/html-closing-bracket-newline": "off",
     "vue/first-attribute-linebreak": "off",

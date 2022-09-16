@@ -4,7 +4,7 @@
       <el-col v-for="(item, index) in list" :key="index" :xs="24" :sm="24" :md="12" :lg="8">
         <el-card>
           <div class="content">
-            <a target="_blank" class="href-a" :href="item.href"><img class="href-img" :src="item.logo" alt="" /></a>
+            <a target="_blank" class="href-a" :href="item.href"><img class="href-img" :src="item.logo" alt=""></a>
             <span>{{ item.desc }}</span>
           </div>
         </el-card>

@@ -1,121 +1,427 @@
 <template>
-  <div class="login-container">
-    <div class="login-box">
-      <h1>业务后台管理系统</h1>
-      <el-form ref="loginFormRef" :model="loginForm" :rules="rules" label-width="120px" status-icon class="login-form">
-        <el-form-item label="用户名：" prop="usename">
-          <el-input v-model="loginForm.usename" :prefix-icon="User" placeholder="请输入用户名" />
-        </el-form-item>
-        <el-form-item label="密码：" prop="password">
-          <el-input
-v-model="loginForm.password" :prefix-icon="Lock" placeholder="请输入密码" type="password"
-            @keyup.enter="handleLogin"
-/>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" class="login-btn" :loading="loading" @click="handleLogin">
-            登录
-          </el-button>
-          <el-button type="info" class="reset-btn" @click="handleReset">
-            重置
-          </el-button>
-        </el-form-item>
-      </el-form>
-      <div class="tips-text">
-        <span>tips：</span>
-        <div>username：admin</div>
-        <div>password：123456</div>
+  <div id="login-main">
+    <div class="main">
+      <div id="a-container" class="container a-container">
+        <form id="a-form" class="form" method="" action="">
+          <h2 class="form_title title">Create Account</h2>
+          <span class="form__span">or use email for registration</span>
+          <input class="form__input" type="text" placeholder="Name">
+          <input class="form__input" type="text" placeholder="Email">
+          <input class="form__input" autocomplete="off" type="password" placeholder="Password">
+          <button class="form__button button submit" @click="register">注 册</button>
+        </form>
+      </div>
+      <div id="b-container" class="container b-container">
+        <form id="b-form" class="form" method="" action="">
+          <h2 class="form_title title">Sign in to Website</h2>
+          <span class="form__span">Please login with your account password</span>
+          <input v-model="username" class="form__input" type="text" placeholder="Username">
+          <input v-model="password" autocomplete="off" class="form__input" type="password" placeholder="Password">
+          <a class="form__link cursor-pointer" @click="forgotPwd">Forgot your password?</a>
+          <button v-loading class="form__button button submit" @click="handleLogin">
+            登 录
+          </button>
+        </form>
+      </div>
+      <div id="switch-cnt" class="switch">
+        <div class="switch__circle" />
+        <div class="switch__circle switch__circle--t" />
+        <div id="switch-c1" class="switch__container">
+          <h2 class="switch__title title">欢迎回来 !</h2>
+          <p class="switch__description description">请使用您账号密码登录</p>
+          <button class="switch__button button switch-btn">登 录</button>
+        </div>
+        <div id="switch-c2" class="switch__container is-hidden">
+          <h2 class="switch__title title">Hello Friend !</h2>
+          <p class="switch__description description">Enter your personal details and start journey with us</p>
+          <button class="switch__button button switch-btn">注 册</button>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script setup>
-import { ElMessage } from 'element-plus';
+import { ElMessage, ElLoading } from 'element-plus';
 import { mainStore } from '@/store';
-import { User, Lock } from '@element-plus/icons-vue';
-const router = useRouter();
-const loginForm = reactive({
-  usename: 'admin',
-  password: '123456'
+let switchCtn = null;
+let switchC1 = null;
+let switchC2 = null;
+let switchCircle = null;
+let switchBtn = null;
+let aContainer = null;
+let bContainer = null;
+let allButtons = null;
+onMounted(() => {
+  switchCtn = document.querySelector('#switch-cnt');
+  switchC1 = document.querySelector('#switch-c1');
+  switchC2 = document.querySelector('#switch-c2');
+  switchCircle = document.querySelectorAll('.switch__circle');
+  switchBtn = document.querySelectorAll('.switch-btn');
+  aContainer = document.querySelector('#a-container');
+  bContainer = document.querySelector('#b-container');
+  allButtons = document.querySelectorAll('.submit');
+  mainF();
+  changeForm();
 });
-const rules = reactive({
-  usename: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
-  password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
-});
-const loading = ref(false);
-const loginFormRef = ref();
-const handleLogin = () => {
-  loginFormRef.value.validate((valid) => {
-    if (valid) {
-      loading.value = true;
-      setTimeout(() => {
-        if (loginForm.usename === 'admin' && loginForm.password === '123456') {
-          mainStore.setToken('hejsljlsjfisjdfijsjsjfjdjjasjfksjjsdjfsjisjjdjf');
-          router.push('/');
-        } else {
-          ElMessage.error('用户名或密码错误');
-        }
-        loading.value = false;
-      }, 500);
-    }
 
-  });
+let getButtons = (e) => e.preventDefault();
+
+let changeForm = (e) => {
+  console.log(111);
+  switchCtn.classList.add('is-gx');
+  setTimeout(function () {
+    switchCtn.classList.remove('is-gx');
+  }, 1500);
+  switchCtn.classList.toggle('is-txr');
+  switchCircle[0].classList.toggle('is-txr');
+  switchCircle[1].classList.toggle('is-txr');
+  switchC1.classList.toggle('is-hidden');
+  switchC2.classList.toggle('is-hidden');
+  aContainer.classList.toggle('is-txl');
+  bContainer.classList.toggle('is-txl');
+  bContainer.classList.toggle('is-z200');
 };
-const handleReset = () => {
-  loginFormRef.value.resetFields();
+let mainF = (e) => {
+  for (let i = 0; i < allButtons.length; i++)
+    allButtons[i].addEventListener('click', getButtons);
+  for (let i = 0; i < switchBtn.length; i++)
+    switchBtn[i].addEventListener('click', changeForm);
+};
+const register = () => {
+  ElMessage.warning('暂未开放注册功能');
+};
+const forgotPwd = () => {
+  ElMessage.warning('请联系管理员更改密码');
+};
+const username = ref('admin');
+const password = ref('123456');
+const router = useRouter();
+const handleLogin = () => {
+  if (!username.value) return ElMessage.error('请输入账号');
+  if (!password.value) return ElMessage.error('请输入密码');
+  const loading = ElLoading.service({
+    lock: true,
+    text: 'Loading',
+    background: 'rgba(0, 0, 0, 0.7)'
+  });
+
+  setTimeout(() => {
+    if (username.value === 'admin' && password.value === '123456') {
+      mainStore.setToken('hejsljlsjfisjdfijsjsjfjdjjasjfksjjsdjfsjisjjdjf');
+      router.push('/');
+    } else {
+      ElMessage.error('用户名或密码错误');
+    }
+    loading.close();
+  }, 500);
 };
 </script>
 <style lang="scss" scoped>
-$bgColor: rgb(248, 199, 190);
+$bg: #EDF2F0;
 
-.login-container {
-  width: 100vw;
+$neu-1: #ecf0f3;
+$neu-2: #d1d9e6;
+
+$white: #f9f9f9;
+$gray: #a0a5a8;
+$black: #181818;
+
+$purple: #4B70E2;
+
+
+$transition: 1s;
+
+/* Generic */
+#login-main {
+  width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(to top right, #4781C3, $bgColor);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  background-color: $neu-1;
+  color: $gray;
+  overflow: hidden;
+}
 
-  .login-box {
-    width: 520px;
-    height: 480px;
-    padding: 0 20px;
-    border-radius: 22px;
-    color: $bgColor;
-    background-color: rgb(71, 129, 195);
-    box-shadow: 0px 0px 20px 1px rgba(255, 255, 255, 0.3);
+/**/
+.main {
+  position: relative;
+  width: 1000px;
+  min-width: 1000px;
+  min-height: 600px;
+  height: 600px;
+  padding: 25px;
+  background-color: $neu-1;
+  box-shadow:
+    10px 10px 10px $neu-2,
+    -10px -10px 10px $white;
+  border-radius: 12px;
+  overflow: hidden;
 
-    h1 {
-      font-size: 30px;
-      font-weight: bold;
-      text-align: center;
-      margin: 80px 0 35px 0;
-      color: $bgColor;
+  @media(max-width: 1200px) {
+    transform: scale(.7);
+  }
+
+  @media(max-width: 1000px) {
+    transform: scale(.6);
+  }
+
+  @media(max-width: 800px) {
+    transform: scale(.5);
+  }
+
+  @media(max-width: 600px) {
+    transform: scale(.4);
+  }
+
+
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+
+  top: 0;
+  width: 600px;
+  height: 100%;
+  padding: 25px;
+
+  background-color: $neu-1;
+  transition: $transition;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  &__icon {
+    object-fit: contain;
+    width: 30px;
+    margin: 0 5px;
+    opacity: .5;
+    transition: .15s;
+
+    &:hover {
+      opacity: 1;
+      transition: .15s;
+      cursor: pointer;
+
+    }
+  }
+
+  &__input {
+    width: 350px;
+    height: 40px;
+    margin: 4px 0;
+
+    padding-left: 25px;
+    font-size: 13px;
+    letter-spacing: .15px;
+    border: none;
+    outline: none;
+
+    font-family: 'Montserrat', sans-serif;
+    background-color: $neu-1;
+    transition: .25s ease;
+    border-radius: 8px;
+
+    box-shadow:
+      inset 2px 2px 4px $neu-2,
+      inset -2px -2px 4px $white;
+
+    &:focus {
+      box-shadow:
+        inset 4px 4px 4px $neu-2,
+        inset -4px -4px 4px $white;
+    }
+  }
+
+  &__span {
+    margin-top: 30px;
+    margin-bottom: 12px;
+  }
+
+  &__link {
+    color: $black;
+    font-size: 15px;
+    margin-top: 25px;
+    border-bottom: 1px solid $gray;
+    line-height: 2;
+  }
+}
+
+.title {
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 3;
+  color: $black;
+}
+
+.description {
+  font-size: 14px;
+  letter-spacing: .25px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.button {
+  width: 180px;
+  height: 50px;
+  border-radius: 25px;
+  margin-top: 50px;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1.15px;
+
+  background-color: $purple;
+  color: $white;
+  box-shadow:
+    8px 8px 16px $neu-2,
+    -8px -8px 16px $white;
+
+  border: none;
+  outline: none;
+}
+
+/**/
+
+.a-container {
+  z-index: 100;
+  left: calc(100% - 600px);
+}
+
+.b-container {
+  left: calc(100% - 600px);
+  z-index: 0;
+}
+
+.switch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 400px;
+
+  padding: 50px;
+  z-index: 200;
+  transition: $transition;
+
+  background-color: $neu-1;
+  overflow: hidden;
+
+
+  box-shadow:
+    4px 4px 10px $neu-2,
+    -4px -4px 10px $white;
+
+  &__circle {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background-color: $neu-1;
+    box-shadow:
+      inset 8px 8px 12px $neu-2,
+      inset -8px -8px 12px $white;
+
+    bottom: -60%;
+    left: -60%;
+    transition: $transition;
+
+    &--t {
+      top: -30%;
+      left: 60%;
+      width: 300px;
+      height: 300px;
+    }
+  }
+
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    width: 400px;
+    padding: 50px 55px;
+
+    transition: $transition ;
+
+  }
+
+  &__button {
+    cursor: pointer;
+
+    &:hover {
+      box-shadow:
+        6px 6px 10px $neu-2,
+        -6px -6px 10px $white;
+      transform: scale(.985);
+      transition: .25s;
     }
 
-    .login-form {
-      width: 75%;
-      margin: 0 auto;
-
-      :deep(.el-form-item__label) {
-        color: $bgColor;
-      }
-
-      .login-btn {
-        color: $bgColor;
-      }
+    &:active,
+    &:focus {
+      box-shadow:
+        2px 2px 6px $neu-2,
+        -2px -2px 6px $white;
+      transform: scale(.97);
+      transition: .25s;
     }
+  }
+}
 
-    .tips-text {
-      width: 150px;
-      font-size: 14px;
-      color: $bgColor;
-      margin: 0 auto;
+/**/
+.is-txr {
+  left: calc(100% - 400px);
+  transition: $transition;
+  transform-origin: left;
+}
 
-      >div {
-        text-align: center;
-      }
-    }
+.is-txl {
+  left: 0;
+  transition: $transition;
+  transform-origin: right;
+}
+
+.is-z200 {
+  z-index: 200;
+  transition: $transition;
+}
+
+.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  transition: $transition;
+}
+
+.is-gx {
+  animation: is-gx $transition;
+}
+
+@keyframes is-gx {
+
+  0%,
+  10%,
+  100% {
+    width: 400px;
+  }
+
+  30%,
+  50% {
+    width: 500px;
   }
 }
 </style>

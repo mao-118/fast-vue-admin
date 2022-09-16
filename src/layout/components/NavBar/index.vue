@@ -125,11 +125,14 @@ const goPage = (page) => {
 };
 const logout = async () => {
   mainStore.setToken('');
-  await router.replace('/login');
-  tagViewStore.closeAllTagViews();
-  if (mainStore.menuMode === 'horizontal') {
-    mainStore.changeMenuMode();
-  }
+  // await router.replace('/login');
+  location.reload();
+  setTimeout(() => {
+    tagViewStore.closeAllTagViews();
+    if (mainStore.menuMode === 'horizontal') {
+      mainStore.changeMenuMode();
+    }
+  }, 500);
 };
 
 </script>

@@ -52,7 +52,7 @@ export const beforeResolve = (to, from, next) => {
       next();
     } else {
       NProgress.done();
-      next('/login');
+      next({ path: '/login', replace: true });
     }
   }
 };
