@@ -28,7 +28,6 @@ import { mainStore, tagViewStore } from '@/store';
 const settingDrawer = ref(false);
 const direction = ref('rtl');
 watch(isDark, () => {
-  console.log('isDark', isDark.value);
   if (isDark.value) {
     localStorage.setItem('vueuse-color-scheme', 'dark');
     mainStore.setScheme();
