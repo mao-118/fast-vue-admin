@@ -32,6 +32,9 @@ const initTheme = () => {
   if (isDark.value) {
     localStorage.setItem('vueuse-color-scheme', 'dark');
     mainStore.setScheme();
+  } else {
+    localStorage.setItem('vueuse-color-scheme', 'auto');
+    mainStore.setScheme();
   }
 };
 initTheme();
