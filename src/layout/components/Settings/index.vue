@@ -23,11 +23,19 @@
   </el-drawer>
 </template>
 <script setup>
-import { toggleDark } from '@/utils/dark';
+import { toggleDark, isDark } from '@/utils/dark';
 import { mainStore, tagViewStore } from '@/store';
 const settingDrawer = ref(false);
 const direction = ref('rtl');
-const theme = ref(localStorage.getItem('vueuse-color-scheme') !== 'auto');
+const initTheme = () => {
+  console.log(isDark, 'isDark');
+  if (isDark.value) {
+    localStorage.setItem('vueuse-color-scheme', 'dark');
+    mainStore.setScheme();
+  }
+};
+initTheme();
+const theme = ref(mainStore.vueuseColorScheme !== 'auto');
 const showTagView = ref(true);
 const fixedHeader = ref(false);
 const showLogo = ref(false);
@@ -35,6 +43,7 @@ const handleChangeTheme = async () => {
   await toggleDark();
   mainStore.setScheme();
 };
+
 const handleChangeShow = () => {
   tagViewStore.setShowTagView(showTagView.value);
 };

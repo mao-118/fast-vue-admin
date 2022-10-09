@@ -1,34 +1,29 @@
 <template>
   <div class="app-container">
-     <div>
-        连接状态：
-        <span :class="statusList[status].color">
-          {{ statusList[status].text }}
-        </span>
-      </div>
-      <el-form ref="formRef" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="输入内容" prop="text">
-          <el-col :span="5">
-            <el-input v-model="form.text" />
-          </el-col>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="onSubmit">发送</el-button>
-        </el-form-item>
-      </el-form>
-      <el-divider>聊天记录</el-divider>
-      <div class="msg-box" v-show="msgList.length">
-        <div
-          :class="{ pt: index % 2 == 0 }"
-          class="msg-item"
-          v-for="(item, index) in msgList"
-          :key="index"
-        >
-          <div class="msg-content">
-            <div class="msg-text">{{ item }}</div>
-          </div>
+    <div>
+      连接状态：
+      <span :class="statusList[status].color">
+        {{ statusList[status].text }}
+      </span>
+    </div>
+    <el-form ref="formRef" :model="form" :rules="rules" label-width="80px">
+      <el-form-item label="输入内容" prop="text">
+        <el-col :span="5">
+          <el-input v-model="form.text" />
+        </el-col>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="onSubmit">发送</el-button>
+      </el-form-item>
+    </el-form>
+    <el-divider>聊天记录</el-divider>
+    <div v-show="msgList.length" class="msg-box">
+      <div v-for="(item, index) in msgList" :key="index" :class="{ pt: index % 2 == 0 }" class="msg-item">
+        <div class="msg-content">
+          <div class="msg-text">{{ item }}</div>
         </div>
       </div>
+    </div>
   </div>
 </template>
 <script setup>
@@ -109,16 +104,19 @@ onBeforeUnmount(() => {
   background: #eee;
   padding: 20px;
   margin: 0 auto;
+
   .msg-item {
     display: flex;
     margin: 25px 0;
     color: #333;
+
     .msg-content {
       width: 200px;
       background: #fff;
       padding: 10px;
       border-radius: 12px;
       position: relative;
+
       &::after {
         content: "";
         width: 0;
@@ -130,16 +128,20 @@ onBeforeUnmount(() => {
         border-color: transparent #fff transparent transparent;
       }
     }
+
     &.pt {
       flex-flow: row-reverse;
+
       .msg-content {
         background: #67c23a;
+
         &::after {
           top: 13px;
           left: unset;
           right: -18px;
           border-color: transparent transparent transparent #67c23a;
         }
+
         .msg-date {
           text-align: right;
         }

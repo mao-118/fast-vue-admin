@@ -4,14 +4,14 @@
       <el-col class="flex flex-wrap" :span="24">
         <el-tooltip v-for="(item, index) in icons" :key="index" class="box-item" effect="dark" :content="item.title"
           placement="top">
-          <div @click="copyText(item.title)" class="
+          <div class="
               w-1/6
               flex flex-col
               justify-center
               items-center
               cursor-pointer
               mb-6
-            ">
+            " @click="copyText(item.title)">
             <el-icon :size="48">
               <component :is="item.icon" />
             </el-icon>

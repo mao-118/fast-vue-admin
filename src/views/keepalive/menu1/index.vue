@@ -1,14 +1,14 @@
 <template>
-    <div class="app-container">
-        <h1>Menu1</h1>
-        <el-input v-model="text"></el-input>
-    </div>
+  <div class="app-container">
+    <h1>Menu1</h1>
+    <el-input v-model="text" />
+  </div>
 </template>
 <script>
 export default {
-    name: 'menu1'
-}
+  name: 'Menu1'
+};
 </script>
 <script setup>
-const text = ref('')
+const text = ref('');
 </script>

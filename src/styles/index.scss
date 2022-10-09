@@ -10,6 +10,7 @@ body,
 .el-main {
   min-height: calc(100vh - 60px);
   background-color: var(--el-color-info-light-9);
+  padding: 0 !important;
 
   &.hasTags {
     min-height: calc(100vh - 100px);
@@ -23,7 +24,7 @@ body,
   --el-card-padding: 20px;
   --el-card-bg-color: var(--el-fill-color-blank);
   border-radius: var(--el-card-border-radius);
-  border: 1px solid var(--el-card-border-color);
+  // border: 1px solid var(--el-card-border-color);
   background-color: var(--el-card-bg-color);
   overflow: hidden;
   color: var(--el-text-color-primary);

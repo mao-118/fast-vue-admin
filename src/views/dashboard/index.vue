@@ -1,44 +1,21 @@
 <template>
-  <div>
-    <el-row :gutter="20">
-      <el-col :md="5">
-        <div class="title">USERS</div>
-        <el-select v-model="value" filterable remote clearable reserve-keyword placeholder="Please enter a keyword"
-          :remote-method="remoteMethod" :loading="loading" @change="handleChange">
-          <el-option v-for="(item,index) in options" :key="index" :label="item.name" :value="item.name" />
-        </el-select>
-        <div class="userList">
-          <div v-for="(item,index) in [...userList,...userList]" :key="index" class="userItem">
-            <div class="topBox">
-              <img :src="item.photo" class="photo">
-              <span class="name">{{ item.name }}</span>
-            </div>
-            <div class="btnBox">
-              <el-tag :type="index%2==0?'success':''">{{ item.tag }}</el-tag>
-              <span class="price">${{ (index*100).toFixed(2) }}</span>
-            </div>
+  <div class="app-container">
+    <el-row :gutter="10">
+      <el-col v-for="(item, index) in dataList" :key="index" :xs="24" :sm="24" :md="12" :lg="8">
+        <el-card>
+          <div class="content">
+            <a target="_blank" class="href-a" :href="item.href"><img class="href-img" :src="item.logo" alt=""></a>
+            <span>{{ item.desc }}</span>
           </div>
-        </div>
-      </el-col>
-      <el-col class="container" :md="19">
-        <el-row :gutter="10">
-          <el-col v-for="(item, index) in dataList" :key="index" :xs="24" :sm="24" :md="12" :lg="8">
-            <el-card>
-              <div class="content">
-                <a target="_blank" class="href-a" :href="item.href"><img class="href-img" :src="item.logo" alt=""></a>
-                <span>{{ item.desc }}</span>
-              </div>
-            </el-card>
-          </el-col>
-        </el-row>
-        <div>
-          <TodoList />
-        </div>
-        <div class="lineChart">
-          <LineChart />
-        </div>
+        </el-card>
       </el-col>
     </el-row>
+    <div>
+      <TodoList />
+    </div>
+    <div class="lineChart">
+      <LineChart />
+    </div>
   </div>
 </template>
 <script setup>
@@ -67,37 +44,6 @@ const data = reactive({
   ]
 });
 const dataList = toRef(data, 'list');
-const userList = ref([]);
-const initUserList = [
-  { name: 'Kathyrn Murphy', tag: 'Design', photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80' },
-  { name: 'Mert Cukuren', tag: 'Sales', photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80' },
-  { name: 'Albert Flores', tag: 'Marketing', photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80' },
-  { name: 'Jane Cooper', tag: 'Vue', photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80' },
-  { name: 'Ronald Richards', tag: 'React', photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80' }
-];
-const options = ref([]);
-const value = ref('');
-const loading = ref(false);
-const remoteMethod = (query) => {
-  if (query) {
-    loading.value = true;
-    setTimeout(() => {
-      loading.value = false;
-      options.value = initUserList.filter((item) => {
-        return item.name.toLowerCase().includes(query.toLowerCase());
-      });
-    }, 500);
-  } else {
-    options.value = [];
-  }
-};
-const handleChange = () => {
-  if (!value.value) return userList.value = initUserList;
-  userList.value = initUserList.filter(item => item.name === value.value);
-};
-onMounted(() => {
-  userList.value = initUserList;
-});
 </script>
 <style lang="scss" scoped>
 .el-col {
