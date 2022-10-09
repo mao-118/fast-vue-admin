@@ -27,8 +27,7 @@ import { toggleDark, isDark } from '@/utils/dark';
 import { mainStore, tagViewStore } from '@/store';
 const settingDrawer = ref(false);
 const direction = ref('rtl');
-const initTheme = () => {
-  console.log(isDark, 'isDark');
+watch(isDark, () => {
   if (isDark.value) {
     localStorage.setItem('vueuse-color-scheme', 'dark');
     mainStore.setScheme();
@@ -36,8 +35,7 @@ const initTheme = () => {
     localStorage.setItem('vueuse-color-scheme', 'auto');
     mainStore.setScheme();
   }
-};
-initTheme();
+});
 const theme = ref(mainStore.vueuseColorScheme === 'dark');
 const showTagView = ref(true);
 const fixedHeader = ref(false);
