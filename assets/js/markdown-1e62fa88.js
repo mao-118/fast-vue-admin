@@ -1,1 +1,0 @@
-import{r as t,x as a,n as e,i as s}from"./index-fda3baf4.js";const n={setup(n){const r=t("");return(t,n)=>{const o=e("fs-markdown");return s(),a(o,{text:r.value,"onUpdate:text":n[0]||(n[0]=t=>r.value=t)},null,8,["text"])}}};export{n as default};

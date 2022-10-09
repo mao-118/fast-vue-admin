@@ -1,1 +1,0 @@
-import{r as t,x as e,n as a,i as s}from"./index-fda3baf4.js";const n={setup(n){const r=t("");return(t,n)=>{const o=a("fs-richtext");return s(),e(o,{text:r.value,"onUpdate:text":n[0]||(n[0]=t=>r.value=t)},null,8,["text"])}}};export{n as default};

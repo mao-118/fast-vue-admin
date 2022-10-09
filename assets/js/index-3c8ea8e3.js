@@ -1,1 +1,0 @@
-import{r as a,c as e,k as n,b as s,n as l,i as u}from"./index-fda3baf4.js";const t={class:"app-container"},o=s("h1",null,"Menu1-1",-1),r={name:"Menu11"},d=Object.assign(r,{setup(s){const r=a("");return(a,s)=>{const d=l("el-input");return u(),e("div",t,[o,n(d,{modelValue:r.value,"onUpdate:modelValue":s[0]||(s[0]=a=>r.value=a)},null,8,["modelValue"])])}}});export{d as default};
