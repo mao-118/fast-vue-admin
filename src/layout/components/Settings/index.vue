@@ -35,7 +35,7 @@ const initTheme = () => {
   }
 };
 initTheme();
-const theme = ref(mainStore.vueuseColorScheme !== 'auto');
+const theme = ref(mainStore.vueuseColorScheme === 'dark');
 const showTagView = ref(true);
 const fixedHeader = ref(false);
 const showLogo = ref(false);

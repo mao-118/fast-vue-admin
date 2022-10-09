@@ -39,16 +39,16 @@ const mapStyle = reactive({
   dark: 'amap://styles/dark'
 });
 watch(() => mainStore.vueuseColorScheme, (val) => {
-  if (val === 'auto') {
-    mapObj.viewMap.setMapStyle(mapStyle.whitesmoke);
-  } else {
+  if (val === 'dark') {
     mapObj.viewMap.setMapStyle(mapStyle.dark);
+  } else {
+    mapObj.viewMap.setMapStyle(mapStyle.whitesmoke);
   }
 });
 // 初始化地图
 const initMap = () => {
   mapObj.viewMap = new AMap.Map('container', {
-    mapStyle: mainStore.vueuseColorScheme === 'auto' ? mapStyle.whitesmoke : mapStyle.dark, //设置地图的显示样式
+    mapStyle: mainStore.vueuseColorScheme === 'dark' ? mapStyle.dark : mapStyle.whitesmoke, //设置地图的显示样式
     zoom: 11, // 级别
     // center: null, // 中心点坐标
     // center: [116.397428, 39.90923], // 中心点坐标
