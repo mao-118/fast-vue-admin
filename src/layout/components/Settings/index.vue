@@ -39,7 +39,7 @@ watch(isDark, () => {
 }, { immediate: true, deep: true });
 const theme = ref(mainStore.vueuseColorScheme === 'dark');
 const showTagView = ref(true);
-const fixedHeader = ref(false);
+const fixedHeader = ref(true);
 const showLogo = ref(false);
 const handleChangeTheme = async () => {
   await toggleDark();
