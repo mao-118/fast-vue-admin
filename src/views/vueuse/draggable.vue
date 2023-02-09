@@ -7,10 +7,10 @@
   </div>
 </template>
 <script setup>
-import { useDraggable } from '@vueuse/core';
+import { useDraggable } from '@vueuse/core'
 
-const dragRef = ref();
-const { x, y, style } = useDraggable(dragRef, { initialValue: { x: 260, y: 200 } });
+const dragRef = ref()
+const { x, y, style } = useDraggable(dragRef, { initialValue: { x: 260, y: 200 } })
 </script>
 <style scoped>
 .drag-box {

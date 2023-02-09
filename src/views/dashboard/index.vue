@@ -4,7 +4,7 @@
       <el-col v-for="(item, index) in dataList" :key="index" :xs="24" :sm="24" :md="12" :lg="8">
         <el-card>
           <div class="content">
-            <a target="_blank" class="href-a" :href="item.href"><img class="href-img" :src="item.logo" alt=""></a>
+            <a target="_blank" class="href-a" :href="item.href"><img class="href-img" :src="item.logo" alt="" /></a>
             <span>{{ item.desc }}</span>
           </div>
         </el-card>
@@ -19,31 +19,31 @@
   </div>
 </template>
 <script setup>
-import Logo from '@/assets/logo.png';
-import BlogSite from '@/assets/blog-site.png';
-import TsVant from '@/assets/ts-vant.png';
-import LineChart from './components/LineChart.vue';
-import TodoList from './components/TodoList.vue';
+import Logo from '@/assets/logo.png'
+import BlogSite from '@/assets/blog-site.png'
+import TsVant from '@/assets/ts-vant.png'
+import LineChart from './components/LineChart.vue'
+import TodoList from './components/TodoList.vue'
 const data = reactive({
   list: [
     {
       logo: Logo,
       desc: 'fast-vue-admin 是一个后台前端解决方案，它基于 vue3 和 element-plus实现。使用了最新的前端技术栈，提供了丰富的功能组件，可以帮助你快速搭建企业级中后台产品原型。',
-      href: 'https://mao-118.github.io/fast-vue-admin-doc/'
+      href: 'https://mao-118.github.io/fast-vue-admin-doc/',
     },
     {
       logo: TsVant,
       desc: 'vue3 + ts 移动端模板,组件库使用的是有赞的 vant ui 库',
-      href: 'https://mao-118.github.io/vue-ts-vant-template/'
+      href: 'https://mao-118.github.io/vue-ts-vant-template/',
     },
     {
       logo: BlogSite,
       desc: '博客地址，持续更新。',
-      href: 'https://mao-118.github.io/blog-site/'
-    }
-  ]
-});
-const dataList = toRef(data, 'list');
+      href: 'https://mao-118.github.io/blog-site/',
+    },
+  ],
+})
+const dataList = toRef(data, 'list')
 </script>
 <style lang="scss" scoped>
 .el-col {
@@ -96,7 +96,6 @@ const dataList = toRef(data, 'list');
       }
     }
 
-
     .btnBox {
       width: 85%;
       display: flex;
@@ -108,7 +107,6 @@ const dataList = toRef(data, 'list');
         margin-left: 10px;
       }
     }
-
   }
 }
 

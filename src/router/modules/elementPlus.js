@@ -1,4 +1,4 @@
-import Layout from '@/layout/index.vue';
+import Layout from '@/layout/index.vue'
 export default {
   path: '/elementPlus',
   name: 'elementPlus',
@@ -9,13 +9,13 @@ export default {
       path: '/elementPlus/table',
       name: 'table',
       meta: { title: '虚拟化表格', icon: '' },
-      component: () => import('@/views/ElementPlus/table.vue')
+      component: () => import('@/views/ElementPlus/table.vue'),
     },
     {
       path: '/elementPlus/other',
       name: 'other',
       meta: { title: '其他虚拟化组件', icon: '' },
-      component: () => import('@/views/ElementPlus/other.vue')
-    }
-  ]
-};
+      component: () => import('@/views/ElementPlus/other.vue'),
+    },
+  ],
+}

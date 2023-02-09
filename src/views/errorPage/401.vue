@@ -6,10 +6,10 @@
   </div>
 </template>
 <script setup>
-const router = useRouter();
+const router = useRouter()
 const goDashboard = () => {
-  router.replace('/');
-};
+  router.replace('/')
+}
 </script>
 <style lang="scss" scoped>
 .error-401 {

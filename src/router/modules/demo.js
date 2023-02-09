@@ -1,4 +1,4 @@
-import Layout from '@/layout/index.vue';
+import Layout from '@/layout/index.vue'
 export default {
   path: '/demo',
   name: 'demo',
@@ -10,7 +10,7 @@ export default {
       path: '/demo/index',
       name: 'demo1',
       meta: { title: '表格用例', icon: '' },
-      component: () => import('@/views/demo/index.vue')
-    }
-  ]
-};
+      component: () => import('@/views/demo/index.vue'),
+    },
+  ],
+}

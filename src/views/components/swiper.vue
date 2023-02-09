@@ -1,15 +1,8 @@
 <template>
   <div class="app-container">
     <el-divider>卡片风格</el-divider>
-    <swiper
-      :effect="'cards'"
-      :grabCursor="true"
-      :modules="cardModules"
-      class="cardSwiper"
-    >
-      <swiper-slide v-for="item in 10" :key="item"
-        >Slide {{ item }}</swiper-slide
-      >
+    <swiper :effect="'cards'" :grabCursor="true" :modules="cardModules" class="cardSwiper">
+      <swiper-slide v-for="item in 10" :key="item">Slide {{ item }}</swiper-slide>
     </swiper>
     <el-divider>Thumbs gallery loop</el-divider>
     <swiper
@@ -45,27 +38,27 @@
   </div>
 </template>
 <script setup>
-import { EffectCards, FreeMode, Navigation, Thumbs } from "swiper";
-import { reactive,ref } from "vue";
-import { Swiper, SwiperSlide } from "swiper/vue";
-import "swiper/css";
-import "swiper/css/effect-cards";
+import { EffectCards, FreeMode, Navigation, Thumbs } from 'swiper'
+import { reactive, ref } from 'vue'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import 'swiper/css'
+import 'swiper/css/effect-cards'
 //Thumbs
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
+import 'swiper/css/free-mode'
+import 'swiper/css/navigation'
+import 'swiper/css/thumbs'
 const onSwiper = (swiper) => {
-  console.log(swiper);
-};
+  console.log(swiper)
+}
 const onSlideChange = () => {
-  console.log("slide change");
-};
-let thumbsSwiper = ref(null);
+  console.log('slide change')
+}
+let thumbsSwiper = ref(null)
 const setThumbsSwiper = (swiper) => {
-  thumbsSwiper.value = swiper;
-};
-const cardModules = reactive([EffectCards]);
-const thModules = reactive([FreeMode, Navigation, Thumbs]);
+  thumbsSwiper.value = swiper
+}
+const cardModules = reactive([EffectCards])
+const thModules = reactive([FreeMode, Navigation, Thumbs])
 </script>
 <style lang="scss" scoped>
 .cardSwiper {

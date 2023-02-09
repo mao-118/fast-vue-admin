@@ -2,23 +2,40 @@
   <section class="todoapp">
     <header class="header">
       <h1>todos</h1>
-      <input class="new-todo" autofocus autocomplete="off" placeholder="What needs to be done?" v-model="newTodo"
-        @keyup.enter="addTodo" />
+      <input
+        class="new-todo"
+        autofocus
+        autocomplete="off"
+        placeholder="What needs to be done?"
+        v-model="newTodo"
+        @keyup.enter="addTodo"
+      />
     </header>
     <section class="main" v-show="todos.length" v-cloak>
       <input id="toggle-all" class="toggle-all" type="checkbox" v-model="allDone" />
       <label for="toggle-all"></label>
       <ul class="todo-list">
         <TransitionGroup name="list">
-          <li v-for="todo in filteredTodos" class="todo" :key="todo.id"
-            :class="{ completed: todo.completed, editing: todo == editedTodo }">
+          <li
+            v-for="todo in filteredTodos"
+            class="todo"
+            :key="todo.id"
+            :class="{ completed: todo.completed, editing: todo == editedTodo }"
+          >
             <div class="view">
               <input class="toggle" type="checkbox" v-model="todo.completed" />
               <label @dblclick="editTodo(todo)">{{ todo.title }}</label>
               <button class="destroy" @click="removeTodo(todo)"></button>
             </div>
-            <input class="edit" type="text" v-model="todo.title" v-todo-focus="todo == editedTodo"
-              @blur="doneEdit(todo)" @keyup.enter="doneEdit(todo)" @keyup.esc="cancelEdit(todo)" />
+            <input
+              class="edit"
+              type="text"
+              v-model="todo.title"
+              v-todo-focus="todo == editedTodo"
+              @blur="doneEdit(todo)"
+              @keyup.enter="doneEdit(todo)"
+              @keyup.esc="cancelEdit(todo)"
+            />
           </li>
         </TransitionGroup>
       </ul>
@@ -32,12 +49,14 @@
           <a class="cursor-pointer" @click="visibility = 'all'" :class="{ selected: visibility == 'all' }">All</a>
         </li>
         <li>
-          <a class="cursor-pointer" @click="visibility = 'active'"
-            :class="{ selected: visibility == 'active' }">Active</a>
+          <a class="cursor-pointer" @click="visibility = 'active'" :class="{ selected: visibility == 'active' }"
+            >Active</a
+          >
         </li>
         <li>
-          <a class="cursor-pointer" @click="visibility = 'completed'"
-            :class="{ selected: visibility == 'completed' }">Completed</a>
+          <a class="cursor-pointer" @click="visibility = 'completed'" :class="{ selected: visibility == 'completed' }"
+            >Completed</a
+          >
         </li>
       </ul>
       <button class="clear-completed" @click="removeCompleted" v-show="todos.length > remaining">
@@ -54,76 +73,76 @@
 // and hash-based routing in ~120 effective lines of JavaScript.
 
 // localStorage persistence
-const STORAGE_KEY = 'todos-vuejs-2.0';
+const STORAGE_KEY = 'todos-vuejs-2.0'
 const todoStorage = {
   fetch() {
-    const todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    const todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
     todos.forEach((todo, index) => {
-      todo.id = index;
-    });
-    todoStorage.uid = todos.length;
-    return todos;
+      todo.id = index
+    })
+    todoStorage.uid = todos.length
+    return todos
   },
   save(todos) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
-  }
-};
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
+  },
+}
 
 // visibility filters
 const filters = {
   all(todos) {
-    return todos;
+    return todos
   },
   active(todos) {
-    return todos.filter((todo) => !todo.completed);
+    return todos.filter((todo) => !todo.completed)
   },
   completed(todos) {
-    return todos.filter((todo) => todo.completed);
-  }
-};
+    return todos.filter((todo) => todo.completed)
+  },
+}
 export default {
   setup() {
     // app initial state
-    const todos = ref(todoStorage.fetch());
-    const newTodo = ref('');
-    const editedTodo = ref(null);
-    const visibility = ref('all');
+    const todos = ref(todoStorage.fetch())
+    const newTodo = ref('')
+    const editedTodo = ref(null)
+    const visibility = ref('all')
 
     return {
       todos,
       newTodo,
       editedTodo,
-      visibility
-    };
+      visibility,
+    }
   },
   // watch todos change for localStorage persistence
   watch: {
     todos: {
       handler(todos) {
-        todoStorage.save(todos);
+        todoStorage.save(todos)
       },
-      deep: true
-    }
+      deep: true,
+    },
   },
   // computed properties
   // http://vuejs.org/guide/computed.html
   computed: {
     filteredTodos() {
-      return filters[this.visibility](this.todos);
+      return filters[this.visibility](this.todos)
     },
     remaining() {
-      return filters.active(this.todos).length;
+      return filters.active(this.todos).length
     },
     allDone: {
       get() {
-        return this.remaining === 0;
+        return this.remaining === 0
       },
       set(value) {
         this.todos.forEach((todo) => {
-          todo.completed = value;
-        });
-      }
-    }
+          todo.completed = value
+        })
+      },
+    },
   },
   // a custom directive to wait for the DOM to be updated
   // before focusing on the input field.
@@ -132,60 +151,60 @@ export default {
     'todo-focus': {
       updated(el, binding) {
         if (binding.value) {
-          el.focus();
+          el.focus()
         }
-      }
-    }
+      },
+    },
   },
   methods: {
     // methods that implement data logic.
     // note there's no DOM manipulation here at all.
     pluralize(n) {
-      return n === 1 ? 'item' : 'items';
+      return n === 1 ? 'item' : 'items'
     },
     addTodo() {
-      var value = this.newTodo && this.newTodo.trim();
+      var value = this.newTodo && this.newTodo.trim()
       if (!value) {
-        return;
+        return
       }
       this.todos.push({
         id: todoStorage.uid++,
         title: value,
-        completed: false
-      });
-      this.newTodo = '';
+        completed: false,
+      })
+      this.newTodo = ''
     },
 
     removeTodo(todo) {
-      this.todos.splice(this.todos.indexOf(todo), 1);
+      this.todos.splice(this.todos.indexOf(todo), 1)
     },
 
     editTodo(todo) {
-      this.beforeEditCache = todo.title;
-      this.editedTodo = todo;
+      this.beforeEditCache = todo.title
+      this.editedTodo = todo
     },
 
     doneEdit(todo) {
       if (!this.editedTodo) {
-        return;
+        return
       }
-      this.editedTodo = null;
-      todo.title = todo.title.trim();
+      this.editedTodo = null
+      todo.title = todo.title.trim()
       if (!todo.title) {
-        this.removeTodo(todo);
+        this.removeTodo(todo)
       }
     },
 
     cancelEdit(todo) {
-      this.editedTodo = null;
-      todo.title = this.beforeEditCache;
+      this.editedTodo = null
+      todo.title = this.beforeEditCache
     },
 
     removeCompleted() {
-      this.todos = filters.active(this.todos);
-    }
-  }
-};
+      this.todos = filters.active(this.todos)
+    },
+  },
+}
 </script>
 <style lang="scss" scoped>
 button {
@@ -205,7 +224,7 @@ button {
 }
 
 body {
-  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
   line-height: 1.4em;
   min-width: 230px;
   max-width: 550px;
@@ -304,7 +323,7 @@ body {
   bottom: 100%;
 }
 
-.toggle-all+label {
+.toggle-all + label {
   width: 60px;
   height: 34px;
   font-size: 0;
@@ -315,14 +334,14 @@ body {
   transform: rotate(90deg);
 }
 
-.toggle-all+label:before {
-  content: "❯";
+.toggle-all + label:before {
+  content: '❯';
   font-size: 22px;
   color: #e6e6e6;
   padding: 10px 27px 10px 27px;
 }
 
-.toggle-all:checked+label:before {
+.toggle-all:checked + label:before {
   color: #737373;
 }
 
@@ -377,18 +396,18 @@ body {
   opacity: 0;
 }
 
-.todo-list li .toggle+label {
+.todo-list li .toggle + label {
   /*
 		Firefox requires `#` to be escaped - https://bugzilla.mozilla.org/show_bug.cgi?id=922433
 		IE and Edge requires *everything* to be escaped to render, so we do that instead of just the `#` - https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/7157459/
 	*/
-  background-image: url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23ededed%22%20stroke-width%3D%223%22/%3E%3C/svg%3E");
+  background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23ededed%22%20stroke-width%3D%223%22/%3E%3C/svg%3E');
   background-repeat: no-repeat;
   background-position: center left;
 }
 
-.todo-list li .toggle:checked+label {
-  background-image: url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23bddad5%22%20stroke-width%3D%223%22/%3E%3Cpath%20fill%3D%22%235dc2af%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22/%3E%3C/svg%3E");
+.todo-list li .toggle:checked + label {
+  background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23bddad5%22%20stroke-width%3D%223%22/%3E%3Cpath%20fill%3D%22%235dc2af%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22/%3E%3C/svg%3E');
 }
 
 .todo-list li label {
@@ -424,7 +443,7 @@ body {
 }
 
 .todo-list li .destroy:after {
-  content: "×";
+  content: '×';
 }
 
 .todo-list li:hover .destroy {
@@ -448,16 +467,15 @@ body {
 }
 
 .footer:before {
-  content: "";
+  content: '';
   position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
   height: 50px;
   overflow: hidden;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px var(--el-fill-color-blank),
-    0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px var(--el-fill-color-blank),
-    0 17px 2px -6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px var(--el-fill-color-blank), 0 9px 1px -3px rgba(0, 0, 0, 0.2),
+    0 16px 0 -6px var(--el-fill-color-blank), 0 17px 2px -6px rgba(0, 0, 0, 0.2);
 }
 
 .todo-count {
@@ -539,7 +557,6 @@ html .clear-completed:active {
 	Can't use it globally since it destroys checkboxes in Firefox
 */
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
-
   .toggle-all,
   .todo-list li .toggle {
     background: none;

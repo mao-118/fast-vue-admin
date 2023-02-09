@@ -1,12 +1,12 @@
-import { defineStore } from 'pinia';
+import { defineStore } from 'pinia'
 export default defineStore('UserStore', {
   state: () => ({
-    username: 'tom'
+    username: 'tom',
   }),
   getters: {},
   actions: {
     changeUsername(newName) {
-      this.username = newName;
-    }
-  }
-});
+      this.username = newName
+    },
+  },
+})

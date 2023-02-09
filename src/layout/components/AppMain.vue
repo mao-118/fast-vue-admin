@@ -8,9 +8,8 @@
   </router-view>
 </template>
 <script setup>
-import { tagViewStore } from '@/store';
+import { tagViewStore } from '@/store'
 const include = computed(() => {
-  return tagViewStore.tagViews.map(_ => _.name);
-});
-
+  return tagViewStore.tagViews.map((_) => _.name)
+})
 </script>

@@ -1,8 +1,7 @@
-src/assets
-*.d.ts
 /dist/*
 /node_modules/*
 /static/*
 /public/*
 /*-lock.json
 .DS_Store
+

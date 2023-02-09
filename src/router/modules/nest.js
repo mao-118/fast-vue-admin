@@ -1,5 +1,5 @@
-import Layout from '@/layout/index.vue';
-import Emptyout from '@/layout/Emptyout.vue';
+import Layout from '@/layout/index.vue'
+import Emptyout from '@/layout/Emptyout.vue'
 export default {
   path: '/nest',
   name: 'nest',
@@ -16,7 +16,7 @@ export default {
           path: '/nest/menu1/menu1-1',
           name: 'Menu1-1',
           meta: { title: '菜单1-1', icon: 'Location' },
-          component: () => import('@/views/nest/menu1/menu1-1/index.vue')
+          component: () => import('@/views/nest/menu1/menu1-1/index.vue'),
         },
         {
           path: '/nest/menu1/menu1-2',
@@ -28,17 +28,17 @@ export default {
               path: '/nest/menu1/menu1-2/menu1-2-1',
               name: 'Menu1-2-1',
               meta: { title: '菜单1-2-1', icon: 'Location' },
-              component: () => import('@/views/nest/menu1/menu1-2/menu1-2-1/index.vue')
-            }
-          ]
-        }
-      ]
+              component: () => import('@/views/nest/menu1/menu1-2/menu1-2-1/index.vue'),
+            },
+          ],
+        },
+      ],
     },
     {
       path: '/nest/menu2',
       name: 'Menu2',
       meta: { title: '菜单2', icon: '' },
-      component: () => import('@/views/nest/menu2.vue')
-    }
-  ]
-};
+      component: () => import('@/views/nest/menu2.vue'),
+    },
+  ],
+}

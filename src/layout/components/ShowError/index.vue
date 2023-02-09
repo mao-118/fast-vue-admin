@@ -10,9 +10,7 @@
       </el-table-column>
       <el-table-column show-overflow-tooltip label="info">
         <template #default="{ row }">
-          <el-tag type="warning">
-            {{ row.instance.message }} error in {{ row.info }}
-          </el-tag>
+          <el-tag type="warning"> {{ row.instance.message }} error in {{ row.info }} </el-tag>
         </template>
       </el-table-column>
       <el-table-column show-overflow-tooltip label="url">
@@ -30,13 +28,13 @@
   </el-dialog>
 </template>
 <script setup>
-import { mainStore } from '@/store';
-const dialogVisible = ref(false);
+import { mainStore } from '@/store'
+const dialogVisible = ref(false)
 const resetError = () => {
-  mainStore.setErrorList([]);
-  dialogVisible.value = false;
-};
+  mainStore.setErrorList([])
+  dialogVisible.value = false
+}
 defineExpose({
-  dialogVisible
-});
+  dialogVisible,
+})
 </script>

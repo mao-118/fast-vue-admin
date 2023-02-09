@@ -1,4 +1,4 @@
-import Layout from '@/layout/index.vue';
+import Layout from '@/layout/index.vue'
 export default {
   path: '/localeConfig',
   name: 'localeConfig',
@@ -10,7 +10,7 @@ export default {
       path: '/localeConfig/index',
       name: 'localeConfigIndex',
       meta: { title: '国际化', icon: 'Baseball' },
-      component: () => import('@/views/localeConfig/index.vue')
-    }
-  ]
-};
+      component: () => import('@/views/localeConfig/index.vue'),
+    },
+  ],
+}

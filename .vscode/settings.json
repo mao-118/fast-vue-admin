@@ -1,0 +1,10 @@
+{
+  // 保存时格式化
+  "editor.formatOnSave": true,
+  // 保存时候按eslint规则进行修复
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.format.enable": true, // 启用ESLint作为已验证文件的格式化程序
+  "vetur.validation.script": false // 禁用vetur的校验
+}

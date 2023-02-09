@@ -1,4 +1,4 @@
-import Layout from '@/layout/index.vue';
+import Layout from '@/layout/index.vue'
 export default {
   path: '/clipboard',
   name: 'clipboard',
@@ -10,7 +10,7 @@ export default {
       path: '/clipboard/index',
       name: 'clipboardIndex',
       meta: { title: 'copy', icon: 'DocumentCopy' },
-      component: () => import('@/views/clipboard/index.vue')
-    }
-  ]
-};
+      component: () => import('@/views/clipboard/index.vue'),
+    },
+  ],
+}

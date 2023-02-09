@@ -16,13 +16,7 @@
         />
       </el-col>
     </el-row>
-    <el-table-v2
-    :columns="columns"
-    :data="data"
-    :width="800"
-    :height="600"
-    fixed
-  />
+    <el-table-v2 :columns="columns" :data="data" :width="800" :height="600" fixed />
   </div>
 </template>
 <script lang="ts" setup>
@@ -35,11 +29,7 @@ const generateColumns = (length = 10, prefix = 'column-', props?: any) =>
     width: 150,
   }))
 
-const generateData = (
-  columns: ReturnType<typeof generateColumns>,
-  length = 200,
-  prefix = 'row-'
-) =>
+const generateData = (columns: ReturnType<typeof generateColumns>, length = 200, prefix = 'row-') =>
   Array.from({ length }).map((_, rowIndex) => {
     return columns.reduce(
       (rowData, column, columnIndex) => {
@@ -57,7 +47,7 @@ const columns = generateColumns(10)
 const data = generateData(columns, 200)
 </script>
 <style scoped>
-.el-table-v2{
+.el-table-v2 {
   margin: 0 auto;
 }
 </style>

@@ -6,7 +6,7 @@
     </el-tabs>
     <el-form :inline="true" :model="form" class="demo-form-inline">
       <el-form-item>
-        <el-input v-model="form.text" style="width:300px;" placeholder="请输入内容" />
+        <el-input v-model="form.text" style="width: 300px" placeholder="请输入内容" />
       </el-form-item>
       <el-form-item>
         <el-button v-if="activeName === 'directly'" type="primary" @click="handleCopy">Copy</el-button>
@@ -16,20 +16,20 @@
   </div>
 </template>
 <script>
-import { clipboard } from '@/directives/clipboard';
+import { clipboard } from '@/directives/clipboard'
 export default {
   directives: {
-    clipboard
-  }
-};
+    clipboard,
+  },
+}
 </script>
 <script setup>
-import { copyText } from '@/utils';
+import { copyText } from '@/utils'
 const form = reactive({
-  text: 'https://mao-118.github.io/fast-vue-admin'
-});
-const activeName = ref('directly');
+  text: 'https://mao-118.github.io/fast-vue-admin',
+})
+const activeName = ref('directly')
 const handleCopy = () => {
-  copyText(form.text);
-};
+  copyText(form.text)
+}
 </script>

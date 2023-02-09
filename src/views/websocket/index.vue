@@ -27,76 +27,76 @@
   </div>
 </template>
 <script setup>
-import { ref, onBeforeUnmount, reactive } from 'vue';
-import { ElMessage } from 'element-plus';
-const msgList = reactive([]);
-const formRef = ref(null);
+import { ref, onBeforeUnmount, reactive } from 'vue'
+import { ElMessage } from 'element-plus'
+const msgList = reactive([])
+const formRef = ref(null)
 const form = reactive({
-  text: ''
-});
+  text: '',
+})
 const rules = reactive({
-  text: [{ required: true, message: '输入的内容不能为空', trigger: 'blur' }]
-});
+  text: [{ required: true, message: '输入的内容不能为空', trigger: 'blur' }],
+})
 const onSubmit = () => {
   formRef.value.validate((valid) => {
     if (valid) {
-      send(form.text);
-      ElMessage.success('发送成功');
+      send(form.text)
+      ElMessage.success('发送成功')
     } else {
-      console.log(valid);
+      console.log(valid)
     }
-  });
-};
-let socket = null;
-const status = ref(0);
+  })
+}
+let socket = null
+const status = ref(0)
 const statusList = reactive([
   {
     color: 'text-purple-500',
-    text: '建立连接中...'
+    text: '建立连接中...',
   },
   {
     color: 'text-green-500',
-    text: '连接成功'
+    text: '连接成功',
   },
   {
     color: 'text-red-500',
-    text: '连接失败'
+    text: '连接失败',
   },
   {
     color: 'text-purple-500',
-    text: '连接关闭'
-  }
-]);
+    text: '连接关闭',
+  },
+])
 const open = (e) => {
-  status.value = 1;
-};
+  status.value = 1
+}
 const send = (msg) => {
-  socket.send(msg);
-  msgList.push(msg);
-};
+  socket.send(msg)
+  msgList.push(msg)
+}
 const message = (e) => {
-  msgList.push(e.data);
-};
+  msgList.push(e.data)
+}
 const error = (e) => {
-  status.value = 2;
-  console.log('error', e);
-  ElMessage.error('连接异常，请尝试刷新页面');
-};
+  status.value = 2
+  console.log('error', e)
+  ElMessage.error('连接异常，请尝试刷新页面')
+}
 const close = (e) => {
-  status.value = 3;
-  console.log('close', e);
-};
+  status.value = 3
+  console.log('close', e)
+}
 const init = () => {
-  socket = new WebSocket('wss://javascript.info/article/websocket/chat/ws');
-  socket.onopen = open;
-  socket.onmessage = message;
-  socket.onerror = error;
-  socket.onclose = close;
-};
-init();
+  socket = new WebSocket('wss://javascript.info/article/websocket/chat/ws')
+  socket.onopen = open
+  socket.onmessage = message
+  socket.onerror = error
+  socket.onclose = close
+}
+init()
 onBeforeUnmount(() => {
-  socket.close();
-});
+  socket.close()
+})
 </script>
 <style lang="scss">
 .msg-box {
@@ -118,7 +118,7 @@ onBeforeUnmount(() => {
       position: relative;
 
       &::after {
-        content: "";
+        content: '';
         width: 0;
         height: 0;
         border: 10px solid;

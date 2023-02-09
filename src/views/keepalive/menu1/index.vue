@@ -6,9 +6,9 @@
 </template>
 <script>
 export default {
-  name: 'Menu1'
-};
+  name: 'Menu1',
+}
 </script>
 <script setup>
-const text = ref('');
+const text = ref('')
 </script>

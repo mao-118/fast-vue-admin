@@ -6,7 +6,7 @@
 
 ## 介绍
 
-本项目基于 [vue3](https://staging-cn.vuejs.org/guide/introduction.html) 和 [vite2](https://vitejs.cn/) 搭建,自2022年开始 [vue3](https://staging-cn.vuejs.org/guide/introduction.html) 已经开始作为默认版本。不在建议使用 [vue2](https://cn.vuejs.org/) 的框架， [webpack](https://www.webpackjs.com/) 构建工具也替换为 [vite](https://vitejs.cn/) ，同时该项目全局状态共享从之前的 [Vuex](https://vuex.vuejs.org/) 替换为 [pinia](https://pinia.vuejs.org/introduction.html)
+本项目基于 [vue3](https://staging-cn.vuejs.org/guide/introduction.html) 和 [vite2](https://vitejs.cn/) 搭建,自 2022 年开始 [vue3](https://staging-cn.vuejs.org/guide/introduction.html) 已经开始作为默认版本。不在建议使用 [vue2](https://cn.vuejs.org/) 的框架， [webpack](https://www.webpackjs.com/) 构建工具也替换为 [vite](https://vitejs.cn/) ，同时该项目全局状态共享从之前的 [Vuex](https://vuex.vuejs.org/) 替换为 [pinia](https://pinia.vuejs.org/introduction.html)
 
 - [在线预览](https://mao-118.github.io/fast-vue-admin/)
 
@@ -21,10 +21,13 @@
 [![OSCS Status](https://www.oscs1024.com/platform/badge/mao-118/fast-vue-admin.svg?size=large)](https://www.oscs1024.com/project/mao-118/fast-vue-admin?ref=badge_large)
 
 ## 工具
+
 推荐使用 `vscode` 进行开发。
 插件：
- - 这里不再使用`vetur`,选择[volar](https://github.com/johnsoncodehk/volar),因为[volar](https://github.com/johnsoncodehk/volar)对`vue3`的支持更友好。
- - [Vue 3 Snippets](https://github.com/hollowtree/vscode-vue-snippets) 自动提示组合式api
+
+- 这里不再使用`vetur`,选择[volar](https://github.com/johnsoncodehk/volar),因为[volar](https://github.com/johnsoncodehk/volar)对`vue3`的支持更友好。
+- [Vue 3 Snippets](https://github.com/hollowtree/vscode-vue-snippets) 自动提示组合式 api
+
 ## 开发
 
 ```bash

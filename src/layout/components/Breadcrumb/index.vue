@@ -5,8 +5,7 @@
     </TransitionGroup>
   </el-breadcrumb>
 </template>
-<script setup>
-</script>
+<script setup></script>
 <style scoped>
 .list-move,
 /* 对移动中的元素应用的过渡 */

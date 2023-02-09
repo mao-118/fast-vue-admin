@@ -1,42 +1,49 @@
 <template>
   <div class="my-pagination">
-    <el-pagination v-model:currentPage="pageQuery.page" v-model:page-size="pageQuery.pre_size"
-      :page-sizes="[5, 10, 50, 100]" background layout="total, sizes, prev, pager, next, jumper"
-      :total="pageQuery.total" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
+    <el-pagination
+      v-model:currentPage="pageQuery.page"
+      v-model:page-size="pageQuery.pre_size"
+      :page-sizes="[5, 10, 50, 100]"
+      background
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="pageQuery.total"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+    />
     <el-backtop v-show="false" id="goBack" :right="100" :bottom="100" />
   </div>
 </template>
 <script setup name="FsPagination">
-import { scrollTo } from '@/utils/scroll-to';
-import { usePageQuery } from '@/hooks';
-const emit = defineEmits(['getTableList']);
-const pageQuery = usePageQuery();
+import { scrollTo } from '@/utils/scroll-to'
+import { usePageQuery } from '@/hooks'
+const emit = defineEmits(['getTableList'])
+const pageQuery = usePageQuery()
 const handleEmit = () => {
-  emit('getTableList');
+  emit('getTableList')
   setTimeout(() => {
-    scrollTo(0, 0);
-  }, 0);
-};
+    scrollTo(0, 0)
+  }, 0)
+}
 onMounted(() => {
-  handleEmit();
-});
+  handleEmit()
+})
 
 const handleSizeChange = (size) => {
-  handleEmit();
-};
+  handleEmit()
+}
 const handleCurrentChange = (page) => {
-  handleEmit();
-};
+  handleEmit()
+}
 const changeTotal = (total) => {
-  pageQuery.total = total;
-};
+  pageQuery.total = total
+}
 defineExpose({
   changeTotal,
   pageQuery: {
     page: toRef(pageQuery, 'page'),
-    pre_size: toRef(pageQuery, 'pre_size')
-  }
-});
+    pre_size: toRef(pageQuery, 'pre_size'),
+  },
+})
 </script>
 <style lang="scss" scoped>
 .my-pagination {

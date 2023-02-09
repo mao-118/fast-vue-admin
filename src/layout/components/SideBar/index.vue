@@ -1,22 +1,30 @@
 <template>
   <el-scrollbar>
-    <div v-if="mainStore.showLogo" class="logo">
-      <img class="logo-img" src="@/assets/logo.png">
-      <h3 class="logo-text">Fast Admin</h3>
+    <div v-show="mainStore.showLogo" class="logo">
+      <img class="logo-img" src="@/assets/logo.png" />
+      <Transition>
+        <h3 v-show="!mainStore.collapse" class="logo-text">Fast Admin</h3>
+      </Transition>
     </div>
 
-    <el-menu :default-active="$route.path" class="el-menu-vertical-demo" :collapse="mainStore.collapse"
-      :collapse-transition="false" :router="true" :unique-opened="true">
+    <el-menu
+      :default-active="$route.path"
+      class="el-menu-vertical-demo"
+      :collapse="mainStore.collapse"
+      :collapse-transition="false"
+      :router="true"
+      :unique-opened="true"
+    >
       <sidebar-item v-for="item in routeStore.menuList" :key="item.path" :route="item" />
     </el-menu>
   </el-scrollbar>
 </template>
 <script setup>
-import SidebarItem from './SideBarItem.vue';
-import { mainStore, routeStore } from '@/store';
-import { routes } from '@/router/installRouter';
+import SidebarItem from './SideBarItem.vue'
+import { mainStore, routeStore } from '@/store'
+import { routes } from '@/router/installRouter'
 // 初始化路由和菜单
-routeStore.setRoutes(routes);
+routeStore.setRoutes(routes)
 </script>
 <style lang="scss" scoped>
 .logo {
@@ -32,7 +40,7 @@ routeStore.setRoutes(routes);
   }
 
   .logo-text {
-    color: #409EFF;
+    color: #409eff;
     font-size: 20px;
     font-weight: 600;
   }
@@ -46,5 +54,13 @@ routeStore.setRoutes(routes);
 
 ::v-deep(.el-sub-menu__title) {
   border-right: none;
+}
+.v-enter-active {
+  transition: opacity 1s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>

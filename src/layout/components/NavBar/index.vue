@@ -10,13 +10,14 @@
     </div>
     <div v-if="mainStore.menuMode == 'horizontal'" class="menu-list">
       <template v-for="(item, index) in routeStore.routes">
-        <el-button v-if="!item.hidden" :key="item.path" :icon="item.meta.icon" :type="
-          item.path == routeStore.currentRouteParent
-            ? 'primary'
-            : menuIndex == index
-              ? 'info'
-              : 'default'
-        " plain @click="getMenu(item.path, index)">
+        <el-button
+          v-if="!item.hidden"
+          :key="item.path"
+          :icon="item.meta.icon"
+          :type="item.path == routeStore.currentRouteParent ? 'primary' : menuIndex == index ? 'info' : 'default'"
+          plain
+          @click="getMenu(item.path, index)"
+        >
           {{ item.meta.title }}
         </el-button>
       </template>
@@ -27,8 +28,9 @@
     <div class="op-config flex justify-end items-center">
       <el-dropdown trigger="click">
         <span class="el-dropdown-link">
-          <img src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png">username<el-icon
-            class="el-icon--right">
+          <img src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />username<el-icon
+            class="el-icon--right"
+          >
             <arrow-down />
           </el-icon>
         </span>
@@ -72,69 +74,68 @@
   </div>
 </template>
 <script setup>
-import { mainStore, routeStore, tagViewStore } from '@/store/index.js';
-import { routes } from '@/router/installRouter';
-import Settings from '../Settings/index.vue';
-import ShowError from '../ShowError/index.vue';
-import Breadcrumb from '../Breadcrumb/index.vue';
-import { useFullscreen } from '@vueuse/core';
+import { mainStore, routeStore, tagViewStore } from '@/store/index.js'
+import { routes } from '@/router/installRouter'
+import Settings from '../Settings/index.vue'
+import ShowError from '../ShowError/index.vue'
+import Breadcrumb from '../Breadcrumb/index.vue'
+import { useFullscreen } from '@vueuse/core'
 
-const { toggle } = useFullscreen(document.documentElement);
+const { toggle } = useFullscreen(document.documentElement)
 const toggleFullScreen = () => {
-  toggle();
-};
-const ShowErrorRef = ref();
-const router = useRouter();
-const menuIndex = ref(-1);
-const settingsRef = ref(null);
+  toggle()
+}
+const ShowErrorRef = ref()
+const router = useRouter()
+const menuIndex = ref(-1)
+const settingsRef = ref(null)
 const showError = () => {
-  ShowErrorRef.value.dialogVisible = true;
-};
+  ShowErrorRef.value.dialogVisible = true
+}
 const settingClick = () => {
-  settingsRef.value.showSettings();
-};
+  settingsRef.value.showSettings()
+}
 const handleChangeSize = (size) => {
-  mainStore.changeSize(size);
-};
+  mainStore.changeSize(size)
+}
 const getMenu = (item, index) => {
-  menuIndex.value = index;
-  let routes = [];
+  menuIndex.value = index
+  let routes = []
   routeStore.routes.forEach((route) => {
     if (item === route.path && route.children) {
-      routes = route.children;
+      routes = route.children
     }
-  });
-  routeStore.setMenuList(routes);
-};
+  })
+  routeStore.setMenuList(routes)
+}
 const changeMenuList = () => {
   // 根据模式加载菜单
   if (mainStore.menuMode === 'vertical') {
-    routeStore.initMenuList();
+    routeStore.initMenuList()
   } else {
-    getMenu(routeStore.currentRouteParent);
+    getMenu(routeStore.currentRouteParent)
   }
-};
-changeMenuList();
+}
+changeMenuList()
 const toggleMenu = () => {
-  mainStore.changeMenuMode();
-  changeMenuList();
-  routeStore.setRoutes(routes);
-};
+  mainStore.changeMenuMode()
+  changeMenuList()
+  routeStore.setRoutes(routes)
+}
 const goPage = (page) => {
-  window.open(`https://mao-118.gitee.io/${page}/`);
-};
+  window.open(`https://mao-118.gitee.io/${page}/`)
+}
 const logout = async () => {
-  mainStore.setToken('');
+  mainStore.setToken('')
   // await router.replace('/login');
-  location.reload();
+  location.reload()
   setTimeout(() => {
-    tagViewStore.closeAllTagViews();
+    tagViewStore.closeAllTagViews()
     if (mainStore.menuMode === 'horizontal') {
-      mainStore.changeMenuMode();
+      mainStore.changeMenuMode()
     }
-  }, 500);
-};
-
+  }, 500)
+}
 </script>
 <style lang="scss" scoped>
 .nav-bar {
@@ -180,7 +181,7 @@ const logout = async () => {
     font-size: 15px;
     cursor: pointer;
 
-    >img {
+    > img {
       width: 25px;
       height: 25px;
       border-radius: 50%;

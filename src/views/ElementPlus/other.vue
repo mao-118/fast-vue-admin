@@ -19,28 +19,24 @@
     <el-row>
       <el-col :span="8">
         <div>虚拟选择器</div>
-        <el-select-v2
-          v-model="value"
-          :options="options"
-          placeholder="Please select"
-        />
+        <el-select-v2 v-model="value" :options="options" placeholder="Please select" />
       </el-col>
       <el-col :span="8">
         <div>基础树形选择器</div>
         <el-tree-select v-model="treeValue" :data="data" />
       </el-col>
       <el-col :span="8">
-          <div>虚拟树形控件</div>
-          <el-tree-v2 :data="treeData" :props="props" />
+        <div>虚拟树形控件</div>
+        <el-tree-v2 :data="treeData" :props="props" />
       </el-col>
     </el-row>
   </div>
 </template>
 <script setup>
-import { ref, reactive } from "vue";
-const value = ref("");
-const treeValue = ref("");
-const options = reactive([]);
+import { ref, reactive } from 'vue'
+const value = ref('')
+const treeValue = ref('')
+const options = reactive([])
 const data = [
   {
     value: '1',
@@ -111,40 +107,31 @@ const data = [
     ],
   },
 ]
-const initials = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
+const initials = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
 const initOptions = () => {
   Array.from({ length: 1000 }).forEach((_, idx) => {
     options.push({
       value: `Option ${idx + 1}`,
       label: `${initials[idx % 10]}${idx}`,
-    });
-  });
-};
-initOptions();
+    })
+  })
+}
+initOptions()
 const getKey = (prefix, id) => {
   return `${prefix}-${id}`
 }
 
-const createData = (
-  maxDeep,
-  maxChildren,
-  minNodesNumber,
-  deep = 1,
-  key = 'node'
-) => {
+const createData = (maxDeep, maxChildren, minNodesNumber, deep = 1, key = 'node') => {
   let id = 0
   return Array.from({ length: minNodesNumber })
     .fill(deep)
     .map(() => {
-      const childrenNumber =
-        deep === maxDeep ? 0 : Math.round(Math.random() * maxChildren)
+      const childrenNumber = deep === maxDeep ? 0 : Math.round(Math.random() * maxChildren)
       const nodeKey = getKey(key, ++id)
       return {
         id: nodeKey,
         label: nodeKey,
-        children: childrenNumber
-          ? createData(maxDeep, maxChildren, childrenNumber, deep + 1, nodeKey)
-          : undefined,
+        children: childrenNumber ? createData(maxDeep, maxChildren, childrenNumber, deep + 1, nodeKey) : undefined,
       }
     })
 }

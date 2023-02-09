@@ -1,31 +1,38 @@
 <template>
-  <div class="common-layout">
-    <el-container :class="{ closeMenu: mainStore.collapse }">
-      <el-aside :style="{ width: mainStore.collapse ? '64px' : '200px' }">
-        <SideBar />
-      </el-aside>
-      <el-container
-        :class="{ 'has-fiexd': mainStore.fixedHeader, hasTags: tagViewStore.showTagView, closeMenu: mainStore.collapse }">
-        <el-header :class="{ 'fiexd-header': mainStore.fixedHeader, hasTags: tagViewStore.showTagView }">
-          <NavBar />
-          <TagView v-show="tagViewStore.showTagView" />
-        </el-header>
-        <el-main :class="{ hasTags: tagViewStore.showTagView }">
-          <app-main />
-        </el-main>
+  <el-config-provider :size="mainStore.elSize">
+    <div class="common-layout">
+      <el-container :class="{ closeMenu: mainStore.collapse }">
+        <el-aside :style="{ width: mainStore.collapse ? '64px' : '200px' }">
+          <SideBar />
+        </el-aside>
+        <el-container
+          :class="{
+            'has-fiexd': mainStore.fixedHeader,
+            hasTags: tagViewStore.showTagView,
+            closeMenu: mainStore.collapse,
+          }"
+        >
+          <el-header :class="{ 'fiexd-header': mainStore.fixedHeader, hasTags: tagViewStore.showTagView }">
+            <NavBar />
+            <TagView v-show="tagViewStore.showTagView" />
+          </el-header>
+          <el-main :class="{ hasTags: tagViewStore.showTagView }">
+            <app-main />
+          </el-main>
+        </el-container>
       </el-container>
-    </el-container>
-  </div>
+    </div>
+  </el-config-provider>
 </template>
 <script setup>
-import { SideBar, NavBar, TagView, AppMain } from './components';
-import { mainStore, tagViewStore } from '@/store';
+import { SideBar, NavBar, TagView, AppMain } from './components'
+import { mainStore, tagViewStore } from '@/store'
 </script>
 <style lang="scss" scoped>
 .common-layout {
-  >.el-container {
+  > .el-container {
     padding-left: 200px;
-    transition: padding .2s;
+    transition: padding 0.2s;
 
     &.closeMenu {
       padding-left: 64px;
@@ -38,7 +45,7 @@ import { mainStore, tagViewStore } from '@/store';
   border-right: 1px solid var(--el-border-color-lighter);
   box-sizing: border-box;
   overflow: hidden !important;
-  transition: width .2s;
+  transition: width 0.2s;
   position: fixed;
   top: 0;
   left: 0;

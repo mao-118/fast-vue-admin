@@ -1,5 +1,5 @@
-import Layout from '@/layout/index.vue';
-import Emptyout from '@/layout/Emptyout.vue';
+import Layout from '@/layout/index.vue'
+import Emptyout from '@/layout/Emptyout.vue'
 export default {
   path: '/keepalive',
   name: 'keepalive',
@@ -10,7 +10,7 @@ export default {
       path: '/keepalive/menu1',
       name: 'menu1',
       meta: { title: 'Menu1', icon: 'Files' },
-      component: () => import('@/views/keepalive/menu1/index.vue')
+      component: () => import('@/views/keepalive/menu1/index.vue'),
     },
     {
       path: '/keepalive/menu1to1',
@@ -23,9 +23,9 @@ export default {
           path: '/keepalive/menu1-1',
           name: 'menu1-1',
           meta: { title: 'Menu1-1', icon: 'Files' },
-          component: () => import('@/views/keepalive/menu1-1/index.vue')
-        }
-      ]
-    }
-  ]
-};
+          component: () => import('@/views/keepalive/menu1-1/index.vue'),
+        },
+      ],
+    },
+  ],
+}

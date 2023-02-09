@@ -51,9 +51,9 @@
   </el-dialog>
 </template>
 <script setup>
-const dialogVisible = ref(false);
-const title = ref('编辑');
-const emit = defineEmits(['getTableList']);
+const dialogVisible = ref(false)
+const title = ref('编辑')
+const emit = defineEmits(['getTableList'])
 const form = reactive({
   name: '',
   region: '',
@@ -62,16 +62,16 @@ const form = reactive({
   delivery: false,
   type: [],
   resource: '',
-  desc: ''
-});
+  desc: '',
+})
 const handleClose = () => {
-  emit('getTableList');
-};
+  emit('getTableList')
+}
 const showEdit = (row) => {
-  console.log(row);
-  dialogVisible.value = true;
-};
+  console.log(row)
+  dialogVisible.value = true
+}
 defineExpose({
-  showEdit
-});
+  showEdit,
+})
 </script>

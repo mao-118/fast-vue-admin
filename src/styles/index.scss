@@ -1,5 +1,5 @@
-@import "./tailwind.scss";
-@import "./iconfont/index.css";
+@import './tailwind.scss';
+@import './iconfont/index.css';
 
 html,
 body,
@@ -50,7 +50,7 @@ body,
   border-radius: 5px;
   background-color: var(--el-scrollbar-bg-color, var(--el-text-color-secondary));
   transition: var(--el-transition-duration) background-color;
-  opacity: var(--el-scrollbar-opacity, .3);
+  opacity: var(--el-scrollbar-opacity, 0.3);
 }
 
 /* 隐藏body滚动条 纵向允许滚动 */

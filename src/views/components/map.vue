@@ -1,18 +1,26 @@
 <template>
   <div class="app-container">
     <div class="search-box">
-      <el-autocomplete ref="elautocomplete" v-model="keyword" :trigger-on-focus="false" prefix-icon="Search" clearable
-        placeholder="请输入地名关键字" :fetch-suggestions="searchPlace" @select="selectPlace">
+      <el-autocomplete
+        ref="elautocomplete"
+        v-model="keyword"
+        :trigger-on-focus="false"
+        prefix-icon="Search"
+        clearable
+        placeholder="请输入地名关键字"
+        :fetch-suggestions="searchPlace"
+        @select="selectPlace"
+      >
         <!-- 覆盖原先的样式 -->
         <template #default="{ item }">
-          <div v-if="item.isResultLengthZero" :title="item.value" style="text-align:center;color:red;">
+          <div v-if="item.isResultLengthZero" :title="item.value" style="text-align: center; color: red">
             {{ item.value }}
           </div>
-          <div v-else style="margin-bottom:10px;" :title="item.value">
-            <div style="color:#0082e5;font-size:14px;font-weight:700;height:20px;line-height:20px;">
+          <div v-else style="margin-bottom: 10px" :title="item.value">
+            <div style="color: #0082e5; font-size: 14px; font-weight: 700; height: 20px; line-height: 20px">
               {{ item.name }}
             </div>
-            <div style="font-size:12px;color:#8e8e8e;height:20px;line-height:20px;">{{ item.newAddress }}</div>
+            <div style="font-size: 12px; color: #8e8e8e; height: 20px; line-height: 20px">{{ item.newAddress }}</div>
           </div>
         </template>
       </el-autocomplete>
@@ -21,30 +29,33 @@
   </div>
 </template>
 <script setup>
-import 'https://webapi.amap.com/maps?v=2.0&key=efc9afa4f1d13134f2c302606e766ea0';
-import axios from 'axios';
-import { mainStore } from '@/store';
-import { ElMessage } from 'element-plus';
-import md5 from 'js-md5';
-const keyword = ref('');// 搜索关键字
-const elautocomplete = ref();
+import 'https://webapi.amap.com/maps?v=2.0&key=efc9afa4f1d13134f2c302606e766ea0'
+import axios from 'axios'
+import { mainStore } from '@/store'
+import { ElMessage } from 'element-plus'
+import md5 from 'js-md5'
+const keyword = ref('') // 搜索关键字
+const elautocomplete = ref()
 const mapObj = reactive({
   viewMap: null, // 地图实例对象
   marker: null, // 标记点对象
   geocoder: null, // 地理编码对象
-  geolocation: null // 定位对象
-});
+  geolocation: null, // 定位对象
+})
 const mapStyle = reactive({
   whitesmoke: 'amap://styles/macaron',
-  dark: 'amap://styles/dark'
-});
-watch(() => mainStore.vueuseColorScheme, (val) => {
-  if (val === 'dark') {
-    mapObj.viewMap.setMapStyle(mapStyle.dark);
-  } else {
-    mapObj.viewMap.setMapStyle(mapStyle.whitesmoke);
+  dark: 'amap://styles/dark',
+})
+watch(
+  () => mainStore.vueuseColorScheme,
+  (val) => {
+    if (val === 'dark') {
+      mapObj.viewMap.setMapStyle(mapStyle.dark)
+    } else {
+      mapObj.viewMap.setMapStyle(mapStyle.whitesmoke)
+    }
   }
-});
+)
 // 初始化地图
 const initMap = () => {
   mapObj.viewMap = new AMap.Map('container', {
@@ -53,26 +64,26 @@ const initMap = () => {
     // center: null, // 中心点坐标
     // center: [116.397428, 39.90923], // 中心点坐标
     resizeEnable: true, // 地图初始化 center为空 地图自动定位到您所在城市
-    viewMode: '3D' // 使用3D视图
-  });
+    viewMode: '3D', // 使用3D视图
+  })
   mapObj.marker = new AMap.Marker({
     // 创建标记点
     position: [116.397428, 39.90923], // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
-    title: ''
-  });
+    title: '',
+  })
 
   // 获取地址 注册地理编码插件和定位插件。
   AMap.plugin(['AMap.Geocoder', 'AMap.Geolocation', 'AMap.ToolBar'], () => {
     mapObj.geocoder = new AMap.Geocoder({
       // 地理编码对象
       radius: 1000,
-      extensions: 'all'
-    });
+      extensions: 'all',
+    })
     let toolBar = new AMap.ToolBar({
-      position: 'LB'
-    });
+      position: 'LB',
+    })
     // 工具条对象
-    mapObj.viewMap.addControl(toolBar);
+    mapObj.viewMap.addControl(toolBar)
     // 定位对象
     mapObj.geolocation = new AMap.Geolocation({
       // 是否使用高精度定位，默认：true
@@ -86,55 +97,60 @@ const initMap = () => {
       //  定位按钮的排放位置,  RB表示右下
       buttonPosition: 'RB',
       // 定位成功时是否在定位位置显示一个Marker 默认值：true
-      showMarker: false
+      showMarker: false,
       // 自定义定位元素
       // buttonDom:document.getElementById('ge')
-    });
+    })
     // 绑定定位事件
-    mapObj.geolocation.on('complete', onComplete);
-    mapObj.geolocation.on('error', onError);
+    mapObj.geolocation.on('complete', onComplete)
+    mapObj.geolocation.on('error', onError)
     // 地图添加定位组件
-    mapObj.viewMap.addControl(mapObj.geolocation);
-  });
-  mapObj.viewMap.on('click', clickHandler); // 绑定点击事件
+    mapObj.viewMap.addControl(mapObj.geolocation)
+  })
+  mapObj.viewMap.on('click', clickHandler) // 绑定点击事件
 
-  mapObj.viewMap.add(mapObj.marker); // 添加标记对象
+  mapObj.viewMap.add(mapObj.marker) // 添加标记对象
   // 创建定位组件
-};
+}
 // 地图点击
 const clickHandler = (e) => {
   // 设置标记点坐标
-  changeMarkerPosition(e.lnglat);
-  getAddress(e.lnglat);
-};
+  changeMarkerPosition(e.lnglat)
+  getAddress(e.lnglat)
+}
 // 改变标记点的值
 const changeMarkerPosition = (e) => {
-  mapObj.marker.setPosition([e.lng, e.lat]);
-};
+  mapObj.marker.setPosition([e.lng, e.lat])
+}
 // 通过坐标获取地址
 const getAddress = (e) => {
   mapObj.geocoder.getAddress([e.lng, e.lat], (status, result) => {
     if (status === 'complete' && result.info === 'OK') {
       if (result && result.regeocode) {
-        const address = result.regeocode.formattedAddress; // 获取到位置
+        const address = result.regeocode.formattedAddress // 获取到位置
         // 修改标记点的title
-        mapObj.marker.setTitle(address);
+        mapObj.marker.setTitle(address)
       }
     }
-  });
-};
+  })
+}
 
 // 检索
 const searchPlace = async (queryString, cb) => {
-  const sig = JSON.stringify({
-    city: '杭州', // 指定区域
-    city_limit: false, // 为true时查找指定城市，为false指定城市不存在 查找另外的城市
-    extensions: 'all', // 返回结果控制
-    key: 'd2fd6d9257e28b3b929fdaf7f6977518', // 搜索的高德Key
-    keywords: queryString, // 检索关键字
-    output: 'json' // 返回的结果类型
-
-  }).replace('{', '').replace('}', '').replaceAll('"', '').replaceAll(':', '=').replaceAll(',', '&') + '025acabb1fb0836080b966db3c07f9f7';
+  const sig =
+    JSON.stringify({
+      city: '杭州', // 指定区域
+      city_limit: false, // 为true时查找指定城市，为false指定城市不存在 查找另外的城市
+      extensions: 'all', // 返回结果控制
+      key: 'd2fd6d9257e28b3b929fdaf7f6977518', // 搜索的高德Key
+      keywords: queryString, // 检索关键字
+      output: 'json', // 返回的结果类型
+    })
+      .replace('{', '')
+      .replace('}', '')
+      .replaceAll('"', '')
+      .replaceAll(':', '=')
+      .replaceAll(',', '&') + '025acabb1fb0836080b966db3c07f9f7'
   const { data: res } = await axios.get('https://restapi.amap.com/v3/place/text', {
     params: {
       city: '杭州', // 指定区域
@@ -143,70 +159,70 @@ const searchPlace = async (queryString, cb) => {
       key: 'd2fd6d9257e28b3b929fdaf7f6977518', // 搜索的高德Key
       keywords: queryString, // 检索关键字
       output: 'json', // 返回的结果类型
-      sig: md5(sig)
-    }
-  });
+      sig: md5(sig),
+    },
+  })
 
-  let result = [];
+  let result = []
   // 如果存在则封装结果集
   if (res.pois) {
     // 处理结果返回联想列表
-    result = res.pois.map(x => {
+    result = res.pois.map((x) => {
       return {
         // 拼接详细地址 adname 和address可能会重复
         value: x.pname + x.cityname + (x.adname === x.address ? x.adname : x.adname + x.address) + x.name,
         newAddress: x.pname + x.cityname + x.adname,
         // 其他的属性也放进去
-        ...x
-      };
-    });
+        ...x,
+      }
+    })
   }
   if (result.length === 0) {
     // 无结果
     result = [
       {
         value: '暂未搜索到该地点信息',
-        isResultLengthZero: true // 标记属性
-      }
-    ];
+        isResultLengthZero: true, // 标记属性
+      },
+    ]
   }
   // 返回封装的结果集
-  cb(result);
+  cb(result)
   // 点击清除按钮小图标下拉建议不更新的问题
-  elautocomplete.value.focus();
-};
+  elautocomplete.value.focus()
+}
 // 检索选中
 const selectPlace = (pointInfo) => {
   if (pointInfo.isResultLengthZero) {
-    keyword.value = '';
-    return;
+    keyword.value = ''
+    return
   }
   // 选中级别设置为最小 精准
-  mapObj.viewMap.setZoom(16);
+  mapObj.viewMap.setZoom(16)
   // 获取坐标
-  const location = pointInfo.location.split(',');
+  const location = pointInfo.location.split(',')
   // 更新坐标
-  mapObj.marker.setPosition([location[0], location[1]]);
+  mapObj.marker.setPosition([location[0], location[1]])
   // 修改标记点的title
-  mapObj.marker.setTitle(pointInfo.value);
-  mapObj.viewMap.setCenter([location[0], location[1]]);
-};
+  mapObj.marker.setTitle(pointInfo.value)
+  mapObj.viewMap.setCenter([location[0], location[1]])
+}
 // 定位成功
 const onComplete = (data) => {
   // 更新标记点
-  changeMarkerPosition(data.position);
+  changeMarkerPosition(data.position)
   // 获取地址
-  getAddress(data.position);
-};
+  getAddress(data.position)
+}
 // 定位失败
 const onError = (data) => {
   // 定位出错
-  ElMessage.error('定位失败');
-};
+  ElMessage.error('定位失败')
+}
 
 onMounted(() => {
-  initMap();
-});
+  initMap()
+})
 </script>
 <style lang="scss" scoped>
 .app-container {

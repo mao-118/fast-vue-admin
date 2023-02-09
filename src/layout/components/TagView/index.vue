@@ -2,9 +2,16 @@
   <div>
     <el-scrollbar id="elScrollbar" ref="scrollbarRef" :class="{ large: isLarge() }" @scroll="handleScroll">
       <div ref="tagListRef" class="tag-list">
-        <el-tag v-for="item in tagViewStore.tagViews" :key="item.path" class="mx-1"
-          :effect="item.path == $route.path ? 'dark' : 'plain'" closable @click="tagClick(item)"
-          @close="closeCurrentTag(item)" @contextmenu.prevent="openMenu(item, $event)">
+        <el-tag
+          v-for="item in tagViewStore.tagViews"
+          :key="item.path"
+          class="mx-1"
+          :effect="item.path == $route.path ? 'dark' : 'plain'"
+          closable
+          @click="tagClick(item)"
+          @close="closeCurrentTag(item)"
+          @contextmenu.prevent="openMenu(item, $event)"
+        >
           {{ item.title }}
         </el-tag>
       </div>
@@ -20,144 +27,144 @@
   </div>
 </template>
 <script setup>
-import { mainStore, tagViewStore, routeStore } from '@/store';
-import { useScroll } from '@/utils';
-const route = useRoute();
-const router = useRouter();
+import { mainStore, tagViewStore, routeStore } from '@/store'
+import { useScroll } from '@/utils'
+const route = useRoute()
+const router = useRouter()
 watch(
   route,
   (newRoute) => {
-    routeStore.setCurrentRoute(newRoute);
+    routeStore.setCurrentRoute(newRoute)
     if (newRoute.name) {
-      tagViewStore.addTagViews(newRoute);
+      tagViewStore.addTagViews(newRoute)
     }
   },
   { immediate: true }
-);
+)
 const isLarge = () => {
-  return localStorage.getItem('elSize') === 'large';
-};
+  return localStorage.getItem('elSize') === 'large'
+}
 // 点击tag并且在横屏菜单栏的情况下加载左侧菜单
 const tagClick = async (item) => {
-  if (item.path === route.path) return;
-  await router.push(item.path);
+  if (item.path === route.path) return
+  await router.push(item.path)
   if (mainStore.menuMode === 'horizontal') {
-    let routes = [];
+    let routes = []
     routeStore.routes.forEach((route) => {
       if (routeStore.currentRouteParent === route.path && route.children) {
-        routes = route.children;
+        routes = route.children
       }
-    });
-    routeStore.setMenuList(routes);
+    })
+    routeStore.setMenuList(routes)
   }
-};
+}
 const closeCurrentTag = (item) => {
-  tagViewStore.closeTagView(item);
+  tagViewStore.closeTagView(item)
   if (item.path === route.path) {
-    const index = tagViewStore.tagViews.findIndex((tag) => tag.path === item.path);
+    const index = tagViewStore.tagViews.findIndex((tag) => tag.path === item.path)
     // 找到前一个和后一个元素
-    const preTag = tagViewStore.tagViews[index - 1];
-    const nextTag = tagViewStore.tagViews[index + 1];
+    const preTag = tagViewStore.tagViews[index - 1]
+    const nextTag = tagViewStore.tagViews[index + 1]
     if (preTag) {
-      tagClick(preTag);
+      tagClick(preTag)
     } else if (nextTag) {
-      tagClick(nextTag);
+      tagClick(nextTag)
     } else {
-      location.reload();
+      location.reload()
     }
   }
-};
-const selectedTag = ref(null);
-const visible = ref(false);
-const left = ref(0);
-const top = ref(0);
+}
+const selectedTag = ref(null)
+const visible = ref(false)
+const left = ref(0)
+const top = ref(0)
 const openMenu = (item, e) => {
-  selectedTag.value = item;
-  visible.value = true;
-  left.value = e.pageX;
-  top.value = e.pageY;
-};
-const scrollbarRef = ref(null);
-const scrollbarWidth = ref(0);
-const scrollLeft = ref(0);
-const tagListRef = ref(null);
+  selectedTag.value = item
+  visible.value = true
+  left.value = e.pageX
+  top.value = e.pageY
+}
+const scrollbarRef = ref(null)
+const scrollbarWidth = ref(0)
+const scrollLeft = ref(0)
+const tagListRef = ref(null)
 // let elScrollbar=null
 const changeVisible = () => {
-  visible.value = false;
-};
+  visible.value = false
+}
 onMounted(() => {
-  window.addEventListener('click', changeVisible);
-  const elScrollbar = document.getElementById('elScrollbar');
-  scrollbarWidth.value = tagListRef.value.clientWidth;
+  window.addEventListener('click', changeVisible)
+  const elScrollbar = document.getElementById('elScrollbar')
+  scrollbarWidth.value = tagListRef.value.clientWidth
   if (navigator.userAgent.indexOf('Firefox') >= 0) {
     // 火狐写法 添加滚轮滚动监听事件
-    elScrollbar?.addEventListener('DOMMouseScroll', mouseScroll);
+    elScrollbar?.addEventListener('DOMMouseScroll', mouseScroll)
   } else {
     // 非火狐 添加滚轮滚动监听事件
-    elScrollbar?.addEventListener('mousewheel', mouseScroll);
+    elScrollbar?.addEventListener('mousewheel', mouseScroll)
   }
-});
+})
 onBeforeUnmount(() => {
-  window.removeEventListener('click', changeVisible);
-  const elScrollbar = document.getElementById('elScrollbar');
+  window.removeEventListener('click', changeVisible)
+  const elScrollbar = document.getElementById('elScrollbar')
   if (navigator.userAgent.indexOf('Firefox') >= 0) {
     // 火狐写法 添加滚轮滚动监听事件
-    elScrollbar?.removeEventListener('DOMMouseScroll', mouseScroll);
+    elScrollbar?.removeEventListener('DOMMouseScroll', mouseScroll)
   } else {
     // 非火狐 添加滚轮滚动监听事件
-    elScrollbar?.removeEventListener('mousewheel', mouseScroll);
+    elScrollbar?.removeEventListener('mousewheel', mouseScroll)
   }
-});
+})
 const mouseScroll = (event) => {
-  const step = useScroll(event);
-  scrollLeft.value += step;
+  const step = useScroll(event)
+  scrollLeft.value += step
   if (scrollLeft.value <= 0) {
-    scrollLeft.value = 0;
+    scrollLeft.value = 0
   }
   if (scrollLeft.value > scrollbarWidth.value) {
-    scrollLeft.value = scrollbarWidth.value;
+    scrollLeft.value = scrollbarWidth.value
   }
-  scrollbarRef.value.setScrollLeft(scrollLeft.value);
-};
+  scrollbarRef.value.setScrollLeft(scrollLeft.value)
+}
 const handleScroll = (e) => {
-  scrollLeft.value = e.scrollLeft;
-};
+  scrollLeft.value = e.scrollLeft
+}
 const refreshSelectedTag = () => {
   router.replace({
-    path: '/redirect' + selectedTag.value.fullPath
-  });
-  visible.value = false;
-};
+    path: '/redirect' + selectedTag.value.fullPath,
+  })
+  visible.value = false
+}
 const closeSelectedTag = () => {
-  closeCurrentTag(selectedTag.value);
-  visible.value = false;
-};
+  closeCurrentTag(selectedTag.value)
+  visible.value = false
+}
 const closeOthersTags = () => {
-  tagViewStore.closeOthersTagViews(selectedTag.value);
-  if (route.path !== selectedTag.value.path) tagClick(selectedTag.value);
-  visible.value = false;
-};
+  tagViewStore.closeOthersTagViews(selectedTag.value)
+  if (route.path !== selectedTag.value.path) tagClick(selectedTag.value)
+  visible.value = false
+}
 const closeAllTags = () => {
-  tagViewStore.closeAllTagViews();
-  location.reload();
-  visible.value = false;
-};
+  tagViewStore.closeAllTagViews()
+  location.reload()
+  visible.value = false
+}
 const closeLeftTags = () => {
-  const leftTags = tagViewStore.closeLeftTagViews(selectedTag.value);
+  const leftTags = tagViewStore.closeLeftTagViews(selectedTag.value)
   // 如果路由所在的标签被关闭就跳转到当前页面
-  if (leftTags.some(item => item.path == route.path)) {
-    tagClick(selectedTag.value);
+  if (leftTags.some((item) => item.path == route.path)) {
+    tagClick(selectedTag.value)
   }
-  visible.value = false;
-};
+  visible.value = false
+}
 const closeRightTags = () => {
-  const rightTags = tagViewStore.closeRightTagViews(selectedTag.value);
+  const rightTags = tagViewStore.closeRightTagViews(selectedTag.value)
   // 如果路由所在的标签被关闭就跳转到当前页面
-  if (rightTags.some(item => item.path == route.path)) {
-    tagClick(selectedTag.value);
+  if (rightTags.some((item) => item.path == route.path)) {
+    tagClick(selectedTag.value)
   }
-  visible.value = false;
-};
+  visible.value = false
+}
 </script>
 <style lang="scss" scoped>
 .el-scrollbar {

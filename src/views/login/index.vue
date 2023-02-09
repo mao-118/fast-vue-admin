@@ -5,9 +5,9 @@
         <form id="a-form" class="form" method="" action="">
           <h2 class="form_title title">Create Account</h2>
           <span class="form__span">or use email for registration</span>
-          <input class="form__input" type="text" placeholder="Name">
-          <input class="form__input" type="text" placeholder="Email">
-          <input class="form__input" autocomplete="off" type="password" placeholder="Password">
+          <input class="form__input" type="text" placeholder="Name" />
+          <input class="form__input" type="text" placeholder="Email" />
+          <input class="form__input" autocomplete="off" type="password" placeholder="Password" />
           <button class="form__button button submit" @click="register">注 册</button>
         </form>
       </div>
@@ -15,12 +15,10 @@
         <form id="b-form" class="form" method="" action="">
           <h2 class="form_title title">Sign in to Website</h2>
           <span class="form__span">Please login with your account password</span>
-          <input v-model="username" class="form__input" type="text" placeholder="Username">
-          <input v-model="password" autocomplete="off" class="form__input" type="password" placeholder="Password">
+          <input v-model="username" class="form__input" type="text" placeholder="Username" />
+          <input v-model="password" autocomplete="off" class="form__input" type="password" placeholder="Password" />
           <a class="form__link cursor-pointer" @click="forgotPwd">Forgot your password?</a>
-          <button v-loading class="form__button button submit" @click="handleLogin">
-            登 录
-          </button>
+          <button v-loading class="form__button button submit" @click="handleLogin">登 录</button>
         </form>
       </div>
       <div id="switch-cnt" class="switch">
@@ -41,83 +39,81 @@
   </div>
 </template>
 <script setup>
-import { ElMessage, ElLoading } from 'element-plus';
-import { mainStore } from '@/store';
-let switchCtn = null;
-let switchC1 = null;
-let switchC2 = null;
-let switchCircle = null;
-let switchBtn = null;
-let aContainer = null;
-let bContainer = null;
-let allButtons = null;
+import { ElMessage, ElLoading } from 'element-plus'
+import { mainStore } from '@/store'
+let switchCtn = null
+let switchC1 = null
+let switchC2 = null
+let switchCircle = null
+let switchBtn = null
+let aContainer = null
+let bContainer = null
+let allButtons = null
 onMounted(() => {
-  switchCtn = document.querySelector('#switch-cnt');
-  switchC1 = document.querySelector('#switch-c1');
-  switchC2 = document.querySelector('#switch-c2');
-  switchCircle = document.querySelectorAll('.switch__circle');
-  switchBtn = document.querySelectorAll('.switch-btn');
-  aContainer = document.querySelector('#a-container');
-  bContainer = document.querySelector('#b-container');
-  allButtons = document.querySelectorAll('.submit');
-  mainF();
-  changeForm();
-});
+  switchCtn = document.querySelector('#switch-cnt')
+  switchC1 = document.querySelector('#switch-c1')
+  switchC2 = document.querySelector('#switch-c2')
+  switchCircle = document.querySelectorAll('.switch__circle')
+  switchBtn = document.querySelectorAll('.switch-btn')
+  aContainer = document.querySelector('#a-container')
+  bContainer = document.querySelector('#b-container')
+  allButtons = document.querySelectorAll('.submit')
+  mainF()
+  changeForm()
+})
 
-let getButtons = (e) => e.preventDefault();
+let getButtons = (e) => e.preventDefault()
 
 let changeForm = (e) => {
-  console.log(111);
-  switchCtn.classList.add('is-gx');
+  console.log(111)
+  switchCtn.classList.add('is-gx')
   setTimeout(function () {
-    switchCtn.classList.remove('is-gx');
-  }, 1500);
-  switchCtn.classList.toggle('is-txr');
-  switchCircle[0].classList.toggle('is-txr');
-  switchCircle[1].classList.toggle('is-txr');
-  switchC1.classList.toggle('is-hidden');
-  switchC2.classList.toggle('is-hidden');
-  aContainer.classList.toggle('is-txl');
-  bContainer.classList.toggle('is-txl');
-  bContainer.classList.toggle('is-z200');
-};
+    switchCtn.classList.remove('is-gx')
+  }, 1500)
+  switchCtn.classList.toggle('is-txr')
+  switchCircle[0].classList.toggle('is-txr')
+  switchCircle[1].classList.toggle('is-txr')
+  switchC1.classList.toggle('is-hidden')
+  switchC2.classList.toggle('is-hidden')
+  aContainer.classList.toggle('is-txl')
+  bContainer.classList.toggle('is-txl')
+  bContainer.classList.toggle('is-z200')
+}
 let mainF = (e) => {
-  for (let i = 0; i < allButtons.length; i++)
-    allButtons[i].addEventListener('click', getButtons);
-  for (let i = 0; i < switchBtn.length; i++)
-    switchBtn[i].addEventListener('click', changeForm);
-};
+  for (let i = 0; i < allButtons.length; i++) allButtons[i].addEventListener('click', getButtons)
+  for (let i = 0; i < switchBtn.length; i++) switchBtn[i].addEventListener('click', changeForm)
+}
 const register = () => {
-  ElMessage.warning('暂未开放注册功能');
-};
+  ElMessage.warning('暂未开放注册功能')
+}
 const forgotPwd = () => {
-  ElMessage.warning('请联系管理员更改密码');
-};
-const username = ref('admin');
-const password = ref('123456');
-const router = useRouter();
+  ElMessage.warning('请联系管理员更改密码')
+}
+const username = ref('admin')
+const password = ref('123456')
+const router = useRouter()
 const handleLogin = () => {
-  if (!username.value) return ElMessage.error('请输入账号');
-  if (!password.value) return ElMessage.error('请输入密码');
+  if (!username.value) return ElMessage.error('请输入账号')
+  if (!password.value) return ElMessage.error('请输入密码')
   const loading = ElLoading.service({
     lock: true,
     text: 'Loading',
-    background: 'rgba(0, 0, 0, 0.7)'
-  });
+    background: 'rgba(0, 0, 0, 0.7)',
+  })
 
   setTimeout(() => {
     if (username.value === 'admin' && password.value === '123456') {
-      mainStore.setToken('hejsljlsjfisjdfijsjsjfjdjjasjfksjjsdjfsjisjjdjf');
-      router.push('/');
+      mainStore.setToken('hejsljlsjfisjdfijsjsjfjdjjasjfksjjsdjfsjisjjdjf')
+      router.push('/')
     } else {
-      ElMessage.error('用户名或密码错误');
+      ElMessage.error('用户名或密码错误')
     }
-    loading.close();
-  }, 500);
-};
+    loading.close()
+  }, 500)
+}
 </script>
 <style lang="scss" scoped>
-$bg: #EDF2F0;
+$bg: #edf2f0;
 
 $neu-1: #ecf0f3;
 $neu-2: #d1d9e6;
@@ -126,8 +122,7 @@ $white: #f9f9f9;
 $gray: #a0a5a8;
 $black: #181818;
 
-$purple: #4B70E2;
-
+$purple: #4b70e2;
 
 $transition: 1s;
 
@@ -154,29 +149,25 @@ $transition: 1s;
   height: 600px;
   padding: 25px;
   background-color: $neu-1;
-  box-shadow:
-    10px 10px 10px $neu-2,
-    -10px -10px 10px $white;
+  box-shadow: 10px 10px 10px $neu-2, -10px -10px 10px $white;
   border-radius: 12px;
   overflow: hidden;
 
-  @media(max-width: 1200px) {
-    transform: scale(.7);
+  @media (max-width: 1200px) {
+    transform: scale(0.7);
   }
 
-  @media(max-width: 1000px) {
-    transform: scale(.6);
+  @media (max-width: 1000px) {
+    transform: scale(0.6);
   }
 
-  @media(max-width: 800px) {
-    transform: scale(.5);
+  @media (max-width: 800px) {
+    transform: scale(0.5);
   }
 
-  @media(max-width: 600px) {
-    transform: scale(.4);
+  @media (max-width: 600px) {
+    transform: scale(0.4);
   }
-
-
 }
 
 .container {
@@ -206,14 +197,13 @@ $transition: 1s;
     object-fit: contain;
     width: 30px;
     margin: 0 5px;
-    opacity: .5;
-    transition: .15s;
+    opacity: 0.5;
+    transition: 0.15s;
 
     &:hover {
       opacity: 1;
-      transition: .15s;
+      transition: 0.15s;
       cursor: pointer;
-
     }
   }
 
@@ -224,23 +214,19 @@ $transition: 1s;
 
     padding-left: 25px;
     font-size: 13px;
-    letter-spacing: .15px;
+    letter-spacing: 0.15px;
     border: none;
     outline: none;
 
     font-family: 'Montserrat', sans-serif;
     background-color: $neu-1;
-    transition: .25s ease;
+    transition: 0.25s ease;
     border-radius: 8px;
 
-    box-shadow:
-      inset 2px 2px 4px $neu-2,
-      inset -2px -2px 4px $white;
+    box-shadow: inset 2px 2px 4px $neu-2, inset -2px -2px 4px $white;
 
     &:focus {
-      box-shadow:
-        inset 4px 4px 4px $neu-2,
-        inset -4px -4px 4px $white;
+      box-shadow: inset 4px 4px 4px $neu-2, inset -4px -4px 4px $white;
     }
   }
 
@@ -267,7 +253,7 @@ $transition: 1s;
 
 .description {
   font-size: 14px;
-  letter-spacing: .25px;
+  letter-spacing: 0.25px;
   text-align: center;
   line-height: 1.6;
 }
@@ -283,9 +269,7 @@ $transition: 1s;
 
   background-color: $purple;
   color: $white;
-  box-shadow:
-    8px 8px 16px $neu-2,
-    -8px -8px 16px $white;
+  box-shadow: 8px 8px 16px $neu-2, -8px -8px 16px $white;
 
   border: none;
   outline: none;
@@ -320,10 +304,7 @@ $transition: 1s;
   background-color: $neu-1;
   overflow: hidden;
 
-
-  box-shadow:
-    4px 4px 10px $neu-2,
-    -4px -4px 10px $white;
+  box-shadow: 4px 4px 10px $neu-2, -4px -4px 10px $white;
 
   &__circle {
     position: absolute;
@@ -331,9 +312,7 @@ $transition: 1s;
     height: 500px;
     border-radius: 50%;
     background-color: $neu-1;
-    box-shadow:
-      inset 8px 8px 12px $neu-2,
-      inset -8px -8px 12px $white;
+    box-shadow: inset 8px 8px 12px $neu-2, inset -8px -8px 12px $white;
 
     bottom: -60%;
     left: -60%;
@@ -356,28 +335,23 @@ $transition: 1s;
     width: 400px;
     padding: 50px 55px;
 
-    transition: $transition ;
-
+    transition: $transition;
   }
 
   &__button {
     cursor: pointer;
 
     &:hover {
-      box-shadow:
-        6px 6px 10px $neu-2,
-        -6px -6px 10px $white;
-      transform: scale(.985);
-      transition: .25s;
+      box-shadow: 6px 6px 10px $neu-2, -6px -6px 10px $white;
+      transform: scale(0.985);
+      transition: 0.25s;
     }
 
     &:active,
     &:focus {
-      box-shadow:
-        2px 2px 6px $neu-2,
-        -2px -2px 6px $white;
-      transform: scale(.97);
-      transition: .25s;
+      box-shadow: 2px 2px 6px $neu-2, -2px -2px 6px $white;
+      transform: scale(0.97);
+      transition: 0.25s;
     }
   }
 }
@@ -412,7 +386,6 @@ $transition: 1s;
 }
 
 @keyframes is-gx {
-
   0%,
   10%,
   100% {

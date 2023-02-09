@@ -1,4 +1,4 @@
-import NProgress from 'nprogress';
-import 'nprogress/nprogress.css';
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
-export default NProgress;
+export default NProgress

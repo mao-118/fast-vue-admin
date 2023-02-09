@@ -1,10 +1,10 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
-import { routes, beforeResolve, afterEach } from './installRouter';
-import Layout from '@/layout/index.vue';
+import { createRouter, createWebHashHistory } from 'vue-router'
+import { routes, beforeResolve, afterEach } from './installRouter'
+import Layout from '@/layout/index.vue'
 const constantRoutes = [
   {
     path: '/',
-    redirect: '/dashboard/index'
+    redirect: '/dashboard/index',
   },
   {
     path: '/redirect',
@@ -13,32 +13,32 @@ const constantRoutes = [
     children: [
       {
         path: '/redirect/:path(.*)',
-        component: () => import('@/views/redirect/index.vue')
-      }
-    ]
+        component: () => import('@/views/redirect/index.vue'),
+      },
+    ],
   },
   {
     path: '/login',
-    component: () => import('@/views/login/index.vue')
+    component: () => import('@/views/login/index.vue'),
   },
   {
     path: '/404',
-    component: () => import('@/views/errorPage/404.vue')
+    component: () => import('@/views/errorPage/404.vue'),
   },
   {
     path: '/401',
-    component: () => import('@/views/errorPage/401.vue')
+    component: () => import('@/views/errorPage/401.vue'),
   },
   {
     path: '/:pathMatch(.*)',
-    redirect: '/404'
-  }
-];
+    redirect: '/404',
+  },
+]
 const router = createRouter({
   history: createWebHashHistory(),
-  routes: [...constantRoutes, ...routes]
-});
-router.beforeResolve(beforeResolve);
-router.afterEach(afterEach);
+  routes: [...constantRoutes, ...routes],
+})
+router.beforeResolve(beforeResolve)
+router.afterEach(afterEach)
 
-export default router;
+export default router

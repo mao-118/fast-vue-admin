@@ -9,40 +9,41 @@
       </el-radio-group>
     </div>
     <el-config-provider :locale="locale">
-      <el-date-picker type="datetime" :placeholder="locale.el.select.placeholder" />
+      <el-date-picker v-model="date" type="datetime" :placeholder="locale.el.select.placeholder" />
       <el-calendar />
     </el-config-provider>
   </div>
 </template>
 <script setup>
-import zhCn from 'element-plus/es/locale/lang/zh-cn';
-import en from 'element-plus/es/locale/lang/en';
-import es from 'element-plus/es/locale/lang/es';
-import ja from 'element-plus/es/locale/lang/ja';
-const locale = ref(zhCn);
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
+import en from 'element-plus/es/locale/lang/en'
+import es from 'element-plus/es/locale/lang/es'
+import ja from 'element-plus/es/locale/lang/ja'
+const locale = ref(zhCn)
+const date = ref('')
 const localeList = reactive([
   {
     name: '简体中文',
-    lang: { ...zhCn, title: '切换语言' }
+    lang: { ...zhCn, title: '切换语言' },
   },
   {
     name: 'English',
-    lang: { ...en, title: 'Switch Language' }
+    lang: { ...en, title: 'Switch Language' },
   },
   {
     name: 'Español',
-    lang: { ...es, title: 'Cambiar idioma' }
+    lang: { ...es, title: 'Cambiar idioma' },
   },
   {
     name: '日本語',
-    lang: { ...ja, title: '言語の切り替え' }
-  }
-]);
-const radio = ref(0);
+    lang: { ...ja, title: '言語の切り替え' },
+  },
+])
+const radio = ref(0)
 const handleChange = () => {
-  locale.value = localeList[radio.value].lang;
-};
-handleChange();
+  locale.value = localeList[radio.value].lang
+}
+handleChange()
 </script>
 <style lang="scss" scoped>
 .changeLocale {

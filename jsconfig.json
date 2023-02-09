@@ -3,9 +3,7 @@
     "target": "ES6",
     "baseUrl": "./",
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     }
   },
   "vueCompilerOptions": {

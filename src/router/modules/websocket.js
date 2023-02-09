@@ -1,4 +1,4 @@
-import Layout from '@/layout/index.vue';
+import Layout from '@/layout/index.vue'
 export default {
   path: '/websocket',
   name: 'websocket',
@@ -9,7 +9,7 @@ export default {
       path: '/websocket/index',
       name: 'websocketIndex',
       meta: { title: 'websocket', icon: 'Cpu' },
-      component: () => import('@/views/websocket/index.vue')
-    }
-  ]
-};
+      component: () => import('@/views/websocket/index.vue'),
+    },
+  ],
+}
