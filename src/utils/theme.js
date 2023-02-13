@@ -1,15 +1,18 @@
 import { useCssVar } from '@vueuse/core'
+const getCssVar = (varStr, el) => {
+  return useCssVar(varStr, el)
+}
 // 处理主题样式
 export function handleThemeStyle(theme) {
   const el = document.documentElement
-  const primaryColor = useCssVar('--el-color-primary', el)
+  const primaryColor = getCssVar('--el-color-primary', el)
   primaryColor.value = theme
   for (let i = 1; i <= 9; i++) {
-    const lightColor = useCssVar(`--el-color-primary-light-${i}`, el)
+    const lightColor = getCssVar(`--el-color-primary-light-${i}`, el)
     lightColor.value = `${getLightColor(theme, i / 10)}`
   }
   for (let i = 1; i <= 9; i++) {
-    const darkColor = useCssVar(`--el-color-primary-dark-${i}`, el)
+    const darkColor = getCssVar(`--el-color-primary-dark-${i}`, el)
     darkColor.value = `${getDarkColor(theme, i / 10)}`
   }
 }

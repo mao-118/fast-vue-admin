@@ -1,6 +1,6 @@
 <template>
   <el-scrollbar>
-    <div v-show="mainStore.showLogo" class="logo">
+    <div v-show="mainStore.showLogo" class="logo cursor-pointer" @click="$router.push('/dashboard/index')">
       <img class="logo-img" src="@/assets/logo.png" />
       <Transition>
         <h3 v-show="!mainStore.collapse" class="logo-text">Fast Admin</h3>

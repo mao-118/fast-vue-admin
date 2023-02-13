@@ -61,6 +61,7 @@ const handleChangeScheme = async () => {
   mainStore.setScheme()
 }
 const handleChangeTheme = (theme) => {
+  if (!theme) theme = '#409EFF'
   mainStore.changeTheme(theme)
   handleThemeStyle(theme)
 }

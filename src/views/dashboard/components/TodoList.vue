@@ -69,6 +69,7 @@
   </footer>
 </template>
 <script>
+import { useDebounceRef } from '@/hooks'
 // Full spec-compliant TodoMVC with localStorage persistence
 // and hash-based routing in ~120 effective lines of JavaScript.
 
@@ -104,7 +105,7 @@ export default {
   setup() {
     // app initial state
     const todos = ref(todoStorage.fetch())
-    const newTodo = ref('')
+    const newTodo = useDebounceRef('')
     const editedTodo = ref(null)
     const visibility = ref('all')
 
@@ -274,7 +275,7 @@ body {
   font-size: 100px;
   font-weight: 100;
   text-align: center;
-  color: rgba(175, 47, 47, 0.15);
+  color: #b83f45;
   -webkit-text-rendering: optimizeLegibility;
   -moz-text-rendering: optimizeLegibility;
   text-rendering: optimizeLegibility;

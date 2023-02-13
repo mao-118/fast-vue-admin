@@ -16,14 +16,16 @@
         </el-tag>
       </div>
     </el-scrollbar>
-    <ul v-show="visible" :style="{ left: left + 'px', top: top + 'px' }" class="contextmenu">
-      <li @click.stop="refreshSelectedTag">刷新</li>
-      <li @click.stop="closeSelectedTag">关闭</li>
-      <li @click.stop="closeOthersTags">关闭其他</li>
-      <li @click.stop="closeAllTags">关闭所有</li>
-      <li @click.stop="closeLeftTags">关闭左边</li>
-      <li @click.stop="closeRightTags">关闭右边</li>
-    </ul>
+    <Teleport to="body">
+      <ul v-show="visible" :style="{ left: left + 'px', top: top + 'px' }" class="contextmenu">
+        <li @click.stop="refreshSelectedTag">刷新</li>
+        <li @click.stop="closeSelectedTag">关闭</li>
+        <li @click.stop="closeOthersTags">关闭其他</li>
+        <li @click.stop="closeAllTags">关闭所有</li>
+        <li @click.stop="closeLeftTags">关闭左边</li>
+        <li @click.stop="closeRightTags">关闭右边</li>
+      </ul>
+    </Teleport>
   </div>
 </template>
 <script setup>
@@ -78,11 +80,11 @@ const selectedTag = ref(null)
 const visible = ref(false)
 const left = ref(0)
 const top = ref(0)
-const openMenu = (item, e) => {
+const openMenu = (item, { x, y }) => {
   selectedTag.value = item
   visible.value = true
-  left.value = e.pageX
-  top.value = e.pageY
+  left.value = x
+  top.value = y
 }
 const scrollbarRef = ref(null)
 const scrollbarWidth = ref(0)
