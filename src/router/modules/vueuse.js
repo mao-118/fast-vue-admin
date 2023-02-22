@@ -24,5 +24,11 @@ export default {
       meta: { title: 'useIcon', icon: '' },
       component: () => import('@/views/vueuse/useIcon.vue'),
     },
+    {
+      path: '/vueuse/userMedia',
+      name: 'userMedia',
+      meta: { title: '用户媒体', icon: '' },
+      component: () => import('@/views/vueuse/userMedia.vue'),
+    },
   ],
 }
