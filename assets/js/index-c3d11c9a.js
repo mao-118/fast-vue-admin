@@ -1,0 +1,1 @@
+import{r as a,ai as e,c as s,q as n,b as l,f as u}from"./index-cbcdd09a.js";const t={class:"app-container"},o=l("h1",null,"Menu1-1",-1),c={name:"Menu11"},d=Object.assign(c,{setup(l){const c=a("");return(a,l)=>{const d=e;return u(),s("div",t,[o,n(d,{modelValue:c.value,"onUpdate:modelValue":l[0]||(l[0]=a=>c.value=a)},null,8,["modelValue"])])}}});export{d as default};

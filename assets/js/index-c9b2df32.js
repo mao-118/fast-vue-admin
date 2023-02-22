@@ -1,1 +1,0 @@
-import{r as e,ai as a,c as s,q as n,b as l,f as u}from"./index-1f5573ce.js";const t={class:"app-container"},o=l("h1",null,"Menu1-1",-1),r={name:"Menu11"},c=Object.assign(r,{setup(l){const r=e("");return(e,l)=>{const c=a;return u(),s("div",t,[o,n(c,{modelValue:r.value,"onUpdate:modelValue":l[0]||(l[0]=e=>r.value=e)},null,8,["modelValue"])])}}});export{c as default};
