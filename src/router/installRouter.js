@@ -52,7 +52,7 @@ export const beforeResolve = (to, from, next) => {
       next()
     } else {
       NProgress.done()
-      next({ path: '/login', replace: true })
+      next({ path: '/login', replace: true, query: { redirect: to.path, ...to.query } })
     }
   }
 }

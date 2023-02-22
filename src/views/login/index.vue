@@ -92,6 +92,7 @@ const forgotPwd = () => {
 const username = ref('admin')
 const password = ref('123456')
 const router = useRouter()
+const route = useRoute()
 const handleLogin = () => {
   if (!username.value) return ElMessage.error('请输入账号')
   if (!password.value) return ElMessage.error('请输入密码')
@@ -104,12 +105,27 @@ const handleLogin = () => {
   setTimeout(() => {
     if (username.value === 'admin' && password.value === '123456') {
       mainStore.setToken('hejsljlsjfisjdfijsjsjfjdjjasjfksjjsdjfsjisjjdjf')
-      router.push('/')
+      const query = route.query
+      let redirect = ''
+      let otherQuery = {}
+      if (query) {
+        redirect = query.redirect
+        otherQuery = getOtherQuery(query)
+      }
+      router.replace({ path: redirect || '/', query: otherQuery })
     } else {
       ElMessage.error('用户名或密码错误')
     }
     loading.close()
   }, 500)
+}
+const getOtherQuery = (query) => {
+  return Object.keys(query).reduce((acc, cur) => {
+    if (cur !== 'redirect') {
+      acc[cur] = query[cur]
+    }
+    return acc
+  }, {})
 }
 </script>
 <style lang="scss" scoped>
