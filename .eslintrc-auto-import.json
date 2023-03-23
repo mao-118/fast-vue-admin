@@ -1,6 +1,7 @@
 {
   "globals": {
     "EffectScope": true,
+    "ElLoading": true,
     "computed": true,
     "createApp": true,
     "customRef": true,
