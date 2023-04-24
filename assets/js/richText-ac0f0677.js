@@ -1,0 +1,1 @@
+import{b as t,ak as e,bc as a,o as s}from"./index-b2c55ba7.js";const n={setup(n){const o=t("");return(t,n)=>{const r=a;return s(),e(r,{text:o.value,"onUpdate:text":n[0]||(n[0]=t=>o.value=t)},null,8,["text"])}}};export{n as default};
