@@ -1,0 +1,1 @@
+import{b as a,E as e,e as s,g as n,f as l,o as u}from"./index-af9939a5.js";const o={class:"app-container"},t=l("h1",null,"Menu1",-1),r={name:"Menu1"},d=Object.assign(r,{setup(l){const r=a("");return(a,l)=>{const d=e;return u(),s("div",o,[t,n(d,{modelValue:r.value,"onUpdate:modelValue":l[0]||(l[0]=a=>r.value=a)},null,8,["modelValue"])])}}});export{d as default};
