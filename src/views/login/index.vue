@@ -2,7 +2,7 @@
   <div class="login-container">
     <div class="login-content">
       <div class="header flex justify-center items-center">
-        <img src="https://preview.pro.ant.design/logo.svg" alt="logo" class="logo" />
+        <img src="@/assets/vite.svg" alt="logo" class="logo" />
         <span class="ml-4">登陆</span>
       </div>
       <div class="tips text-center mt-2">中小型后台解决方案</div>
