@@ -1,6 +1,6 @@
 <template>
   <el-drawer v-model="settingDrawer" :direction="direction" size="25%" :show-close="false">
-    <template #title>
+    <template #header>
       <h3 class="drawer-title">系统布局设置</h3>
     </template>
     <div class="drawer-item">
