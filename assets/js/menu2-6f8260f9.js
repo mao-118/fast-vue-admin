@@ -1,0 +1,1 @@
+import{_ as a,e as s,o as e,p as n,j as r,f as t}from"./index-b5c3c419.js";const c={},d={class:"app-container"},o=[(a=>(n("data-v-6e938618"),a=a(),r(),a))((()=>t("div",{class:"menu"},"menu2",-1)))];var i=a(c,[["render",function(a,n){return e(),s("div",d,o)}],["__scopeId","data-v-6e938618"]]);export{i as default};

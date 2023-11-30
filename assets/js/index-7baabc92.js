@@ -1,1 +1,0 @@
-import{c as a,e as r,g as s,w as e,f as t,v as n,o,q as c}from"./index-af9939a5.js";const p={class:"app-container"},f=t("p",null,"点击按钮会产生一个错误",-1),i=c("确定"),l={setup(t){const c=()=>{throw n.info("产生一个错误，点击右上角图标查看"),new Error("create a error")};return(t,n)=>{const l=a;return o(),r("div",p,[f,s(l,{type:"danger",onClick:c},{default:e((()=>[i])),_:1})])}}};export{l as default};

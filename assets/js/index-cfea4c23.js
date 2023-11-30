@@ -1,0 +1,1 @@
+import{c as a,e as r,g as s,w as e,f as t,v as n,o,q as c}from"./index-b5c3c419.js";const p={class:"app-container"},i=t("p",null,"点击按钮会产生一个错误",-1),l=c("确定"),u={setup(t){const c=()=>{throw n.info("产生一个错误，点击右上角图标查看"),new Error("create a error")};return(t,n)=>{const u=a;return o(),r("div",p,[i,s(u,{type:"danger",onClick:c},{default:e((()=>[l])),_:1})])}}};export{u as default};
